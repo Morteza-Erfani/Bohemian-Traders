@@ -1,0 +1,182 @@
+@import url("../../../Styles/variables.css");
+@import url("../../../Styles/fonts.css");
+
+.container {
+  width: 100vw;
+}
+
+.topHeader {
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  line-height: 1.5;
+  padding: 0 15px;
+}
+
+.topHeader p {
+  color: var(--primary-white);
+  font-size: 10px;
+  padding: 12px;
+  letter-spacing: 1.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  padding: 15px 20px;
+}
+
+.button {
+  width: 18px;
+  height: 18px;
+  margin-left: 10px;
+  margin-top: 3px;
+}
+
+.mobileRight {
+  display: flex;
+}
+
+.brandName {
+  justify-content: center;
+  text-align: center;
+}
+
+.brandName img {
+  max-width: 100%;
+  height: auto;
+}
+
+.humIcon {
+  margin-right: 20px;
+  cursor: pointer;
+  width: 20px;
+  height: 36px;
+  position: relative;
+}
+
+.humIcon div {
+  background-color: black;
+  height: 1.125px;
+  position: absolute;
+  width: 20px;
+  transition: all 0.1s ease;
+}
+
+.hum {
+  position: relative;
+}
+
+.humMenu {
+  position: absolute;
+  z-index: 5;
+}
+
+.firstHum {
+  top: 16.125px;
+  animation: crossToHum-rotate-first 0.1s ease-in-out forwards,
+    crossToHum-Up-first 0.1s ease-in-out 0.1s forwards;
+}
+
+.secondHum {
+  top: 16.125px;
+}
+
+.thirdHum {
+  top: 16.125px;
+  animation: crossToHum-rotate-third 0.1s ease-in-out forwards,
+    crossToHum-down-third 0.1s ease-in-out 0.1s forwards;
+}
+
+.firstCross {
+  animation: humToCross-down-first 0.1s ease-in-out forwards,
+    humToCross-rotate-first 0.1s ease-in-out 0.1s forwards;
+}
+
+.secondCross {
+  visibility: hidden;
+  top: 16.125px;
+}
+
+.thirdCross {
+  animation: humToCross-up-third 0.1s ease-in-out forwards,
+    humToCross-rotate-third 0.1s ease-in-out 0.1s forwards;
+}
+
+@keyframes humToCross-down-first {
+  0% {
+    top: 9px;
+  }
+  100% {
+    top: 16.125px;
+  }
+}
+
+@keyframes humToCross-rotate-first {
+  0% {
+    rotate: 0;
+  }
+  100% {
+    rotate: 45deg;
+  }
+}
+
+@keyframes crossToHum-Up-first {
+  0% {
+    top: 16.125px;
+  }
+  100% {
+    top: 9px;
+  }
+}
+
+@keyframes crossToHum-rotate-first {
+  0% {
+    rotate: 45deg;
+  }
+  100% {
+    rotate: 0;
+  }
+}
+
+@keyframes humToCross-up-third {
+  0% {
+    top: 23.25px;
+  }
+  100% {
+    top: 16.125px;
+  }
+}
+
+@keyframes humToCross-rotate-third {
+  0% {
+    rotate: 0;
+  }
+  100% {
+    rotate: -45deg;
+  }
+}
+
+@keyframes crossToHum-down-third {
+  0% {
+    top: 16.125px;
+  }
+  100% {
+    top: 23.25px;
+  }
+}
+
+@keyframes crossToHum-rotate-third {
+  0% {
+    rotate: -45deg;
+  }
+  100% {
+    rotate: 0;
+  }
+}
