@@ -1,0 +1,59 @@
+@import url("../../../Styles/variables.css");
+@import url("../../../Styles/fonts.css");
+
+.container {
+  background-color: var(--primary-white);
+  border-top: 1px solid black;
+  width: 100vw;
+  margin-left: -20px;
+  margin-top: 10px;
+  padding: 15px;
+}
+
+.categoryContainer {
+  padding: 10px 6.66px 6.66px;
+  cursor: pointer;
+  align-items: center;
+  max-width: 100vw;
+}
+
+.collections {
+  border-bottom: 1px solid black;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 1.25px;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 6px 0;
+  margin-left: -22px;
+  /* width: 100%; */
+}
+
+.collections p {
+  padding: 10px 0 6.66px 22px;
+  height: 33px;
+}
+
+.category {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 1.25px;
+  align-items: center;
+}
+
+.category p {
+  height: 16px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  font-size: 16px;
+}
