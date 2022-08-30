@@ -50,6 +50,11 @@
   z-index: 5;
 }
 
+.loader {
+  width: 100%;
+  position: block;
+}
+
 @keyframes photoSlider {
   0% {
     opacity: 0.4;

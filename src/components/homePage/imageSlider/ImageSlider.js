@@ -18,7 +18,11 @@ const ImageSlider = () => {
   console.log(heroIndex);
 
   if (loading) {
-    return <img src={loader} alt="loader" />;
+    return (
+      <section className="styles.container">
+        <img src={loader} alt="loader" className={styles.loader} />
+      </section>
+    );
   }
 
   const dotHandler = (i) => {
