@@ -1,0 +1,25 @@
+.container {
+  width: 100%;
+  padding: 0 10.5px;
+}
+
+.catContainer {
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.catalog{
+  width: 100%;
+}
+
+.catTitle {
+  color: #fff;
+  position: absolute;
+  z-index: 5;
+  font-size: 12px;
+  letter-spacing: 1.8px;
+  bottom: 4%;
+  left: 5.5%;
+  font-weight: 500;
+}
