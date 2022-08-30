@@ -2,12 +2,19 @@
   font-family: WorkSans;
   font-style: normal;
   font-weight: 500;
-  src: url('../fonts/WorkSans-Medium.ttf');
+  src: url("../fonts/WorkSans-Medium.ttf");
+}
+
+@font-face {
+  font-family: WorkSans;
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/WorkSans-Regular.ttf");
 }
 
 @font-face {
   font-family: Lato;
   font-style: normal;
   font-weight: 400;
-  src: url('../fonts/Lato-Regular.ttf');
+  src: url("../fonts/Lato-Regular.ttf");
 }

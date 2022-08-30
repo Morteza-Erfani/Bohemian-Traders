@@ -5,7 +5,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 // Styles
 import "./index.css";
-import './Styles/fonts.css'
+import "./Styles/fonts.css";
 
 // Components
 import App from "./App";

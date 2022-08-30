@@ -3,10 +3,13 @@
 
 .container {
   width: 100vw;
+  position: sticky;
+  top: -39px;
+  z-index: 10;
 }
 
 .topHeader {
-  background-color: black;
+  background-color: var(--primary-black);
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -25,6 +28,7 @@
 }
 
 .header {
+  background-color: var(--primary-white);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -63,11 +67,11 @@
 }
 
 .humIcon div {
-  background-color: black;
+  background-color: var(--primary-black);
   height: 1.125px;
   position: absolute;
   width: 20px;
-  transition: all 0.1s ease;
+  transition: all 0.15s ease;
 }
 
 .hum {
@@ -81,8 +85,8 @@
 
 .firstHum {
   top: 16.125px;
-  animation: crossToHum-rotate-first 0.1s ease-in-out forwards,
-    crossToHum-Up-first 0.1s ease-in-out 0.1s forwards;
+  animation: crossToHum-rotate-first 0.15s ease-in-out forwards,
+    crossToHum-Up-first 0.15s ease-in-out 0.15s forwards;
 }
 
 .secondHum {
@@ -91,13 +95,13 @@
 
 .thirdHum {
   top: 16.125px;
-  animation: crossToHum-rotate-third 0.1s ease-in-out forwards,
-    crossToHum-down-third 0.1s ease-in-out 0.1s forwards;
+  animation: crossToHum-rotate-third 0.15s ease-in-out forwards,
+    crossToHum-down-third 0.15s ease-in-out 0.15s forwards;
 }
 
 .firstCross {
-  animation: humToCross-down-first 0.1s ease-in-out forwards,
-    humToCross-rotate-first 0.1s ease-in-out 0.1s forwards;
+  animation: humToCross-down-first 0.15s ease-in-out forwards,
+    humToCross-rotate-first 0.15s ease-in-out 0.15s forwards;
 }
 
 .secondCross {
@@ -106,8 +110,8 @@
 }
 
 .thirdCross {
-  animation: humToCross-up-third 0.1s ease-in-out forwards,
-    humToCross-rotate-third 0.1s ease-in-out 0.1s forwards;
+  animation: humToCross-up-third 0.15s ease-in-out forwards,
+    humToCross-rotate-third 0.15s ease-in-out 0.15s forwards;
 }
 
 @keyframes humToCross-down-first {

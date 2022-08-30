@@ -15,4 +15,18 @@ const GET_CATEGORIES_NAME = gql`
   }
 `;
 
-export { GET_CATEGORIES_NAME };
+const GET_HERO_PHOTOS = gql`
+  query {
+    heroPhotos {
+      laptopPhoto {
+        url
+      }
+      mobilePhoto {
+        url
+      }
+      id
+    }
+  }
+`;
+
+export { GET_CATEGORIES_NAME, GET_HERO_PHOTOS };
