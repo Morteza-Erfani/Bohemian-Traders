@@ -18,8 +18,6 @@ import styles from "./Header.module.css";
 const Header = () => {
   const [humShow, setHumShow] = useState(false);
 
-  console.log(humShow);
-
   return (
     <header className={styles.container}>
       {/* top header over menu */}

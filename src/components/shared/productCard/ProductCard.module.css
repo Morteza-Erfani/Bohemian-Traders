@@ -1,0 +1,47 @@
+@import url('../../../Styles/fonts.css');
+
+.container {
+  max-width: 100%;
+  padding: 0 10.5px;
+  margin-bottom: 21px;
+}
+
+.image {
+  max-width: 100%;
+}
+
+.button,
+.size {
+  display: none;
+}
+
+.detail {
+  padding-top: 11px;
+  line-height: 1.5;
+}
+
+.name {
+  color: #272727;
+  font-size: 12px;
+  font-weight: 500;
+  padding-left: 10px;
+  margin-bottom: 4px;
+  font-family: 'Work Sans',sans-serif;
+}
+
+.brand {
+  padding-left: 10px;
+  color: #8d7f7f;
+  font-size: 12px;
+  letter-spacing: 1.8px;
+  font-weight: 500;
+  font-family: 'Work Sans',sans-serif;
+}
+
+.price {
+  padding: 3px 0 3px 10px;
+  font-size: 12px;
+  letter-spacing: 1.8px;
+  color: #272727;
+  font-weight: 500;
+}

@@ -14,9 +14,6 @@ const ImageSlider = () => {
   const [heroIndex, setHeroIndex] = useState(1);
   const [change, setChange] = useState(false);
 
-  console.log(window.innerWidth);
-  console.log(heroIndex);
-
   if (loading) {
     return (
       <section className="styles.container">
@@ -27,7 +24,6 @@ const ImageSlider = () => {
 
   const dotHandler = (i) => {
     setHeroIndex(i);
-    console.log(`handler${i}`);
   };
 
   const changeAnime = () => {
@@ -37,31 +33,23 @@ const ImageSlider = () => {
     }, 300);
   };
 
-  console.log(change);
-
   const dots = () => {
-    console.log(data.heroPhotos.length);
     const dot = [];
     for (let i = 1; i < data.heroPhotos.length + 1; i++) {
       dot.push(
         <span
           onClick={() => {
-            console.log(i);
             dotHandler(i);
             changeAnime();
           }}
-          id={console.log(i)}
           className={i === heroIndex ? styles.fill : styles.empty}
           key={i}
         ></span>
       );
-      console.log(`i=${i}`);
     }
-    console.log(dot);
     return dot;
   };
 
-  console.log(data.heroPhotos[heroIndex - 1].mobilePhoto.url);
   return (
     <section className={styles.container}>
       {window.innerWidth < 800 ? (

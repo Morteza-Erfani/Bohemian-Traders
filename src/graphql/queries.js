@@ -29,25 +29,27 @@ const GET_HERO_PHOTOS = gql`
   }
 `;
 
-const GET_PRODUCT_CARD_INFO = gql`
-  query product($slug: String!) {
-    products(where: { slug: $slug }) {
-      modelImage {
-        url
-      }
-      productImage {
-        url
-      }
-      name
-      prices
-      id
-      sizes {
-        ... on ProductSizeVariant {
-          name
+const GET_CATEGORY_PRODUCTS = gql`
+  query categoryProduct($category: String!) {
+    categories(where: { name: $category }) {
+      products {
+        prices
+        name
+        id
+        modelImage {
+          url
+        }
+        productImage {
+          url
+        }
+        sizes {
+          ... on ProductSizeVariant {
+            name
+          }
         }
       }
     }
   }
 `;
 
-export { GET_CATEGORIES_NAME, GET_HERO_PHOTOS, GET_PRODUCT_CARD_INFO };
+export { GET_CATEGORIES_NAME, GET_HERO_PHOTOS, GET_CATEGORY_PRODUCTS };
