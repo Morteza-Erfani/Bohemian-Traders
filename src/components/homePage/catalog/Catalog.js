@@ -4,10 +4,10 @@ import React from "react";
 import styles from './Catalog.module.css'
 
 // Catalog Images
-import catalog1 from "../../../assets/cta1-v3-tonal-active.jpeg";
-import catalog2 from "../../../assets/cta2-v3-tonal-active.jpeg";
-import catalog3 from "../../../assets/cta3-v3-tonal-active.jpeg";
-import catalog4 from "../../../assets/cta4-v3-tonal-active.jpeg";
+import catalog4 from "../../../assets/l-mobile-v4-allago.jpeg";
+import catalog3 from "../../../assets/cta-bot2-v3-allago-new-copy.jpeg";
+import catalog2 from "../../../assets/cta1-v3-al-lagow4.jpeg";
+import catalog1 from "../../../assets/cta2-v3-allago.jpeg";
 
 const catalogs = [
   { url: catalog1, title: "SHOP WHATS NEW" },

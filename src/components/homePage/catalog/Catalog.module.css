@@ -1,15 +1,19 @@
 .container {
   width: 100%;
   padding: 0 10.5px;
+  overflow: hidden;
 }
 
 .catContainer {
   width: 100%;
   position: relative;
   margin-bottom: 10px;
+  overflow: hidden;
+  height: min-content;
 }
 
 .catalog{
+  object-fit: cover;
   width: 100%;
 }
 
