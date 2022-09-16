@@ -52,4 +52,18 @@ const GET_CATEGORY_PRODUCTS = gql`
   }
 `;
 
-export { GET_CATEGORIES_NAME, GET_HERO_PHOTOS, GET_CATEGORY_PRODUCTS };
+const GET_BOTTOM_HERO_PHOTOS = gql`
+  query {
+    bottomPhotos {
+      id
+      laptopPhoto {
+        url
+      }
+      mobilePhoto {
+        url
+      }
+    }
+  }
+`;
+
+export { GET_CATEGORIES_NAME, GET_HERO_PHOTOS, GET_CATEGORY_PRODUCTS, GET_BOTTOM_HERO_PHOTOS };

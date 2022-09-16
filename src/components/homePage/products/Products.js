@@ -48,11 +48,11 @@ const Products = (props) => {
 
   const categoryProducts = data.categories[0].products.slice(0, 4);
   if (!loading) {
-    console.log(categoryProducts);
+    // console.log(categoryProducts);
   }
   return (
     <div className="container">
-      <Carousel responsive={responsive}>
+      <Carousel arrows responsive={responsive}>
         {categoryProducts.map((product) => (
           <div>
             <ProductCard data={product} key={product.id} titleType="upper" />

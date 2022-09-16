@@ -10,7 +10,7 @@ const ProductCard = ({ data, titleType }) => {
   const { productImage, modelImage, name, prices, sizes } = data;
   const allSize = [];
   sizes.map((size) => allSize.push(size.name));
-  console.log(allSize);
+  // console.log(allSize);
 
   const [image, setImage] = useState(productImage.url);
 

@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 
 import { GET_HERO_PHOTOS } from "../../../graphql/queries";
 
+// Loader
 import loader from "../../../assets/loading.svg";
 
 // Styles
