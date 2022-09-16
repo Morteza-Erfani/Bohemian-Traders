@@ -1,0 +1,23 @@
+.react-multiple-carousel__arrow--right::before {
+  content: url("../../../assets/right arrow.svg");
+}
+
+.react-multiple-carousel__arrow {
+  background: none;
+  top: 32%;
+  padding-left: 0;
+  margin-left: -18px;
+  margin-right: -18px;
+}
+
+.react-multiple-carousel__arrow:hover {
+  background: none;
+}
+
+.react-multiple-carousel__arrow--left::before {
+  content: url("../../../assets/left arrow.svg");
+}
+
+.container {
+  margin-top: 55px;
+}
