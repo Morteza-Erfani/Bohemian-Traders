@@ -1,0 +1,149 @@
+@import url("../../../Styles/fonts.css");
+
+.container {
+  padding: 30px 10.5px 0;
+  background-color: black;
+  border-top: 1px solid white;
+  line-height: 1.5;
+  color: white;
+}
+
+.logo {
+  max-width: 160px;
+  max-height: 24px;
+}
+
+.socialUl {
+  display: flex;
+  height: 37px;
+  align-items: center;
+}
+
+.socialUl li {
+  margin-right: 15px;
+}
+
+.instagram {
+  filter: invert(100%) sepia(0%) saturate(7484%) hue-rotate(230deg)
+    brightness(106%) contrast(106%);
+  width: 15px;
+}
+
+.facebook {
+  filter: invert(100%) sepia(0%) saturate(7484%) hue-rotate(230deg)
+    brightness(106%) contrast(106%);
+  width: 15px;
+}
+
+.pinterest {
+  background-color: white;
+  padding: 2px 3px 0;
+  border-radius: 3px;
+  width: 16px;
+}
+
+.tiktok {
+  filter: invert(100%) sepia(0%) saturate(7484%) hue-rotate(230deg)
+    brightness(106%) contrast(106%);
+  width: 15px;
+}
+
+.downContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+  letter-spacing: 2.4px;
+  line-height: 21px;
+  font-weight: 500;
+}
+
+.down {
+  filter: invert(100%) sepia(0%) saturate(7484%) hue-rotate(230deg)
+    brightness(106%) contrast(106%);
+  width: 10px;
+}
+
+.links {
+  padding-top: 10px;
+}
+
+.links a {
+  display: block;
+  font-size: 12px;
+  line-height: 24px;
+  cursor: pointer;
+  letter-spacing: 1.25px;
+  font-weight: 500;
+}
+
+.subPara {
+  padding: 10px 0;
+  font-size: 12px;
+  letter-spacing: 2.4px;
+  line-height: 21px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  border: 1px solid white;
+  margin: 10px 0 28px;
+  padding: 0 10px;
+  justify-content: space-between;
+}
+
+.input {
+  background-color: black;
+  border: none;
+  display: block;
+  line-height: 1.5;
+}
+
+.input::placeholder {
+  color: white;
+  font-size: 12px;
+  letter-spacing: 1.8px;
+}
+
+.subscribeBtn {
+  padding: 12.5px 20px;
+  background-color: black;
+  color: white;
+  opacity: 0.8;
+  border: none;
+  font-size: 12px;
+  letter-spacing: 1.8px;
+  display: block;
+  font-weight: 400;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  border-left: 1px solid white;
+}
+
+.contact {
+  font-size: 11px;
+  letter-spacing: 1.65px;
+  padding-bottom: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.dataContainer {
+  background-color: rgb(69, 69, 69);
+  line-height: 48px;
+}
+
+.dataContainer p {
+  margin-left: 16px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.05px;
+  color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+}

@@ -16,7 +16,7 @@ const AboutUs = () => {
         are continually working towards providing the best clothing and
         accessories, with the least environmental and social harm possible.
       </p>
-      <a>ABOUT US</a>
+      <a href="#">ABOUT US</a>
     </div>
   );
 };
