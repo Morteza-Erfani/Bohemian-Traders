@@ -36,7 +36,7 @@ const responsive = {
 };
 
 const BottomSlider = () => {
-  const { loading, data, errors } = useQuery(GET_BOTTOM_HERO_PHOTOS);
+  const { loading, data } = useQuery(GET_BOTTOM_HERO_PHOTOS);
 
   if (loading) {
     return (

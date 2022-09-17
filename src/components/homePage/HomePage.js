@@ -5,6 +5,7 @@ import ImageSlider from "./imageSlider/ImageSlider";
 import Catalog from "./catalog/Catalog";
 import Products from "./products/Products";
 import BottomSlider from "./bottomSlider/BottomSlider";
+import Explore from "./explore/Explore";
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       <Catalog />
       <Products />
       <BottomSlider />
+      <Explore/>
     </>
   );
 };

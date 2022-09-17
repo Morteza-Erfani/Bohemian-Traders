@@ -36,7 +36,7 @@ const responsive = {
 };
 
 const Products = (props) => {
-  const { loading, data, errors } = useQuery(GET_CATEGORY_PRODUCTS, {
+  const { loading, data } = useQuery(GET_CATEGORY_PRODUCTS, {
     variables: {
       category: "CAMPAIGN",
     },

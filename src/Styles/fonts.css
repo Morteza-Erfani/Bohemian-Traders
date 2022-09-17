@@ -18,3 +18,10 @@
   font-weight: 400;
   src: url("../fonts/Lato-Regular.ttf");
 }
+
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/WorkSans-Light.ttf');
+}

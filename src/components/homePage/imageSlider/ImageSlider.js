@@ -10,7 +10,7 @@ import loader from "../../../assets/loading.svg";
 import styles from "./ImageSlider.module.css";
 
 const ImageSlider = () => {
-  const { loading, data, errors } = useQuery(GET_HERO_PHOTOS);
+  const { loading, data } = useQuery(GET_HERO_PHOTOS);
 
   const [heroIndex, setHeroIndex] = useState(1);
   const [change, setChange] = useState(false);

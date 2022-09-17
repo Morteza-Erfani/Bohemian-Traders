@@ -1,0 +1,51 @@
+@import url("../../../Styles/fonts.css");
+
+.container {
+  margin-top: 30px;
+}
+
+.header {
+  padding: 30px 0 25px;
+  font-size: 32px;
+  font-weight: 300;
+  color: #272727;
+  line-height: 36px;
+  text-align: center;
+}
+
+.catContainer {
+  margin-top: 35px;
+}
+
+.firstRowContainer {
+  display: flex;
+  position: relative;
+}
+
+.firstRowCat {
+  width: 50vw;
+  margin-bottom: -4px;
+}
+
+.firstRowCat img {
+  width: 50vw;
+}
+
+.firstRowCat p,
+.secondRowContainer p {
+  font-size: 12px;
+  letter-spacing: 1.8px;
+  font-weight: 500;
+  position: absolute;
+  color: white;
+  bottom: 25px;
+  margin-left: 20px;
+}
+
+.secondRowContainer {
+  position: relative;
+}
+
+.secondRowContainer img {
+  width: 100vw;
+}
