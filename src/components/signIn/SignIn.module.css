@@ -1,0 +1,111 @@
+@import url("../../Styles/fonts.css");
+
+.container {
+  padding: 0 21px;
+}
+
+.header {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #272727;
+  line-height: 36px;
+  letter-spacing: 0;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 7px;
+  color: rgb(102, 102, 102);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  line-height: 18px;
+}
+
+.form input {
+  margin-bottom: 28px;
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10.5px 14px;
+  border: 1px solid #ccc;
+  display: block;
+  height: 42px;
+  width: 100%;
+}
+
+.form button {
+  background-color: #000;
+  opacity: 0.8;
+  color: #fff;
+  width: 53%;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 1.25px;
+  padding: 12.5px 20px;
+  border: none;
+  line-height: 14px;
+  display: inline-block;
+  font-weight: 400;
+}
+
+.form a {
+  font-size: 12px;
+  width: 45%;
+  margin-top: 11px;
+  color: #c4a173;
+  cursor: pointer;
+  font-weight: 500;
+  line-height: 18px;
+  display: inline-block;
+  text-align: center;
+}
+
+.buttons {
+  align-items: center;
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.description {
+  margin: 0 10.5px 21px 10.5px;
+  padding: 21px 28px 21px;
+  background-color: #f7f4f0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  color: rgb(51, 51, 51);
+}
+
+.description h2 {
+  font-size: 26px;
+  letter-spacing: -0.4px;
+  line-height: 1.5;
+  font-weight: 300;
+  margin-bottom: 14px;
+}
+
+.description ul {
+  margin: 0 0 21px 42px;
+}
+
+.description li {
+  list-style-type: disc;
+  list-style-position: outside;
+  display: list-item;
+}
+
+.create {
+  margin-bottom: 14px;
+  padding: 12.5px 20px;
+  background-color: #000;
+  color: #fff;
+  opacity: 0.8;
+  font-size: 12px;
+  letter-spacing: 1.25px;
+  line-height: 14px;
+  cursor: pointer;
+  font-weight: 400;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  display: inline-block;
+}
