@@ -6,6 +6,7 @@ import Catalog from "./catalog/Catalog";
 import Products from "./products/Products";
 import BottomSlider from "./bottomSlider/BottomSlider";
 import Explore from "./explore/Explore";
+import AboutUs from "./aboutUs/AboutUs";
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
       <Products />
       <BottomSlider />
       <Explore/>
+      <AboutUs/>
     </>
   );
 };
