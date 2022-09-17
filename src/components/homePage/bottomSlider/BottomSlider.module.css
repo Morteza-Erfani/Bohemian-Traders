@@ -11,6 +11,7 @@
 .innerContainer {
   position: relative;
   height: calc(100vh - 72px);
+  max-height: calc((100vw - 21px) * 1.8125);
 }
 
 .sliderLink {
@@ -38,4 +39,5 @@
 
 .container {
   margin-top: 100px;
+  max-height: calc((100vw - 21px) * 1.8125);
 }

@@ -45,7 +45,7 @@ const BottomSlider = () => {
       </section>
     );
   }
-  console.log(data.bottomPhotos[0].mobilePhoto);
+  // console.log(data.bottomPhotos[0].mobilePhoto);
 
   return (
     <div>
@@ -64,8 +64,8 @@ const BottomSlider = () => {
         swipeable={true}
       >
         {data.bottomPhotos.map((photo) => (
-          <div>
-            <div key={photo.id} className={styles.innerContainer}>
+          <div key={photo.id}>
+            <div className={styles.innerContainer}>
               {window.innerWidth < 800 ? (
                 <img
                   src={photo.mobilePhoto.url}

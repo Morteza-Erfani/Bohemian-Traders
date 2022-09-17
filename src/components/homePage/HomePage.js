@@ -1,22 +1,23 @@
 import React from "react";
 
 // Components
-import ImageSlider from "./imageSlider/ImageSlider";
 import Catalog from "./catalog/Catalog";
 import Products from "./products/Products";
 import BottomSlider from "./bottomSlider/BottomSlider";
 import Explore from "./explore/Explore";
 import AboutUs from "./aboutUs/AboutUs";
+import TopSlider from "./topSlider/TopSlider";
 
 const HomePage = () => {
   return (
     <>
-      <ImageSlider />
+      {/* <ImageSlider /> */}
+      <TopSlider />
       <Catalog />
       <Products />
       <BottomSlider />
-      <Explore/>
-      <AboutUs/>
+      <Explore />
+      <AboutUs />
     </>
   );
 };
