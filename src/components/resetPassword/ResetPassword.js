@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Styles
 import styles from "./ResetPassword.module.css";
 
 const ResetPassword = () => {
+  useEffect(() => {
+    document.title = "Bohemian Traders - Reset Password";
+  }, []);
+
   return (
     <div className={styles.container}>
       <h2>RESET PASSWORD</h2>
