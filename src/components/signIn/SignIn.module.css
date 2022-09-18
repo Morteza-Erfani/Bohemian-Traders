@@ -12,6 +12,30 @@
   letter-spacing: 0;
 }
 
+.cautionInnerContainer {
+  display: flex;
+  padding: 11px 16px;
+  margin-bottom: 11px;
+  background-color: #d5ffd8;
+  align-items: center;
+}
+
+.exclamation {
+  padding:0 18px 0 2px;
+}
+
+.exclamation img {
+  width: 21px;
+  opacity: 0.8;
+}
+
+.cautionInnerContainer p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding:2px 5px 2px 0;
+}
+
 .form label {
   display: block;
   margin-bottom: 7px;

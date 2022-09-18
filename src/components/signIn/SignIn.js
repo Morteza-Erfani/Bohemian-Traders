@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 // Styles
 import styles from "./SignIn.module.css";
 
 // Assets
 import redCross from "../../assets/redCross.svg";
+import exclamation from "../../assets/circle-exclamation.svg";
 
 // functions
 import { validateEmail } from "../../helpers/functions";
@@ -13,6 +15,10 @@ const SignIn = () => {
   const [isValid, setIsValid] = useState(true);
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("0");
+
+  useEffect(() => {
+    document.title = "Bohemian Tarders - Sign in";
+  });
 
   const isEmpty = (value) => (value !== "" ? styles.green : "");
 
@@ -26,6 +32,20 @@ const SignIn = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>SIGN IN</h1>
+      {/* Caution message */}
+      <div style={{display: 'none'}}>
+        <div className={styles.cautionInnerContainer}>
+          <div className={styles.exclamation}>
+            <img src={exclamation} alt="caution" />
+          </div>
+          <p>
+            If the entered email address is associated with this store, you will
+            receive a password reset email. If you don't receive this e-mail,
+            please check your junk mail folder or contact us for further
+            assistance.
+          </p>
+        </div>
+      </div>
       <form className={styles.form}>
         <div className={styles.inputContainer}>
           <label htmlFor="email">EMAIL ADDRESS:</label>
@@ -69,7 +89,7 @@ const SignIn = () => {
           <button type="submit" onClick={(e) => clickHandler(e)}>
             SIGN IN
           </button>
-          <a>FORGOT YOUR PASSWORD?</a>
+          <Link to="/reset">FORGOT YOUR PASSWORD?</Link>
         </div>
       </form>
       <div className={styles.description}>

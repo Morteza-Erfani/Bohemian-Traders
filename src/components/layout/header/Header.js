@@ -56,9 +56,15 @@ const Header = () => {
         </div>
         {/* header buttons */}
         <div className={styles.mobileRight}>
-          <img className={styles.button} src={searchIcon} alt="search" />
-          <img className={styles.button} src={profileIcon} alt="search" />
-          <img className={styles.button} src={cartIcon} alt="search" />
+          <a>
+            <img className={styles.button} src={searchIcon} alt="search" />
+          </a>
+          <Link to='signin' >
+            <img className={styles.button} src={profileIcon} alt="search" />
+          </Link>
+          <a>
+            <img className={styles.button} src={cartIcon} alt="search" />
+          </a>
         </div>
       </div>
     </header>
