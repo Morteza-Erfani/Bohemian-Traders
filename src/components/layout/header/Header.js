@@ -59,7 +59,7 @@ const Header = () => {
           <a>
             <img className={styles.button} src={searchIcon} alt="search" />
           </a>
-          <Link to='signin' >
+          <Link to='./signin' >
             <img className={styles.button} src={profileIcon} alt="search" />
           </Link>
           <a>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Components
 import Catalog from "./catalog/Catalog";
@@ -9,6 +9,10 @@ import AboutUs from "./aboutUs/AboutUs";
 import TopSlider from "./topSlider/TopSlider";
 
 const HomePage = () => {
+  useEffect(() => {
+    document.title = "Bohemian Traders";
+  }, []);
+
   return (
     <>
       {/* <ImageSlider /> */}

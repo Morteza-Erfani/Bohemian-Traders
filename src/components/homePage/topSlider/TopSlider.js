@@ -46,7 +46,7 @@ const TopSlider = () => {
     );
   }
 
-  console.log(data.heroPhotos);
+  // console.log(data.heroPhotos);
 
   return (
     <div>
