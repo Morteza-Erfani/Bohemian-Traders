@@ -10,6 +10,8 @@ import SignIn from "./components/signIn/SignIn";
 import ResetPassword from "./components/resetPassword/ResetPassword";
 import Store from "./components/store/Store";
 import Test from "./Test";
+import AboutUs from "./components/aboutUs/AboutUs";
+import ContactUs from "./components/contactUs/ContactUs";
 
 function App() {
   const category = useSelector((state) => state.productsPage.category);
@@ -22,6 +24,8 @@ function App() {
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/reset" element={<ResetPassword />} />
         <Route path="/store" element={<Store />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         <Route
           path={`/${category}/${collection}`}
           element={<Test data={collection} />}

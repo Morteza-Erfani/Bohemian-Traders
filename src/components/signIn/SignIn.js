@@ -20,7 +20,8 @@ const SignIn = () => {
     document.title = "Bohemian Tarders - Sign in";
   });
 
-  const isEmpty = (value) => (value !== "" ? styles.green : "");
+  const isEmpty = (value) =>
+    value !== "" && value !== "0" ? styles.green : "";
 
   const clickHandler = (event) => {
     event.preventDefault();
@@ -33,7 +34,7 @@ const SignIn = () => {
     <div className={styles.container}>
       <h1 className={styles.header}>SIGN IN</h1>
       {/* Caution message */}
-      <div style={{display: 'none'}}>
+      <div style={{ display: "none" }}>
         <div className={styles.cautionInnerContainer}>
           <div className={styles.exclamation}>
             <img src={exclamation} alt="caution" />
@@ -77,7 +78,7 @@ const SignIn = () => {
             onChange={(e) => {
               setPass(e.target.value);
             }}
-            className={pass ? isEmpty(email) : styles.invalid}
+            className={pass ? isEmpty(pass) : styles.invalid}
             onBlur={(e) => setPass(e.target.value)}
           />
           <p className={pass ? "" : styles.show}>

@@ -1,0 +1,185 @@
+@import url("../../Styles/fonts.css");
+
+.container {
+  padding: 0 15px;
+}
+
+/* .container div {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+  color: #333;
+} */
+
+.headContainer {
+  margin-bottom: 21px;
+}
+
+.header {
+  font-size: 36px;
+  font-weight: 300;
+  color: #272727;
+  margin-bottom: 20px;
+  line-height: 36px;
+  display: block;
+}
+
+.return {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  letter-spacing: normal;
+  margin-bottom: auto;
+}
+
+.address {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.middleContainer {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.middleContainer div,
+.bottomContainer div {
+  margin-bottom: 6px;
+}
+
+.middleContainer a,
+.bottomContainer a {
+  color: #c4a173;
+}
+
+.bottomContainer {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.bottomContainer .question {
+  font-weight: 700;
+}
+
+.form {
+  padding-top: 20px;
+  margin-bottom: 21px;
+}
+
+.form label {
+  display: block;
+  font-size: 13px;
+  color: black;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  cursor: pointer;
+  line-height: 1.5;
+  margin-bottom: 7px;
+}
+
+.requiredLabel {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form input {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: #666;
+  font-size: 14px;
+  height: 42px;
+  padding: 10.5px 14px;
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+p.required {
+  margin-top: 5px;
+  color: #757575;
+  font-size: 10px;
+  vertical-align: bottom;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+}
+
+.form textarea {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: #666;
+  font-size: 14px;
+  height: auto;
+  min-height: 50%;
+  padding: 10.5px 14px;
+  width: 100%;
+  margin-bottom: 18px;
+  resize: none;
+}
+
+.reCapcha {
+  margin-bottom: 18px;
+}
+
+.submit {
+  font-size: 13px;
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border: none;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 12.5px 20px;
+  margin-bottom: 14px;
+}
+
+input.invalid,
+textarea.invalid {
+  border: 1px solid #cc4749;
+}
+
+input.green,
+textarea.green {
+  border: 1px solid #008a06;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+.err p {
+  margin-top: 5px;
+  color: #cc4749;
+  display: none;
+  line-height: 24px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.err img {
+  width: 14px;
+  margin-right: 3px;
+  top: 3px;
+  position: relative;
+}
+
+p.show {
+  display: block;
+}
+
+div.err {
+  margin: -18px 0 18px;
+}

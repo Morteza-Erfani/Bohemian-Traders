@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // Styles
-import styles from './AboutUs.module.css'
+import styles from "./AboutUs.module.css";
 
 const AboutUs = () => {
   return (
@@ -16,7 +17,7 @@ const AboutUs = () => {
         are continually working towards providing the best clothing and
         accessories, with the least environmental and social harm possible.
       </p>
-      <a href="#">ABOUT US</a>
+      <Link to="/about-us">ABOUT US</Link>
     </div>
   );
 };

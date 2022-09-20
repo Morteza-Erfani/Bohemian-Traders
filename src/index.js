@@ -12,8 +12,10 @@ import "./Styles/fonts.css";
 // Components
 import App from "./App";
 
+console.log(process.env.REACT_APP_API_ADDRESS);
+
 const client = new ApolloClient({
-  uri: "https://api-ap-southeast-2.hygraph.com/v2/cl7c9dew64bbo01uhgm6g4vae/master",
+  uri: process.env.REACT_APP_API_ADDRESS,
   cache: new InMemoryCache(),
 });
 

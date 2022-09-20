@@ -21,7 +21,7 @@
 }
 
 .exclamation {
-  padding:0 18px 0 2px;
+  padding: 0 18px 0 2px;
 }
 
 .exclamation img {
@@ -33,7 +33,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
-  padding:2px 5px 2px 0;
+  padding: 2px 5px 2px 0;
 }
 
 .form label {
@@ -62,7 +62,7 @@ input.invalid {
 }
 
 input.green {
-  border: 1px solid #008A06;
+  border: 1px solid #008a06;
 }
 
 input:focus {

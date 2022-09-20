@@ -1,0 +1,45 @@
+.container {
+  padding: 0 15px;
+}
+
+.header {
+  font-size: 36px;
+  font-weight: 300;
+  color: #272727;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.container h3 {
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  color: #444;
+  line-height: 1.5;
+  display: block;
+}
+
+.container p {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+  color: #333;
+  display: block;
+}
+
+.social {
+  color: black;
+}
+
+.container a {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  color: #c4a173;
+  cursor: pointer;
+  margin-bottom: 6px;
+  display: block;
+}

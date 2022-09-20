@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // assets
 import logo from "../../../assets/logo-white.png";
@@ -10,8 +10,20 @@ import down from "../../../assets/chevron-down.svg";
 
 // Styles
 import styles from "./Footer.module.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const [showInfo, setShowInfo] = useState(false);
+  const [showCustomCare, setShowCustomCare] = useState(false);
+
+  const showInfoHandler = () => {
+    setShowInfo(!showInfo);
+  };
+
+  const ShowCustomCareHandler = () => {
+    setShowCustomCare(!showCustomCare);
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -46,22 +58,31 @@ const Footer = () => {
             </a>
           </li>
         </ul>
-        <div className={styles.downContainer}>
+        <div className={styles.downContainer} onClick={() => showInfoHandler()}>
           <p>INFO</p>
           <img src={down} alt="down" className={styles.down} />
         </div>
-        <div className={styles.links}>
-          <a>ABOUT US</a>
-          <a>CONTACT US</a>
+        <div
+          className={`${styles.links} ${showInfo ? styles.show : styles.hide}`}
+        >
+          <Link to="/about-us">ABOUT US</Link>
+          <Link to="/contact-us">CONTACT US</Link>
           <a>WORK WITH US</a>
           <a>TS & CS</a>
           <a>PRIVACY POLICY</a>
         </div>
-        <div className={styles.downContainer}>
+        <div
+          className={styles.downContainer}
+          onClick={() => ShowCustomCareHandler()}
+        >
           <p>CUSTOMER CARE</p>
           <img src={down} alt="down" className={styles.down} />
         </div>
-        <div className={styles.links}>
+        <div
+          className={`${styles.links} ${
+            showCustomCare ? styles.show : styles.hide
+          }`}
+        >
           <a>SHIPPING</a>
           <a>RETURNS</a>
           <a>INCLUSIVE SIZING</a>

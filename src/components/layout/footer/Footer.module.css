@@ -8,6 +8,10 @@
   color: white;
 }
 
+.container a {
+  color: white;
+}
+
 .logo {
   max-width: 160px;
   max-height: 24px;
@@ -67,6 +71,8 @@
 
 .links {
   padding-top: 10px;
+  overflow: hidden;
+  transition: all 0.3s;
 }
 
 .links a {
@@ -76,6 +82,18 @@
   cursor: pointer;
   letter-spacing: 1.25px;
   font-weight: 500;
+}
+
+div {
+}
+
+.hide {
+  max-height: 0;
+}
+
+.show {
+  height: auto;
+  max-height: 300px;
 }
 
 .subPara {
