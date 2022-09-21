@@ -68,8 +68,8 @@ const Footer = () => {
           <Link to="/about-us">ABOUT US</Link>
           <Link to="/contact-us">CONTACT US</Link>
           <Link to="/work-with-us">WORK WITH US</Link>
-          <Link to="//privacy-policy">TS & CS</Link>
-          <Link to="//privacy-policy">PRIVACY POLICY</Link>
+          <Link to="/privacy-policy">TS & CS</Link>
+          <Link to="/privacy-policy">PRIVACY POLICY</Link>
         </div>
         <div
           className={styles.downContainer}
@@ -83,8 +83,8 @@ const Footer = () => {
             showCustomCare ? styles.show : styles.hide
           }`}
         >
-          <a>SHIPPING</a>
-          <a>RETURNS</a>
+          <Link to="/shipping-returns">SHIPPING</Link>
+          <Link to="/shipping-returns">RETURNS</Link>
           <a>INCLUSIVE SIZING</a>
           <a>PAYMENT METHODS</a>
           <a>GIFT CARDS</a>

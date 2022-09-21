@@ -14,6 +14,7 @@ import AboutUs from "./components/aboutUs/AboutUs";
 import ContactUs from "./components/contactUs/ContactUs";
 import WorkWithUs from "./components/workWithUs/WorkWithUs";
 import PrivacyPolicy from "./components/Privacy&policy/PrivacyPolicy";
+import ShippingAndReturns from "./components/shippingAndReturns/ShippingAndReturns";
 
 function App() {
   const category = useSelector((state) => state.productsPage.category);
@@ -30,6 +31,7 @@ function App() {
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/work-with-us" element={<WorkWithUs />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/shipping-returns" element={<ShippingAndReturns />} />
         <Route
           path={`/${category}/${collection}`}
           element={<Test data={collection} />}
