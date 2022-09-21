@@ -1,0 +1,38 @@
+.container {
+  padding: 0 15px 20px;
+}
+
+.header {
+  font-size: 36px;
+  font-weight: 300;
+  color: #272727;
+  margin-bottom: 20px;
+  line-height: 36px;
+}
+
+.container p,
+.container h6,
+.container h5 {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.container h6 {
+  color: black;
+}
+
+.container a {
+  color: #c4a173;
+}
+
+.container img {
+  width: 100%;
+}
+
+.container h5 {
+  font-weight: 600;
+}

@@ -17,6 +17,7 @@
 
 .container p {
   margin-bottom: 6px;
+  display: block;
 }
 
 .container div {
@@ -25,4 +26,14 @@
 
 .italic {
   font-style: italic;
+}
+
+.container li {
+  margin-bottom: 6px;
+}
+
+.container ul {
+  list-style-position: inside;
+  list-style-type: disc;
+  text-indent: 22px;
 }

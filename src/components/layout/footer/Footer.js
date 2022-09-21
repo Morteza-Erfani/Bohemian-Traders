@@ -85,7 +85,7 @@ const Footer = () => {
         >
           <Link to="/shipping-returns">SHIPPING</Link>
           <Link to="/shipping-returns">RETURNS</Link>
-          <a>INCLUSIVE SIZING</a>
+          <Link to="/inclusive-size-range">INCLUSIVE SIZING</Link>
           <a>PAYMENT METHODS</a>
           <a>GIFT CARDS</a>
           <a>OUTLET</a>
