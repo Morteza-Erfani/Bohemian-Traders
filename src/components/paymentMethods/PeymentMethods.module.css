@@ -10,9 +10,7 @@
   line-height: 36px;
 }
 
-.container p,
-.container h6,
-.container h5 {
+.container p {
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 1.25px;
@@ -22,18 +20,29 @@
   display: block;
 }
 
-.container h6 {
-  color: black;
+.methods {
+  display: flex;
+  margin-top: 40px;
+  justify-content: center;
+  align-items: center;
 }
 
-.container a {
-  color: #c4a173;
+.methods div {
+  width: 33%;
 }
 
-.container img {
+.methods img {
   width: 100%;
 }
 
-.container h5 {
-  font-weight: 600;
+.methods span {
+  background-color: #aaa;
+  height: 60px;
+  margin:0 20px;
+  width: 1px;
+}
+
+.klarna {
+  height: 55px;
+  padding: 10px 0;
 }

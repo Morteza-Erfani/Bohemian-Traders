@@ -86,7 +86,7 @@ const Footer = () => {
           <Link to="/shipping-returns">SHIPPING</Link>
           <Link to="/shipping-returns">RETURNS</Link>
           <Link to="/inclusive-size-range">INCLUSIVE SIZING</Link>
-          <a>PAYMENT METHODS</a>
+          <Link to="/flexible-payment-options">PAYMENT METHODS</Link>
           <a>GIFT CARDS</a>
           <a>OUTLET</a>
         </div>

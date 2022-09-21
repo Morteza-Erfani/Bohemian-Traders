@@ -16,6 +16,7 @@ import WorkWithUs from "./components/workWithUs/WorkWithUs";
 import PrivacyPolicy from "./components/Privacy&policy/PrivacyPolicy";
 import ShippingAndReturns from "./components/shippingAndReturns/ShippingAndReturns";
 import Sizing from "./components/sizing/Sizing";
+import PeymentMethods from "./components/paymentMethods/PeymentMethods";
 
 function App() {
   const category = useSelector((state) => state.productsPage.category);
@@ -34,6 +35,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/shipping-returns" element={<ShippingAndReturns />} />
         <Route path="/inclusive-size-range" element={<Sizing />} />
+        <Route path="/flexible-payment-options" element={<PeymentMethods />} />
         <Route
           path={`/${category}/${collection}`}
           element={<Test data={collection} />}

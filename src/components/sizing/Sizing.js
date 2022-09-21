@@ -111,7 +111,7 @@ const Sizing = () => {
         </p>
         <p>
           Ensure that the tape is always close against your body, but don't hold
-          it too tight. The general rule is close but comfortable - not tight
+          it too tight. The general rule is <i>close but comfortable</i> - not tight
           and not loose.
         </p>
       </div>
