@@ -12,6 +12,8 @@ import Store from "./components/store/Store";
 import Test from "./Test";
 import AboutUs from "./components/aboutUs/AboutUs";
 import ContactUs from "./components/contactUs/ContactUs";
+import WorkWithUs from "./components/workWithUs/WorkWithUs";
+import PrivacyPolicy from "./components/Privacy&policy/PrivacyPolicy";
 
 function App() {
   const category = useSelector((state) => state.productsPage.category);
@@ -26,6 +28,8 @@ function App() {
         <Route path="/store" element={<Store />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/work-with-us" element={<WorkWithUs />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route
           path={`/${category}/${collection}`}
           element={<Test data={collection} />}

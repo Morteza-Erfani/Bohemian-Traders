@@ -67,9 +67,9 @@ const Footer = () => {
         >
           <Link to="/about-us">ABOUT US</Link>
           <Link to="/contact-us">CONTACT US</Link>
-          <a>WORK WITH US</a>
-          <a>TS & CS</a>
-          <a>PRIVACY POLICY</a>
+          <Link to="/work-with-us">WORK WITH US</Link>
+          <Link to="//privacy-policy">TS & CS</Link>
+          <Link to="//privacy-policy">PRIVACY POLICY</Link>
         </div>
         <div
           className={styles.downContainer}
