@@ -17,6 +17,7 @@ import PrivacyPolicy from "./components/Privacy&policy/PrivacyPolicy";
 import ShippingAndReturns from "./components/shippingAndReturns/ShippingAndReturns";
 import Sizing from "./components/sizing/Sizing";
 import PeymentMethods from "./components/paymentMethods/PeymentMethods";
+import ScrollToTop from "./components/shared/ScrollToTop";
 
 function App() {
   const category = useSelector((state) => state.productsPage.category);
@@ -24,11 +25,12 @@ function App() {
 
   return (
     <Layout>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/reset" element={<ResetPassword />} />
-        <Route path="/store" element={<Store />} />
+        {/* <Route path="/store" element={<Store />} /> */}
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/work-with-us" element={<WorkWithUs />} />
@@ -38,7 +40,7 @@ function App() {
         <Route path="/flexible-payment-options" element={<PeymentMethods />} />
         <Route
           path={`/${category}/${collection}`}
-          element={<Test data={collection} />}
+          element={<Store collection={collection} category={category} />}
         />
         <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
