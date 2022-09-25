@@ -7,6 +7,7 @@ import {
   resetSize,
   setMinPrice,
   setMaxPrice,
+  justInStock,
 } from "../../../redux/productsPage/productsPageSlice";
 
 // Styles
@@ -34,17 +35,18 @@ const allSizes = [
 
 const FilterSort = () => {
   const [openField, setOpenField] = useState("");
+  const [openFilter, setOpenFilter] = useState("");
 
   const dispatch = useDispatch();
 
-  const allSelectedSizes = useSelector(
-    (state) => state.productsPage.filters.sizes
-  );
+  const filters = useSelector((state) => state.productsPage.filters);
 
-  const minPrice = useSelector((state) => state.productsPage.filters.price.min);
-  console.log(minPrice);
-  const maxPrice = useSelector((state) => state.productsPage.filters.price.max);
-  console.log(maxPrice);
+  const allSelectedSizes = filters.sizes;
+  const minPrice = filters.price.min;
+  const maxPrice = filters.price.max;
+  const inStock = filters.other.inStock;
+
+  console.log(inStock)
 
   useEffect(() => {
     dispatch(filterReset());
@@ -70,7 +72,15 @@ const FilterSort = () => {
     <div className={styles.container}>
       <div className={styles.filterContainer}>
         <div className={styles.filterHeaderContainer}>
-          <div className={styles.filterHeader}>
+          <div
+            className={styles.filterHeader}
+            onClick={() => {
+              openFilter === "refine"
+                ? setOpenFilter("")
+                : setOpenFilter("refine");
+              setOpenField("");
+            }}
+          >
             <p>REFINE</p>
             <img src={down} alt="down" className={styles.down} />
           </div>
@@ -79,7 +89,11 @@ const FilterSort = () => {
             <img src={down} alt="down" className={styles.down} />
           </div>
         </div>
-        <div className={styles.refineMenu}>
+        <div
+          className={`${styles.refineMenu} ${
+            openFilter === "refine" && styles.openRefine
+          }`}
+        >
           <div className={styles.refineItem}>
             <div
               className={styles.refineHeader}
@@ -211,11 +225,62 @@ const FilterSort = () => {
             </div>
           </div>
           <div className={styles.refineItem}>
-            <div className={styles.refineHeader}>
+            <div
+              className={styles.refineHeader}
+              onClick={() => {
+                openField === "other"
+                  ? setOpenField("")
+                  : setOpenField("other");
+              }}
+            >
               <p>OTHER</p>
-              <p className={styles.plus}>+</p>
+              <div className={styles.plusMinus}>
+                <p
+                  className={`${styles.plus} ${
+                    openField === "other" && styles.hidden
+                  }`}
+                >
+                  +
+                </p>
+                <p
+                  className={`${styles.minus} ${
+                    openField !== "other" && styles.hidden
+                  }`}
+                >
+                  -
+                </p>
+              </div>
             </div>
-            <div></div>
+            <div
+              className={`${styles.sizes} ${
+                openField === "other" && styles.openOther
+              }`}
+            >
+              <div
+                className={styles.otherCheckboxContainer}
+                onClick={() => {
+                  dispatch(justInStock({inStock: !inStock}));
+                }}
+              >
+                <div className={styles.innerContainer}>
+                  <div className={styles.sizeContainer}>
+                    <span
+                      className={`${styles.checkbox} ${
+                        inStock && styles.checked
+                      }`}
+                    ></span>
+                    <p>IN STOCK</p>
+                  </div>
+                  <img
+                    className={`${styles.cross} ${
+                      inStock && styles.showCross
+                    }`}
+                    src={cross}
+                    alt="close"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

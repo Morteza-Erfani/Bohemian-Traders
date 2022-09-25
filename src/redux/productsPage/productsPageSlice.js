@@ -46,6 +46,9 @@ export const productsPageSlice = createSlice({
     setMaxPrice: (state, action) => {
       state.filters.price.max = +action.payload.maxPrice;
     },
+    justInStock: (state, action) => {
+      state.filters.other.inStock = action.payload.inStock;
+    },
   },
 });
 
@@ -57,6 +60,7 @@ export const {
   resetSize,
   setMinPrice,
   setMaxPrice,
+  justInStock,
 } = productsPageSlice.actions;
 
 export default productsPageSlice.reducer;

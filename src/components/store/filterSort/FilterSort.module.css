@@ -34,6 +34,16 @@
   width: 8px;
 }
 
+.refineMenu {
+  transition: all 0.2s;
+  overflow: hidden;
+  max-height: 0;
+}
+
+div.openRefine {
+  max-height: 400px;
+}
+
 .refineItem {
   border-top: 1px solid black;
   padding: 15px 15px;
@@ -81,6 +91,11 @@ div.openPrice {
   max-height: 200px;
 }
 
+div.openOther {
+  padding-top: 20px;
+  max-height: 100px;
+}
+
 .hidden {
   display: none !important;
 }
@@ -99,12 +114,21 @@ div.openPrice {
   cursor: pointer;
 }
 
+.otherCheckboxContainer {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 3px 0;
+  cursor: pointer;
+}
+
 .innerContainer {
   display: flex;
   justify-content: space-between;
 }
 
-.checkboxContainer p {
+.checkboxContainer p,
+.otherCheckboxContainer p {
   display: inline;
   text-transform: uppercase;
   color: #555;
@@ -143,7 +167,8 @@ div.openPrice {
   opacity: 0;
 }
 
-.checkboxContainer:hover .showCross {
+.checkboxContainer:hover .showCross,
+.otherCheckboxContainer:hover .showCross {
   opacity: 1;
 }
 
