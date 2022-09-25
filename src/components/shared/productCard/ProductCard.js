@@ -33,7 +33,7 @@ const ProductCard = ({ data, titleType }) => {
       </div>
       <div className={styles.detail}>
         <h3 className={styles.name}>
-          {titleType === "upper" ? name : capital(name)}
+          {titleType === "capital" ? name : capital(name)}
         </h3>
         <h2 className={styles.brand}>BOHEMIAN TRADERS</h2>
         <p className={styles.price}>$US {prices}</p>

@@ -8,6 +8,7 @@ import {
   setMinPrice,
   setMaxPrice,
   justInStock,
+  setSortOption,
 } from "../../../redux/productsPage/productsPageSlice";
 
 // Styles
@@ -33,6 +34,14 @@ const allSizes = [
   "2",
 ];
 
+const allSorts = [
+  "FEATURED ITEMS",
+  "NEWEST ITEMS",
+  "BEST SELLING",
+  "PRICE: ASCENDING",
+  "PRICE: DESCENDING",
+];
+
 const FilterSort = () => {
   const [openField, setOpenField] = useState("");
   const [openFilter, setOpenFilter] = useState("");
@@ -40,13 +49,12 @@ const FilterSort = () => {
   const dispatch = useDispatch();
 
   const filters = useSelector((state) => state.productsPage.filters);
+  const selectedSort = useSelector((state) => state.productsPage.sortOption);
 
   const allSelectedSizes = filters.sizes;
   const minPrice = filters.price.min;
   const maxPrice = filters.price.max;
   const inStock = filters.other.inStock;
-
-  console.log(inStock)
 
   useEffect(() => {
     dispatch(filterReset());
@@ -84,7 +92,13 @@ const FilterSort = () => {
             <p>REFINE</p>
             <img src={down} alt="down" className={styles.down} />
           </div>
-          <div className={`${styles.filterHeader} ${styles.sortHeader}`}>
+          <div
+            className={`${styles.filterHeader} ${styles.sortHeader}`}
+            onClick={() => {
+              openFilter === "sort" ? setOpenFilter("") : setOpenFilter("sort");
+              setOpenField("");
+            }}
+          >
             <p>SORT</p>
             <img src={down} alt="down" className={styles.down} />
           </div>
@@ -259,7 +273,7 @@ const FilterSort = () => {
               <div
                 className={styles.otherCheckboxContainer}
                 onClick={() => {
-                  dispatch(justInStock({inStock: !inStock}));
+                  dispatch(justInStock({ inStock: !inStock }));
                 }}
               >
                 <div className={styles.innerContainer}>
@@ -272,9 +286,7 @@ const FilterSort = () => {
                     <p>IN STOCK</p>
                   </div>
                   <img
-                    className={`${styles.cross} ${
-                      inStock && styles.showCross
-                    }`}
+                    className={`${styles.cross} ${inStock && styles.showCross}`}
                     src={cross}
                     alt="close"
                   />
@@ -282,6 +294,35 @@ const FilterSort = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div
+          className={`${styles.sorts} ${
+            openFilter === "sort" && styles.openSort
+          }`}
+        >
+          {allSorts.map((option) => (
+            <div
+              key={option}
+              className={styles.checkboxContainer}
+              onClick={() => {
+                selectedSort === option
+                  ? dispatch(setSortOption({ sortOption: "" }))
+                  : dispatch(setSortOption({ sortOption: option }));
+              }}
+            >
+              <div className={styles.innerContainer}>
+                <div className={styles.sizeContainer}>
+                  <span
+                    className={`${styles.checkbox} ${
+                      selectedSort === option && styles.checked
+                    }`}
+                  ></span>
+                  <p>{option}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

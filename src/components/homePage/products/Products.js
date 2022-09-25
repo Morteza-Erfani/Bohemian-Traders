@@ -55,7 +55,7 @@ const Products = (props) => {
       <Carousel arrows responsive={responsive}>
         {categoryProducts.map((product) => (
           <div key={product.id}>
-            <ProductCard data={product} titleType="upper" />
+            <ProductCard data={product} titleType="capital" />
           </div>
         ))}
       </Carousel>

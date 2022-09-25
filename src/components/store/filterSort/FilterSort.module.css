@@ -16,6 +16,7 @@
   justify-content: space-between;
   width: 50%;
   padding: 12.5px 15px;
+  cursor: pointer;
 }
 
 .filterHeader p {
@@ -75,10 +76,14 @@ div.openRefine {
 }
 
 .sizes,
-.price {
+.price,
+.sorts {
   transition: all 0.2s;
   overflow: hidden;
   max-height: 0;
+}
+
+.sorts {
 }
 
 div.openSize {
@@ -94,6 +99,11 @@ div.openPrice {
 div.openOther {
   padding-top: 20px;
   max-height: 100px;
+}
+
+div.openSort {
+  padding: 15px;
+  max-height: 200px;
 }
 
 .hidden {

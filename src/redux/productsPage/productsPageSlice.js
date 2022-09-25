@@ -14,7 +14,7 @@ const initialState = {
       inStock: false,
     },
   },
-  sort: "",
+  sortOption: "",
 };
 
 export const productsPageSlice = createSlice({
@@ -49,6 +49,9 @@ export const productsPageSlice = createSlice({
     justInStock: (state, action) => {
       state.filters.other.inStock = action.payload.inStock;
     },
+    setSortOption: (state, action) => {
+      state.sortOption = action.payload.sortOption;
+    },
   },
 });
 
@@ -61,6 +64,7 @@ export const {
   setMinPrice,
   setMaxPrice,
   justInStock,
+  setSortOption,
 } = productsPageSlice.actions;
 
 export default productsPageSlice.reducer;
