@@ -5,6 +5,8 @@ import {
   filterReset,
   removeSize,
   resetSize,
+  setMinPrice,
+  setMaxPrice,
 } from "../../../redux/productsPage/productsPageSlice";
 
 // Styles
@@ -13,6 +15,7 @@ import styles from "./FilterSort.module.css";
 // Assets
 import down from "../../../assets/chevron-down.svg";
 import cross from "../../../assets/x.svg";
+import redCross from "../../../assets/redCross.svg";
 
 const allSizes = [
   "xxs",
@@ -38,11 +41,14 @@ const FilterSort = () => {
     (state) => state.productsPage.filters.sizes
   );
 
+  const minPrice = useSelector((state) => state.productsPage.filters.price.min);
+  console.log(minPrice);
+  const maxPrice = useSelector((state) => state.productsPage.filters.price.max);
+  console.log(maxPrice);
+
   useEffect(() => {
     dispatch(filterReset());
   }, []);
-
-  console.log(allSelectedSizes);
 
   const sizeHandler = (size) => {
     if (allSelectedSizes.includes(size)) {
@@ -109,7 +115,7 @@ const FilterSort = () => {
             </div>
             <div
               className={`${styles.sizes} ${
-                openField === "size" && styles.open
+                openField === "size" && styles.openSize
               }`}
             >
               {allSizes.map((size) => (
@@ -140,11 +146,69 @@ const FilterSort = () => {
             </div>
           </div>
           <div className={styles.refineItem}>
-            <div className={styles.refineHeader}>
+            <div
+              className={styles.refineHeader}
+              onClick={() => {
+                openField === "price"
+                  ? setOpenField("")
+                  : setOpenField("price");
+              }}
+            >
               <p>PRICE</p>
-              <p className={styles.plus}>+</p>
+              <div className={styles.plusMinus}>
+                <p
+                  className={`${styles.plus} ${
+                    openField === "price" && styles.hidden
+                  }`}
+                >
+                  +
+                </p>
+                <p
+                  className={`${styles.minus} ${
+                    openField !== "price" && styles.hidden
+                  }`}
+                >
+                  -
+                </p>
+              </div>
             </div>
-            <div></div>
+            <div
+              className={`${styles.price} ${
+                openField === "price" && styles.openPrice
+              }`}
+            >
+              <div className={styles.priceInputContainer}>
+                <input
+                  type="number"
+                  inputMode="numeric"
+                  placeholder="Min."
+                  min="0"
+                  onChange={(e) =>
+                    dispatch(setMinPrice({ minPrice: e.target.value }))
+                  }
+                />
+                <input
+                  type="number"
+                  inputMode="numeric"
+                  placeholder="Max."
+                  min="0"
+                  onChange={(e) =>
+                    dispatch(setMaxPrice({ maxPrice: e.target.value }))
+                  }
+                />
+              </div>
+              <p className={styles.update}>UPDATE</p>
+              <div
+                className={`${styles.error} ${
+                  minPrice < maxPrice && styles.hidden
+                }`}
+              >
+                <img src={redCross} alt="warning" />
+                <p className={styles.minMax}>
+                  Min price must be less than max price.
+                </p>
+              </div>
+            </div>
           </div>
           <div className={styles.refineItem}>
             <div className={styles.refineHeader}>

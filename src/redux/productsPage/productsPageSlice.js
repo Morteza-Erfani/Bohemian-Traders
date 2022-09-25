@@ -40,10 +40,23 @@ export const productsPageSlice = createSlice({
     resetSize: (state) => {
       state.filters.sizes = initialState.filters.sizes;
     },
+    setMinPrice: (state, action) => {
+      state.filters.price.min = +action.payload.minPrice;
+    },
+    setMaxPrice: (state, action) => {
+      state.filters.price.max = +action.payload.maxPrice;
+    },
   },
 });
 
-export const { showDetails, addSize, removeSize, filterReset, resetSize } =
-  productsPageSlice.actions;
+export const {
+  showDetails,
+  addSize,
+  removeSize,
+  filterReset,
+  resetSize,
+  setMinPrice,
+  setMaxPrice,
+} = productsPageSlice.actions;
 
 export default productsPageSlice.reducer;

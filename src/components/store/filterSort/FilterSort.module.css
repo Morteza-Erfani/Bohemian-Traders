@@ -1,3 +1,5 @@
+@import url("../../../Styles/fonts.css");
+
 .filterContainer {
   margin-bottom: 20px;
   line-height: 1.5;
@@ -62,20 +64,25 @@
   margin-right: 10px;
 }
 
-.sizes {
+.sizes,
+.price {
   transition: all 0.2s;
   overflow: hidden;
-  height: 0;
-  box-sizing: border-box;
+  max-height: 0;
 }
 
-div.open {
+div.openSize {
   padding: 20px 0 15px;
-  height: 200px;
+  max-height: 200px;
+}
+
+div.openPrice {
+  padding-top: 20px;
+  max-height: 200px;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .plusMinus {
@@ -138,4 +145,48 @@ div.open {
 
 .checkboxContainer:hover .showCross {
   opacity: 1;
+}
+
+.priceInputContainer {
+  display: flex;
+  width: 100%;
+}
+
+.priceInputContainer input {
+  width: 50%;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 14px;
+  color: #4d4d4d;
+  padding: 0 5.25px;
+  border: none;
+  letter-spacing: 1.65px;
+  height: 32px;
+}
+
+.update {
+  font-size: 11px;
+  letter-spacing: 1.65px;
+  color: #4d4d4d;
+  line-height: 14px;
+  cursor: pointer;
+  font-weight: 400;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  padding: 0 5.25px;
+  margin-top: 5px;
+}
+
+.error {
+  color: #cc4749;
+  display: flex;
+  line-height: 24px;
+  width: 100%;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 9px;
+}
+
+.error img {
+  width: 14px;
+  margin-right: 3px;
 }
