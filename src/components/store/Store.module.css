@@ -6,113 +6,13 @@ h1.header {
   font-size: 23.8px;
   font-weight: 300;
   color: #272727;
-  margin-bottom: 20px;
+  margin: 20px 0;
   line-height: 36px;
   display: block;
   text-transform: uppercase;
   text-align: center;
 }
 
-.filterContainer {
-  margin-bottom: 20px;
-  line-height: 1.5;
-  border: 1px solid black;
-}
-
-.filterHeaderContainer {
-  display: flex;
-  border-bottom: 1px solid black;
-}
-
-.filterHeader {
-  display: flex;
-  justify-content: space-between;
-  width: 50%;
-  padding: 12.5px 15px;
-}
-
-.filterHeader p {
-  color: #333;
-  font-size: 12px;
-  letter-spacing: 1.25px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.sortHeader {
-  border-left: 1px solid black;
-}
-
-.filterHeader img {
-  width: 8px;
-}
-
-.refineItem {
-  border-top: 1px solid black;
-  padding: 15px 15px;
-}
-
-.refineHeader {
-  display: flex;
-  justify-content: space-between;
-  color: #333;
-  font-size: 12px;
-  letter-spacing: 1.25px;
-  font-weight: 500;
-  cursor: pointer;
-  align-items: center;
-}
-
-.plus,
-.minus {
-  font-size: 15px;
-}
-
-.sizes {
-  padding: 20px 0 15px;
-}
-
-.checkboxContainer {
-  display: inline-block;
-  width: 50%;
-  margin-bottom: 5px;
-  padding: 3px 0;
-}
-
-.innerContainer {
-  display: flex;
-  justify-content: space-between;
-}
-
-.checkboxContainer p {
-  display: inline;
-  text-transform: uppercase;
-  color: #555;
-  font-size: 11px;
-  letter-spacing: 0.5px;
-  font-weight: 500;
-}
-
-.checkbox {
-  width: 16px;
-  height: 16px;
-  background-color: #272727;
-  display: inline-block;
-  margin-right: 10px;
-  background-color: #f2f2f2;
-}
-
-.sizeContainer {
-  align-items: center;
-  display: flex;
-}
-
-.cross {
-  width: 16px;
-  height: 15px;
-  display: inline;
-  padding: 4px;
-  background-color: #e5e5e5;
-  border-radius: 100%;
-  margin-right: 15px;
+.headPhoto {
+  width: 100%;
 }
