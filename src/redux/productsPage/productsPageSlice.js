@@ -15,6 +15,7 @@ const initialState = {
     },
   },
   sortOption: "",
+  view: "product",
 };
 
 export const productsPageSlice = createSlice({
@@ -52,6 +53,9 @@ export const productsPageSlice = createSlice({
     setSortOption: (state, action) => {
       state.sortOption = action.payload.sortOption;
     },
+    viewType: (state, action) => {
+      state.view = action.payload.view;
+    },
   },
 });
 
@@ -65,6 +69,7 @@ export const {
   setMaxPrice,
   justInStock,
   setSortOption,
+  viewType,
 } = productsPageSlice.actions;
 
 export default productsPageSlice.reducer;

@@ -9,7 +9,7 @@ import HomePage from "./components/homePage/HomePage";
 import SignIn from "./components/signIn/SignIn";
 import ResetPassword from "./components/resetPassword/ResetPassword";
 import Store from "./components/store/Store";
-import Test from "./Test";
+// import Test from "./Test";
 import AboutUs from "./components/aboutUs/AboutUs";
 import ContactUs from "./components/contactUs/ContactUs";
 import WorkWithUs from "./components/workWithUs/WorkWithUs";
@@ -18,10 +18,14 @@ import ShippingAndReturns from "./components/shippingAndReturns/ShippingAndRetur
 import Sizing from "./components/sizing/Sizing";
 import PeymentMethods from "./components/paymentMethods/PeymentMethods";
 import ScrollToTop from "./components/shared/ScrollToTop";
+import ProductPage from "./components/productPage/ProductPage";
 
 function App() {
   const category = useSelector((state) => state.productsPage.category);
   const collection = useSelector((state) => state.productsPage.collection);
+
+  // console.log(category);
+  // console.log(collection);
 
   return (
     <Layout>
@@ -39,9 +43,10 @@ function App() {
         <Route path="/inclusive-size-range" element={<Sizing />} />
         <Route path="/flexible-payment-options" element={<PeymentMethods />} />
         <Route
-          path={`/${category}/${collection}`}
+          path={`/:${category}/:${collection}`}
           element={<Store collection={collection} category={category} />}
         />
+        <Route path="/:id" element={<ProductPage />} />
         <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     </Layout>

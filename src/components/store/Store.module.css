@@ -1,3 +1,5 @@
+@import url("../../Styles/fonts.css");
+
 .container {
   padding: 0 15px;
 }
@@ -15,4 +17,96 @@ h1.header {
 
 .headPhoto {
   width: 100%;
+}
+
+.view {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.view p {
+  margin: 0 10px;
+  padding-bottom: 10px;
+  font-size: 11px;
+  letter-spacing: 1.25px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #333;
+  cursor: pointer;
+}
+
+.underline {
+  border-bottom: 1px solid rgba(85, 85, 85, 0.6);
+}
+
+.productContainer {
+  width: 50%;
+}
+
+.productsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pageNumbersContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pageNumbersContainer a {
+  display: flex;
+}
+
+.previous,
+.next,
+.number {
+  transition: all 0.2s;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: "Work Sans", sans-serif;
+  line-height: 14px;
+  cursor: pointer;
+}
+
+.previous {
+  padding: 4px 7px 4px 0;
+  color: #333;
+}
+
+.next {
+  padding: 4px 0 4px 7px;
+  color: #333;
+}
+
+.number {
+  padding: 4px 7px;
+  color: #757575;
+}
+
+.previous:hover,
+.next:hover,
+.number:hover {
+  color: #757575;
+}
+
+.previous p {
+  padding-left: 7px;
+}
+
+.next p {
+  padding-right: 7px;
+}
+
+.previous img,
+.next img {
+  width: 8.5px;
+}
+
+a.active {
+  font-weight: 700;
+  margin: 0 8px;
+  color: #333;
 }

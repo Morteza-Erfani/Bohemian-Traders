@@ -58,6 +58,7 @@ const FilterSort = () => {
 
   useEffect(() => {
     dispatch(filterReset());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sizeHandler = (size) => {

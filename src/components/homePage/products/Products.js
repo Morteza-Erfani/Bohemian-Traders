@@ -14,6 +14,9 @@ import { GET_CATEGORY_PRODUCTS } from "../../../graphql/queries";
 // Styles
 import "./Products.css";
 
+// Functions
+import { slugMaker } from "../../../helpers/functions";
+
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -55,7 +58,11 @@ const Products = (props) => {
       <Carousel arrows responsive={responsive}>
         {categoryProducts.map((product) => (
           <div key={product.id}>
-            <ProductCard data={product} titleType="capital" />
+            <ProductCard
+              data={product}
+              titleType="capital"
+              slug={slugMaker(product.name)}
+            />
           </div>
         ))}
       </Carousel>

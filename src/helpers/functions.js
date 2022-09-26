@@ -15,4 +15,9 @@ const validateEmail = (email) => {
     );
 };
 
-export { capital, validateEmail };
+const slugMaker = (title) => {
+  const splittedTitle = title.split(" ");
+  return splittedTitle.join("-").toLowerCase();
+};
+
+export { capital, validateEmail, slugMaker };
