@@ -24,6 +24,7 @@ function App() {
   const category = useSelector((state) => state.productsPage.category);
   const collection = useSelector((state) => state.productsPage.collection);
 
+
   // console.log(category);
   // console.log(collection);
 

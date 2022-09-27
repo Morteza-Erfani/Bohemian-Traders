@@ -1,9 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 // Styles
 import styles from "./AbouUs.module.css";
 
 const AboutUs = () => {
+
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>ABOUT US</h1>
