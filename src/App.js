@@ -19,11 +19,11 @@ import Sizing from "./components/sizing/Sizing";
 import PeymentMethods from "./components/paymentMethods/PeymentMethods";
 import ScrollToTop from "./components/shared/ScrollToTop";
 import ProductPage from "./components/productPage/ProductPage";
+import Cart from "./components/cart/Cart";
 
 function App() {
   const category = useSelector((state) => state.productsPage.category);
   const collection = useSelector((state) => state.productsPage.collection);
-
 
   // console.log(category);
   // console.log(collection);
@@ -43,6 +43,7 @@ function App() {
         <Route path="/shipping-returns" element={<ShippingAndReturns />} />
         <Route path="/inclusive-size-range" element={<Sizing />} />
         <Route path="/flexible-payment-options" element={<PeymentMethods />} />
+        <Route path="/cart" element={<Cart />} />
         <Route
           path={`/:${category}/:${collection}`}
           element={<Store collection={collection} category={category} />}

@@ -40,7 +40,7 @@ const responsive = {
 
 const Products = ({category}) => {
 
-  console.log(category)
+  // console.log(category)
 
   const { loading, data } = useQuery(GET_CATEGORY_PRODUCTS, {
     variables: {

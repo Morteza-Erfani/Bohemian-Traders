@@ -81,7 +81,7 @@ const ProductPage = () => {
     dispatch(selectSize({ size: "" }));
   }, []);
 
-  console.log(cart);
+  // console.log(cart);
   // console.log(selectedSize);
 
   // if (loading) {
@@ -156,7 +156,15 @@ const ProductPage = () => {
         className={styles.addToCart}
         onClick={() => {
           selectedSize !== "" &&
-            dispatch(addToCart({ id: productData.id, size: selectedSize }));
+            dispatch(
+              addToCart({
+                id: productData.id,
+                size: selectedSize,
+                price: productData.prices,
+                name: productData.name,
+                photo: productData.photos[0],
+              })
+            );
         }}
       >
         ADD TO CART
@@ -267,7 +275,7 @@ const ProductPage = () => {
         {productData.code}
       </p>
       <h1 className={styles.moreHeader}>MORE FROM THIS COLLECTION</h1>
-      <Products category='CAMPAIGN' />
+      <Products category="CAMPAIGN" />
     </div>
   );
 };

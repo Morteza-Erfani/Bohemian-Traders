@@ -233,8 +233,8 @@ const Store = ({ collection, category }) => {
     productsInPage.push(products.slice(startI, endI));
     numbers.push(i);
   }
-  console.log(productsInPage);
-  console.log(numbers);
+  // console.log(productsInPage);
+  // console.log(numbers);
 
   return (
     <div className={styles.container}>

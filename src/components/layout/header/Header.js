@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // Logo
@@ -14,14 +14,26 @@ import HumMenu from "./HumMenu";
 
 // Styles
 import styles from "./Header.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { restoreCart } from "../../../redux/cart/cartSlice";
 
 const Header = () => {
   const [humShow, setHumShow] = useState(false);
-  const cartLength = useSelector((state) => state.cart.cart).length;
+  const count = useSelector((state) => state.cart.totalCount);
+
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cart);
+
+  useEffect(() => {
+      dispatch(
+        restoreCart({ prevCart: JSON.parse(localStorage.getItem("cart")) })
+      );
+    console.log(JSON.parse(localStorage.getItem("cart")));
+    console.log(cart);
+  }, []);
 
   return (
-    <header className={styles.container}>
+    <header className={styles.container} id="header">
       {/* top header over menu */}
       <div className={styles.topHeader}>
         <p>FREE SHIPPING FOR ALL AUSTRALIAN ORDERS OVER $200</p>
@@ -64,12 +76,12 @@ const Header = () => {
           <Link to="./signin">
             <img className={styles.button} src={profileIcon} alt="sign in" />
           </Link>
-          <a className={styles.cartContainer}>
+          <Link to="cart" className={styles.cartContainer}>
             <img className={styles.button} src={cartIcon} alt="cart" />
-            {cartLength > 0 && (
-              <span className={styles.cartNumber}>{cartLength}</span>
+            {count > 0 && (
+              <span className={styles.cartNumber}>{count}</span>
             )}
-          </a>
+          </Link>
         </div>
       </div>
     </header>

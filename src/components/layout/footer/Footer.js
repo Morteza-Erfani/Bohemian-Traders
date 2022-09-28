@@ -25,7 +25,7 @@ const Footer = () => {
   };
 
   return (
-    <>
+    <div id='footer'>
       <div className={styles.container}>
         <img src={logo} alt="logo" className={styles.logo} />
         <ul className={styles.socialUl}>
@@ -110,7 +110,7 @@ const Footer = () => {
       <div className={styles.dataContainer}>
         <p>Manage Website Data Collection Preferences</p>
       </div>
-    </>
+    </div>
   );
 };
 
