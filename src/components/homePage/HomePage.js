@@ -18,7 +18,7 @@ const HomePage = () => {
       {/* <ImageSlider /> */}
       <TopSlider />
       <Catalog />
-      <Products />
+      <Products category="CAMPAIGN" />
       <BottomSlider />
       <Explore />
       <AboutUs />

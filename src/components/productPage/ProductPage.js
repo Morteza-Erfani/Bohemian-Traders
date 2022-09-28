@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, selectSize } from "../../redux/cart/cartSlice";
@@ -8,6 +8,9 @@ import styles from "./ProductPage.module.css";
 
 // Loader
 import loader from "../../assets/loading.svg";
+
+// Components
+import Products from "../homePage/products/Products";
 
 // Carousel
 import Carousel from "react-multi-carousel";
@@ -22,6 +25,10 @@ import pic5 from "../../assets/product/ETCH-SIZING-TEMPLATE_02__42182.jpg";
 import pic6 from "../../assets/product/SS22-ACT12-BLACK_05__62288.jpg";
 import klarna from "../../assets/klarna.svg";
 import star from "../../assets/star.svg";
+import arrowDown from "../../assets/down-chevron-svgrepo-com.svg";
+import creditCard from "../../assets/credit-card-svgrepo-com.svg";
+import shipping from "../../assets/shipping-svgrepo-com.svg";
+import sizePic from "../../assets/bt-ss22-act06-01.jpg";
 
 const productData = {
   photos: [pic1, pic2, pic3, pic4, pic5, pic6],
@@ -31,6 +38,15 @@ const productData = {
   sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
   category: "women",
   collection: "prints",
+  sizeType: "x-top",
+  productDetails:
+    "A swing jacket designed for the everyday with micro mesh on the back yoke for breathability and flexible wear. A scooping back hem covered the bottom for a flattering fit and A-line silhouette means it skims the body. Pair yours with the sports bra and new 7/8th legging for the complete look.",
+  productFeatures:
+    "- Walking jacket with A-line silhouette and swing back\n\n- Micro mesh on the back yoke\n\n- Zipper at center front closure\n\n- Side front zipper phone pockets\n\n- Low to Medium Impact Activities\n\n- Bohemian Traders Embroidered Logo\n\n- Fits true to size\n\n- 75% polyester / 25% spandex\n\n- Mid weight, stretchy fabric\n\n- Gentle hand wash in cold waterul",
+  sizeGuide: {
+    url: sizePic,
+  },
+  code: "BT-SS22-ACT12 BLACK",
 };
 
 const responsive = {
@@ -58,6 +74,8 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const selectedSize = useSelector((state) => state.cart.selectedSize);
   const cart = useSelector((state) => state.cart.cart);
+  const [wishList, setWishList] = useState(false);
+  const [infoShow, setInfoShow] = useState("");
 
   useEffect(() => {
     dispatch(selectSize({ size: "" }));
@@ -143,6 +161,113 @@ const ProductPage = () => {
       >
         ADD TO CART
       </button>
+      <div className={styles.wishListContainer}>
+        <div
+          className={styles.wishListBtn}
+          onClick={() => setWishList((prevState) => !prevState)}
+        >
+          <p>ADD TO WISH LIST</p>
+          <img src={arrowDown} alt="down" />
+        </div>
+        <div
+          className={`${styles.wishListMenu} ${
+            wishList && styles.showWishList
+          }`}
+        >
+          <div>MY WISH LIST</div>
+          <div>CREATE NEW WISH LIST</div>
+        </div>
+      </div>
+      <ul className={styles.shippingContainer}>
+        <li className={styles.shippingItem}>
+          <img src={creditCard} alt="credit card" />
+          <p>SHOP NOW, PAY LATER WITH KLARNA, AFTERPAY & ZIP</p>
+        </li>
+        <li className={styles.shippingItem}>
+          <img src={shipping} alt="shipping" />
+          <p>FREE SHIPPING ON AU ORDERS OVER $200</p>
+        </li>
+      </ul>
+      <ul className={styles.infoContainer}>
+        <li>
+          <div
+            className={styles.infoHeaderContainer}
+            onClick={() =>
+              infoShow === "details" ? setInfoShow("") : setInfoShow("details")
+            }
+          >
+            <h4>PRODUCT DETAILS</h4>
+            <span
+              className={`${infoShow === "details" ? "" : styles.rotate}`}
+            ></span>
+            <span></span>
+          </div>
+          <div
+            className={`${styles.innerInfoContainer} ${
+              infoShow === "details" && styles.showInfoData
+            }`}
+          >
+            <p>{productData.productDetails}</p>
+            <p>{productData.code}</p>
+          </div>
+        </li>
+        <li>
+          <div
+            className={styles.infoHeaderContainer}
+            onClick={() =>
+              infoShow === "features"
+                ? setInfoShow("")
+                : setInfoShow("features")
+            }
+          >
+            <h4>PRODUCT FEATURES</h4>
+            <span
+              className={`${infoShow === "features" ? "" : styles.rotate}`}
+            ></span>
+            <span></span>
+          </div>
+          <div
+            className={`${styles.innerInfoContainer} ${
+              infoShow === "features" && styles.showInfoData
+            }`}
+          >
+            <pre>{productData.productFeatures}</pre>
+          </div>
+        </li>
+        <li>
+          <div
+            className={styles.infoHeaderContainer}
+            onClick={() =>
+              infoShow === "sizing" ? setInfoShow("") : setInfoShow("sizing")
+            }
+          >
+            <h4>PRODUCT SIZING</h4>
+            <span
+              className={`${infoShow === "sizing" ? "" : styles.rotate}`}
+            ></span>
+            <span></span>
+          </div>
+          <div
+            className={`${styles.innerInfoContainer} ${
+              infoShow === "sizing" && styles.showInfoData
+            }`}
+          >
+            <h6>MODEL SIZING</h6>
+            <p>
+              - Lilly is a size AU8, 170cm tall and wears a size XS
+              <br />- Fiona is a size AU18 and wears a size XL
+            </p>
+            <img src={productData.sizeGuide.url} alt="size guide" />
+            <a>Need help with your sizing? Click here.</a>
+          </div>
+        </li>
+      </ul>
+      <p className={styles.code}>
+        <span>SKU: </span>
+        {productData.code}
+      </p>
+      <h1 className={styles.moreHeader}>MORE FROM THIS COLLECTION</h1>
+      <Products category='CAMPAIGN' />
     </div>
   );
 };

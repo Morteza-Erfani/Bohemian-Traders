@@ -14,9 +14,11 @@ import HumMenu from "./HumMenu";
 
 // Styles
 import styles from "./Header.module.css";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [humShow, setHumShow] = useState(false);
+  const cartLength = useSelector((state) => state.cart.cart).length;
 
   return (
     <header className={styles.container}>
@@ -59,11 +61,14 @@ const Header = () => {
           <a>
             <img className={styles.button} src={searchIcon} alt="search" />
           </a>
-          <Link to='./signin' >
-            <img className={styles.button} src={profileIcon} alt="search" />
+          <Link to="./signin">
+            <img className={styles.button} src={profileIcon} alt="sign in" />
           </Link>
-          <a>
-            <img className={styles.button} src={cartIcon} alt="search" />
+          <a className={styles.cartContainer}>
+            <img className={styles.button} src={cartIcon} alt="cart" />
+            {cartLength > 0 && (
+              <span className={styles.cartNumber}>{cartLength}</span>
+            )}
           </a>
         </div>
       </div>

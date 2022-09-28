@@ -44,6 +44,24 @@
   margin-top: 3px;
 }
 
+.cartContainer {
+  position: relative;
+}
+
+.cartNumber {
+  position: absolute;
+  color: white;
+  background-color: black;
+  border-radius: 50%;
+  font-weight: 700;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  width: 20px;
+  cursor: pointer;
+  margin: 15px 0 0 -12px;
+}
+
 .mobileRight {
   display: flex;
 }
