@@ -1,12 +1,12 @@
 import React from 'react';
+import TestModal from './TestModal'
 
-const Test = ({data}) => {
-
-  // console.log('test')
+const Test = () => {
 
   return (
     <div>
-      <h1>{data}</h1>
+      <p style={{height: '100vh'}}>test</p>
+      <TestModal/>
     </div>
   );
 };

@@ -25,3 +25,7 @@ yarn-error.log*
 /files
 
 SupportChat
+
+TestModal.js
+
+TestModal.module.css

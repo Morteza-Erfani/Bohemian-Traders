@@ -24,13 +24,17 @@ const Header = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
 
-  useEffect(() => {
-      dispatch(
-        restoreCart({ prevCart: JSON.parse(localStorage.getItem("cart")) })
-      );
-    console.log(JSON.parse(localStorage.getItem("cart")));
-    console.log(cart);
-  }, []);
+  // useEffect(() => {
+  //   dispatch(
+  //     restoreCart({
+  //       prevCart: JSON.parse(localStorage.getItem("cart")),
+  //       totalPrice: JSON.parse(localStorage.getItem("totaPrice")),
+  //       totalCount: JSON.parse(localStorage.getItem("totaCount")),
+  //     })
+  //   );
+  //   console.log(JSON.parse(localStorage.getItem("cart")));
+  //   console.log(cart);
+  // }, []);
 
   return (
     <header className={styles.container} id="header">
@@ -78,9 +82,7 @@ const Header = () => {
           </Link>
           <Link to="cart" className={styles.cartContainer}>
             <img className={styles.button} src={cartIcon} alt="cart" />
-            {count > 0 && (
-              <span className={styles.cartNumber}>{count}</span>
-            )}
+            {count > 0 && <span className={styles.cartNumber}>{count}</span>}
           </Link>
         </div>
       </div>
