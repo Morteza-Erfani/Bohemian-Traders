@@ -30,6 +30,7 @@ function App() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
 
+
   useEffect(() => {
     dispatch(
       restoreCart({

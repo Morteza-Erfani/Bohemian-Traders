@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { viewType } from "../../redux/productsPage/productsPageSlice";
+import {
+  setProducts,
+  viewType,
+} from "../../redux/productsPage/productsPageSlice";
 
 // Styles
 import styles from "./Store.module.css";
@@ -26,9 +29,9 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
-    prices: 117.83,
+    prices: 217.83,
     id: 1,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+    sizes: ["xxs", "xs", "s", "l", "xl", "2xl", "3xl", "4xl"],
   },
   {
     productImage: { url: pImage },
@@ -216,13 +219,28 @@ const Store = ({ collection, category }) => {
   const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
   const view = useSelector((state) => state.productsPage.view);
+  const allProducts = useSelector((state) => state.productsPage.products);
+  const filteredProducts = useSelector(
+    (state) => state.productsPage.filteredProducts
+  );
 
   useEffect(() => {
     dispatch(viewType({ view: "product" }));
+    dispatch(setProducts({ products: products }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const pages = Math.ceil(products.length / 10);
+  console.log(filteredProducts);
+  let pages;
+  if (filteredProducts.length === 0) {
+    console.log("first");
+    pages = Math.ceil(products.length / 10);
+  } else {
+    console.log(filteredProducts);
+    console.log("second");
+    pages = Math.ceil(filteredProducts.length / 10);
+  }
+
   const numbers = [];
 
   const productsInPage = [];
@@ -230,7 +248,11 @@ const Store = ({ collection, category }) => {
   for (let i = 1; i <= pages; i++) {
     const startI = (i - 1) * 10;
     const endI = i * 10;
-    productsInPage.push(products.slice(startI, endI));
+    if (filteredProducts.length === 0) {
+      productsInPage.push(allProducts.slice(startI, endI));
+    } else {
+      productsInPage.push(filteredProducts.slice(startI, endI));
+    }
     numbers.push(i);
   }
   // console.log(productsInPage);

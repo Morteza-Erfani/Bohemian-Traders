@@ -4,6 +4,7 @@ const initialState = {
   category: "",
   collection: "",
   products: [],
+  filteredProducts: [],
   filters: {
     sizes: [],
     price: {
@@ -22,6 +23,9 @@ export const productsPageSlice = createSlice({
   name: "productsPage",
   initialState,
   reducers: {
+    setProducts: (state, action) => {
+      state.products = action.payload.products;
+    },
     showDetails: (state, action) => {
       state.category = action.payload.category;
       state.collection = action.payload.collection;
@@ -56,6 +60,47 @@ export const productsPageSlice = createSlice({
     viewType: (state, action) => {
       state.view = action.payload.view;
     },
+    runSizeFilter: (state) => {
+      state.filteredProducts = [];
+      if (state.filters.sizes.length !== 0) {
+        let filterIndex = new Set();
+        state.filters.sizes.map((filterSize) => {
+          for (const [index, product] of state.products.entries()) {
+            product.sizes.map((size) => {
+              if (filterSize === size) {
+                filterIndex.add(index);
+              }
+            });
+          }
+        });
+        filterIndex.forEach((index) => {
+          state.filteredProducts.push(state.products[index]);
+        });
+      }
+    },
+    runPriceFilter: (state) => {
+      const priceFiltered = [];
+      if (state.filteredProducts.length === 0) {
+        state.products.map((product) => {
+          if (
+            product.prices > state.filters.price.min &&
+            product.prices < state.filters.price.max
+            ) {
+            state.filteredProducts.push(product);
+          }
+        });
+      } else {
+        state.filteredProducts.map((product) => {
+          if (
+            product.prices > state.filters.price.min &&
+            product.prices < state.filters.price.max
+          ) {
+            priceFiltered.push(product);
+          }
+        });
+        state.filteredProducts = priceFiltered;
+      }
+    },
   },
 });
 
@@ -70,6 +115,9 @@ export const {
   justInStock,
   setSortOption,
   viewType,
+  runSizeFilter,
+  setProducts,
+  runPriceFilter,
 } = productsPageSlice.actions;
 
 export default productsPageSlice.reducer;

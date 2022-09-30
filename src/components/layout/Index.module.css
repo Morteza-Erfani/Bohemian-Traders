@@ -1,0 +1,23 @@
+.layout {
+  position: relative;
+}
+
+.chatIcon {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  bottom: 20px;
+  right: 19px;
+  background-color: rgb(159, 169, 185);
+  border-radius: 50%;
+  z-index: 1001;
+  height: 58px;
+  width: 58px;
+}
+
+.chatIcon img {
+  width: 32px;
+  transform: rotateY(180deg);
+  filter: invert(100%) sepia(12%) saturate(7498%) hue-rotate(192deg)
+    brightness(113%) contrast(105%);
+}

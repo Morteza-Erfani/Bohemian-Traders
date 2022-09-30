@@ -9,6 +9,8 @@ import {
   setMaxPrice,
   justInStock,
   setSortOption,
+  runSizeFilter,
+  runPriceFilter,
 } from "../../../redux/productsPage/productsPageSlice";
 
 // Styles
@@ -58,14 +60,16 @@ const FilterSort = () => {
 
   useEffect(() => {
     dispatch(filterReset());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sizeHandler = (size) => {
     if (allSelectedSizes.includes(size)) {
       dispatch(removeSize({ size: size }));
+      dispatch(runSizeFilter());
     } else {
       dispatch(addSize({ size: size }));
+      dispatch(runSizeFilter());
     }
   };
 
@@ -226,7 +230,14 @@ const FilterSort = () => {
                   }
                 />
               </div>
-              <p className={styles.update}>UPDATE</p>
+              <p
+                className={styles.update}
+                onClick={() => {
+                  dispatch(runPriceFilter());
+                }}
+              >
+                UPDATE
+              </p>
               <div
                 className={`${styles.error} ${
                   minPrice < maxPrice && styles.hidden

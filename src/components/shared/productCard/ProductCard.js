@@ -55,7 +55,7 @@ const ProductCard = ({ data, titleType, slug }) => {
         <Link to={`/${slug}`}>
           <h3 className={styles.name}>
             {titleType === "capital" ? name : capital(name)}
-            {/* {id} */}
+            {id}
           </h3>
         </Link>
         <h2 className={styles.brand}>BOHEMIAN TRADERS</h2>
