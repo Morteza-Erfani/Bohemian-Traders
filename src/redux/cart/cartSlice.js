@@ -38,6 +38,7 @@ export const cartSlice = createSlice({
             price: action.payload.price,
             name: action.payload.name,
             photo: action.payload.photo,
+            allSize: action.payload.allSize,
           });
           state.totalCount += 1;
           state.totalPrice += action.payload.price;
@@ -50,6 +51,7 @@ export const cartSlice = createSlice({
           price: action.payload.price,
           name: action.payload.name,
           photo: action.payload.photo,
+          allSize: action.payload.allSize,
         });
         state.totalCount += 1;
         state.totalPrice += action.payload.price;
@@ -98,10 +100,38 @@ export const cartSlice = createSlice({
       localStorage.setItem("totalPrice", JSON.stringify(state.totalPrice));
       localStorage.setItem("totalCount", JSON.stringify(state.totalCount));
     },
+    changeSize: (state, action) => {
+      let prevIndex;
+      let newIndex;
+      for (const [index, product] of state.cart.entries()) {
+        if (product.id === action.payload.id) {
+          if (product.size === action.payload.prevSize) {
+            prevIndex = index;
+          }
+          if (product.size === action.payload.newSize) {
+            newIndex = index;
+          }
+        }
+      }
+      if (!newIndex) {
+        state.cart[prevIndex].size = action.payload.newSize;
+        localStorage.setItem("cart", JSON.stringify(state.cart));
+      } else {
+        state.cart[newIndex].quantity += action.payload.quantity;
+        state.cart.splice(prevIndex, 1);
+        localStorage.setItem("cart", JSON.stringify(state.cart));
+      }
+    },
   },
 });
 
-export const { selectSize, addToCart, restoreCart, decrease, remove } =
-  cartSlice.actions;
+export const {
+  selectSize,
+  addToCart,
+  restoreCart,
+  decrease,
+  remove,
+  changeSize,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

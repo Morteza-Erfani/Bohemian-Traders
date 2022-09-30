@@ -1,26 +1,55 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeSize, selectSize } from "../../../redux/cart/cartSlice";
 
 // Styles
 import styles from "./ChangeSizeModal.module.css";
 
-const ChangeSizeModal = ({ show }) => {
+const ChangeSizeModal = ({
+  show,
+  onClose,
+  allSize,
+  name,
+  onChangeSize,
+  onSave,
+}) => {
+  const modalSelectedSize = useSelector((state) => state.cart.selectedSize);
+
   if (!show) {
     return null;
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.modalContent}>
+    <div className={styles.container} onClick={onClose}>
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modalHeader}>
-          <img />
-          <h1>CONFIGURE TITLE</h1>
+          <p onClick={onClose}>×</p>
+          <h2>
+            CONFIGURE
+            <br />'{name}'
+          </h2>
         </div>
         <div className={styles.modalBody}>
           <p>SIZE:</p>
-          <div>xxs</div>
-        </div>
-        <div className={styles.modalFooter}>
-          <button>save</button>
+          <div className={styles.modalSizes}>
+            {allSize.map((size) => (
+              <div
+                key={size}
+                className={modalSelectedSize === size ? styles.selected : ""}
+                onClick={() => onChangeSize(size)}
+              >
+                {size}
+              </div>
+            ))}
+          </div>
+          <button
+            onClick={() => {
+              onSave();
+              onClose();
+            }}
+          >
+            SAVE
+          </button>
         </div>
       </div>
     </div>

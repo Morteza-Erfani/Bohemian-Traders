@@ -38,8 +38,8 @@ function App() {
         totalCount: JSON.parse(localStorage.getItem("totalCount")),
       })
     );
-    console.log(JSON.parse(localStorage.getItem("cart")));
-    console.log(cart);
+    // console.log(JSON.parse(localStorage.getItem("cart")));
+    // console.log(cart);
   }, []);
 
   return (

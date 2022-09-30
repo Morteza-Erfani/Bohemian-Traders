@@ -163,6 +163,7 @@ const ProductPage = () => {
                 price: productData.prices,
                 name: productData.name,
                 photo: productData.photos[0],
+                allSize: productData.sizes,
               })
             );
         }}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Styles
@@ -8,7 +8,13 @@ import styles from "./Cart.module.css";
 import downArrow from "../../assets/chevron-down.svg";
 import upArrow from "../../assets/chevron-up.svg";
 import cross from "../../assets/x.svg";
-import { addToCart, decrease, remove } from "../../redux/cart/cartSlice";
+import {
+  addToCart,
+  changeSize,
+  decrease,
+  remove,
+  selectSize,
+} from "../../redux/cart/cartSlice";
 import zip from "../../assets/zip-button-wht.svg";
 import paypal from "../../assets/paypal.svg";
 import gPay from "../../assets/dark_gpay.svg";
@@ -18,11 +24,14 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart.cart);
   const count = useSelector((state) => state.cart.totalCount);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const selectedSize = useSelector((state) => state.cart.selectedSize);
   const tax = (totalPrice * 0.091).toFixed(2);
 
   const [showChange, setShowChange] = useState(false);
 
-  console.log(totalPrice);
+  const [selectedSizeForChange, setSelectedSizeForChange] = useState()
+
+  // console.log(totalPrice);
 
   const dispatch = useDispatch();
 
@@ -74,11 +83,33 @@ const Cart = () => {
               </p>
               <button
                 className={styles.change}
-                onClick={() => setShowChange(true)}
+                onClick={() => {
+                  setShowChange(true);
+                  dispatch(selectSize({ size: product.size }));
+                  setSelectedSizeForChange(product.size)
+                }}
               >
                 CHANGE
               </button>
-              <ChangeSizeModal show={showChange} />
+              <ChangeSizeModal
+                show={showChange}
+                onClose={() => setShowChange(false)}
+                allSize={product.allSize}
+                name={product.name}
+                onChangeSize={(size) => {
+                  dispatch(selectSize({ size: size }));
+                }}
+                onSave={() => {
+                  dispatch(
+                    changeSize({
+                      id: product.id,
+                      prevSize: selectedSizeForChange,
+                      newSize: selectedSize,
+                      quantity: product.quantity,
+                    })
+                  );
+                }}
+              />
             </div>
           </div>
           <div className={styles.secondSection}>
