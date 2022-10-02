@@ -35,7 +35,7 @@ const productData = {
   name: "swing jacket in black",
   prices: 117.83,
   id: 1,
-  sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+  sizes: ["xxs", "xs", "s", "l", "xl", "2xl", "3xl", "4xl"],
   category: "women",
   collection: "prints",
   sizeType: "x-top",
@@ -48,6 +48,14 @@ const productData = {
   },
   code: "BT-SS22-ACT12 BLACK",
 };
+
+let allSizes = [];
+
+if (productData.sizeType === "x-top") {
+  allSizes = ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"];
+} else {
+  allSizes = [1, 2, 3];
+}
 
 const responsive = {
   superLargeDesktop: {
@@ -94,6 +102,14 @@ const ProductPage = () => {
 
   // console.log(data.heroPhotos);
 
+  const sizeHandler = (size) => {
+    if (productData.sizes.includes(size)) {
+      selectedSize === size
+        ? dispatch(selectSize({ size: "" }))
+        : dispatch(selectSize({ size: size }));
+    }
+  };
+
   return (
     <div className={styles.container}>
       <Carousel
@@ -136,16 +152,14 @@ const ProductPage = () => {
       <a className={styles.review}>WRITE A REVIEW</a>
       <p className={styles.sizeTitle}>SIZE:</p>
       <ul className={styles.sizeContainer}>
-        {productData.sizes.map((size) => (
+        {allSizes.map((size) => (
           <li
             key={size}
             className={`${styles.size} ${
               selectedSize === size && styles.select
-            }`}
+            } ${!productData.sizes.includes(size) && styles.unavailable}`}
             onClick={() => {
-              selectedSize === size
-                ? dispatch(selectSize({ size: "" }))
-                : dispatch(selectSize({ size: size }));
+              sizeHandler(size);
             }}
           >
             {size}

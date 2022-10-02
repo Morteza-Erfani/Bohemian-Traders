@@ -126,6 +126,7 @@
   letter-spacing: 1.25px;
   text-transform: uppercase;
   text-align: center;
+  position: relative;
 }
 
 .size:hover {
@@ -136,6 +137,23 @@ li.select {
   background-color: #333;
   border-color: #333;
   color: white;
+}
+
+ul li.unavailable {
+  background-color: #ddd;
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+ul li.unavailable::before {
+  background-color: black;
+  content: '';
+  height: 2px;
+  width: 141%;
+  bottom: 19px;
+  left: -9px;
+  position: absolute;
+  transform: rotate(-45deg);
 }
 
 .addToCart {
