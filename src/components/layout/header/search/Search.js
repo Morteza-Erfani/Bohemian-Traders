@@ -1,28 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  setProducts,
-  viewType,
-} from "../../redux/productsPage/productsPageSlice";
+import React, { useState } from "react";
 
 // Styles
-import styles from "./Store.module.css";
+import styles from "./Search.module.css";
 
 // Assets
-import header from "../../assets/athleticblue__01897.original.jpg";
-import leftArrow from "../../assets/chevron-left.svg";
-import rightArrow from "../../assets/chevron-right.svg";
-
-// Components
-import FilterSort from "./filterSort/FilterSort";
-import ProductCard from "../shared/productCard/ProductCard";
+import searchIcon from "../../../../assets/icons8-search-25.png";
 
 // Product
-import pImage from "../../assets/product/ETCH-SIZING-TEMPLATE_02__42182.jpg";
-import mImage from "../../assets/product/SS22-ACT12-BLACK_01__01552.jpg";
-import sImage from "../../assets/product/SS22-ACT12-BLACK_02__22867.jpg";
-import { slugMaker } from "../../helpers/functions";
-import ScrollToTop from "../shared/ScrollToTop";
+import pImage from "../../../../assets/product/ETCH-SIZING-TEMPLATE_02__42182.jpg";
+import mImage from "../../../../assets/product/SS22-ACT12-BLACK_01__01552.jpg";
+import sImage from "../../../../assets/product/SS22-ACT12-BLACK_02__22867.jpg";
+import Store from "../../../store/Store";
+import ScrollToTop from "../../../shared/ScrollToTop";
 
 const products = [
   {
@@ -216,121 +205,50 @@ const products = [
   },
 ];
 
-const Store = ({ collection, category, searchProducts }) => {
-  const [pageNumber, setPageNumber] = useState(1);
-  const dispatch = useDispatch();
-  const view = useSelector((state) => state.productsPage.view);
-  const allProducts = useSelector((state) => state.productsPage.products);
-  const filteredProducts = useSelector(
-    (state) => state.productsPage.filteredProducts
+const Search = ({ show, onClose }) => {
+  const [searchText, setSearchText] = useState("");
+
+  const searchedProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchText.toLowerCase())
   );
 
-  useEffect(() => {
-    dispatch(viewType({ view: "product" }));
-    dispatch(setProducts({ products: products }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  let pages;
-  if (filteredProducts.length === 0) {
-    pages = Math.ceil(products.length / 10);
-  } else {
-    pages = Math.ceil(filteredProducts.length / 10);
+  if (!show) {
+    return null;
   }
-
-  const numbers = [];
-
-  const productsInPage = [];
-
-  for (let i = 1; i <= pages; i++) {
-    const startI = (i - 1) * 10;
-    const endI = i * 10;
-    if (filteredProducts.length === 0) {
-      if (!searchProducts) {
-        productsInPage.push(allProducts.slice(startI, endI));
-      } else {
-        productsInPage.push(searchProducts.slice(startI, endI));
-      }
-    } else {
-      productsInPage.push(filteredProducts.slice(startI, endI));
-    }
-    numbers.push(i);
-  }
-  // console.log(productsInPage);
-  // console.log(numbers);
 
   return (
-    <div className={styles.container}>
-      {header && <img className={styles.headPhoto} src={header} alt="header" />}
-      {collection ? (
-        <h1 className={styles.header}>{collection}</h1>
-      ) : (
-        <h1 className={styles.header}>{category}</h1>
-      )}
-      <FilterSort />
-      <div className={styles.view}>
-        <p
-          onClick={() => dispatch(viewType({ view: "model" }))}
-          className={view === "model" ? styles.underline : ""}
+    <div
+      className={`${styles.container} ${searchText && styles.containerFull}`}
+      onClick={onClose}
+    >
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+        <div
+          className={`${styles.searchBox} ${
+            searchText && styles.searchBoxFull
+          }`}
         >
-          MODEL VIEW
-        </p>
-        <p
-          onClick={() => dispatch(viewType({ view: "product" }))}
-          className={view === "product" ? styles.underline : ""}
+          <input
+            type="text"
+            placeholder="SEARCH"
+            inputMode="text"
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <img src={searchIcon} alt="search" />
+          <p onClick={onClose}>×</p>
+        </div>
+        <div
+          className={`${styles.searchResult} ${
+            searchText && styles.searchResultFull
+          }`}
         >
-          PRODUCT VIEW
-        </p>
-      </div>
-      <div className={styles.productsContainer}>
-        {productsInPage[pageNumber - 1].map((product) => (
-          <div key={product.id} className={styles.productContainer}>
-            <ProductCard
-              data={product}
-              titleType="capital"
-              slug={slugMaker(product.name)}
-            />
+          <div className={styles.modalHeader}>
+            {searchedProducts.length} RESULT '{searchText.toUpperCase()}'
           </div>
-        ))}
-      </div>
-      <div className={styles.pageNumbersContainer}>
-        <a
-          href="#top"
-          className={styles.previous}
-          onClick={() => {
-            setPageNumber((prevPageNumber) => prevPageNumber - 1);
-          }}
-        >
-          <img src={leftArrow} alt="previous" />
-          <p>PREVIOUS</p>
-        </a>
-        {numbers.map((number) => (
-          <a
-            key={number}
-            href="#top"
-            className={`${styles.number} ${
-              pageNumber === number && styles.active
-            }`}
-            onClick={() => {
-              setPageNumber(number);
-            }}
-          >
-            {number}
-          </a>
-        ))}
-        <a
-          href="#top"
-          className={styles.next}
-          onClick={() => {
-            setPageNumber((prevPageNumber) => prevPageNumber + 1);
-          }}
-        >
-          <p>NEXT</p>
-          <img src={rightArrow} alt="next" />
-        </a>
+          <Store searchProducts={searchedProducts} />
+        </div>
       </div>
     </div>
   );
 };
 
-export default Store;
+export default Search;

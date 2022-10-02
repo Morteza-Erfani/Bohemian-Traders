@@ -1,0 +1,93 @@
+@import url("../../../../Styles/fonts.css");
+
+.container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(51, 51, 51, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 0 10px;
+  transition: all 0.2s;
+}
+
+div.containerFull {
+  padding: 0;
+  
+}
+
+.modalContent {
+  background-color: white;
+  width: 100%;
+}
+
+.searchBox {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 42px;
+  align-items: center;
+}
+
+.searchBoxFull {
+  padding: 0 15px;
+}
+
+.searchBox p {
+  font-size: 32px;
+  color: #757575;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: "Work Sans", sans-serif;
+  height: 32px;
+  width: 32px;
+  line-height: 32px;
+  margin-left: 10px;
+}
+
+.searchBox input {
+  width: 100%;
+  text-transform: uppercase;
+  border: none;
+  background-color: #fff;
+  color: #666;
+  font-size: 14px;
+  padding: 10.5px 14px;
+  height: 42px;
+}
+
+.searchBox input::placeholder {
+  color: #999;
+  font-size: 14px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
+.searchBox img {
+  width: 18px;
+  margin: 0 6px;
+}
+
+.searchResult {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.2s;
+  min-height: 0;
+  overflow-y: scroll;
+}
+
+.searchResultFull {
+  min-height: calc(100vh - 42px);
+}
+
+.modalHeader {
+  font-size: 23.8px;
+  font-weight: 300;
+  color: #272727;
+  margin: 10px 0 20px;
+  padding: 0 15px;
+}

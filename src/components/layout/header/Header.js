@@ -11,6 +11,7 @@ import cartIcon from "../../../assets/carticon.png";
 
 // Components
 import HumMenu from "./HumMenu";
+import Search from "./search/Search";
 
 // Styles
 import styles from "./Header.module.css";
@@ -23,6 +24,8 @@ const Header = () => {
 
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
+
+  const [showSearch, setShowSearch] = useState(false);
 
   // useEffect(() => {
   //   dispatch(
@@ -75,7 +78,12 @@ const Header = () => {
         {/* header buttons */}
         <div className={styles.mobileRight}>
           <a>
-            <img className={styles.button} src={searchIcon} alt="search" />
+            <img
+              className={styles.button}
+              src={searchIcon}
+              alt="search"
+              onClick={() => setShowSearch(true)}
+            />
           </a>
           <Link to="./signin">
             <img className={styles.button} src={profileIcon} alt="sign in" />
@@ -85,6 +93,7 @@ const Header = () => {
             {count > 0 && <span className={styles.cartNumber}>{count}</span>}
           </Link>
         </div>
+        <Search show={showSearch} onClose={() => setShowSearch(false)} />
       </div>
     </header>
   );
