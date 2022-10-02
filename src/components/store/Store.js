@@ -38,7 +38,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
-    prices: 117.83,
+    prices: 127.83,
     id: 2,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
   },
@@ -47,7 +47,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
-    prices: 117.83,
+    prices: 147.83,
     id: 3,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
   },
@@ -56,7 +56,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
-    prices: 117.83,
+    prices: 137.83,
     id: 4,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
   },
@@ -230,14 +230,10 @@ const Store = ({ collection, category }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(filteredProducts);
   let pages;
   if (filteredProducts.length === 0) {
-    console.log("first");
     pages = Math.ceil(products.length / 10);
   } else {
-    console.log(filteredProducts);
-    console.log("second");
     pages = Math.ceil(filteredProducts.length / 10);
   }
 

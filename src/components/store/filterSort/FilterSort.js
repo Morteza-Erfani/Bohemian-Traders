@@ -11,6 +11,7 @@ import {
   setSortOption,
   runSizeFilter,
   runPriceFilter,
+  sort,
 } from "../../../redux/productsPage/productsPageSlice";
 
 // Styles
@@ -321,6 +322,7 @@ const FilterSort = () => {
                 selectedSort === option
                   ? dispatch(setSortOption({ sortOption: "" }))
                   : dispatch(setSortOption({ sortOption: option }));
+                dispatch(sort());
               }}
             >
               <div className={styles.innerContainer}>

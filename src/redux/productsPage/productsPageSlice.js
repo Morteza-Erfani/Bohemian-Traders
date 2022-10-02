@@ -19,12 +19,16 @@ const initialState = {
   view: "product",
 };
 
+let filteredProductsBeforeSort = [];
+let productsBeforeSort = [];
+
 export const productsPageSlice = createSlice({
   name: "productsPage",
   initialState,
   reducers: {
     setProducts: (state, action) => {
       state.products = action.payload.products;
+      productsBeforeSort = action.payload.products;
     },
     showDetails: (state, action) => {
       state.category = action.payload.category;
@@ -75,6 +79,7 @@ export const productsPageSlice = createSlice({
         });
         filterIndex.forEach((index) => {
           state.filteredProducts.push(state.products[index]);
+          filteredProductsBeforeSort = state.filteredProducts;
         });
       }
     },
@@ -85,9 +90,10 @@ export const productsPageSlice = createSlice({
           if (
             product.prices > state.filters.price.min &&
             product.prices < state.filters.price.max
-            ) {
+          ) {
             state.filteredProducts.push(product);
           }
+          filteredProductsBeforeSort = state.filteredProducts;
         });
       } else {
         state.filteredProducts.map((product) => {
@@ -99,6 +105,21 @@ export const productsPageSlice = createSlice({
           }
         });
         state.filteredProducts = priceFiltered;
+        filteredProductsBeforeSort = state.filteredProducts;
+      }
+    },
+    sort: (state) => {
+      if (state.sortOption === "") {
+        state.products = productsBeforeSort;
+        state.filteredProducts = filteredProductsBeforeSort;
+      } else {
+        if (state.sortOption === "PRICE: ASCENDING") {
+          state.products.sort((a, b) => a.prices - b.prices);
+          state.filteredProducts.sort((a, b) => a.prices - b.prices);
+        } else if (state.sortOption === "PRICE: DESCENDING") {
+          state.products.sort((a, b) => b.prices - a.prices);
+          state.filteredProducts.sort((a, b) => b.prices - a.prices);
+        }
       }
     },
   },
@@ -118,6 +139,7 @@ export const {
   runSizeFilter,
   setProducts,
   runPriceFilter,
+  sort,
 } = productsPageSlice.actions;
 
 export default productsPageSlice.reducer;
