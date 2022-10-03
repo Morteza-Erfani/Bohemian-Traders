@@ -20,4 +20,9 @@ const slugMaker = (title) => {
   return splittedTitle.join("-").toLowerCase();
 };
 
-export { capital, validateEmail, slugMaker };
+const slugToNormal = (title) => {
+  const splittedTitle = title.split("-");
+  return splittedTitle.join(" ").toUpperCase();
+}
+
+export { capital, validateEmail, slugMaker, slugToNormal };

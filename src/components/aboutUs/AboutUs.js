@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 // Styles
 import styles from "./AbouUs.module.css";
 
 const AboutUs = () => {
+
+  useEffect(() => {
+    document.title = 'About Us'
+  },[])
 
   return (
     <div className={styles.container}>

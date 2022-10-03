@@ -13,6 +13,9 @@ import loader from "../../../assets/loading.svg";
 
 // Styles
 import styles from "./BottomSlider.module.css";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { showDetails } from "../../../redux/productsPage/productsPageSlice";
 
 const responsive = {
   superLargeDesktop: {
@@ -37,6 +40,14 @@ const responsive = {
 
 const BottomSlider = () => {
   const { loading, data } = useQuery(GET_BOTTOM_HERO_PHOTOS);
+
+  const dispatch = useDispatch();
+
+  const slugHandler = (category, collection, title) => {
+    dispatch(
+      showDetails({ category: category, collection: collection, title: title })
+    );
+  };
 
   if (loading) {
     return (
@@ -65,7 +76,13 @@ const BottomSlider = () => {
       >
         {data.bottomPhotos.map((photo) => (
           <div key={photo.id}>
-            <div className={styles.innerContainer}>
+            <Link
+              onClick={() => {
+                slugHandler("Women", "view-all", "women");
+              }}
+              to="/women/view-all"
+              className={styles.innerContainer}
+            >
               {window.innerWidth < 800 ? (
                 <img
                   src={photo.mobilePhoto.url}
@@ -81,7 +98,7 @@ const BottomSlider = () => {
                 />
               )}
               <p className={styles.sliderLink}>SHOP COLOUR-BLOCK</p>
-            </div>
+            </Link>
           </div>
         ))}
         <div></div>

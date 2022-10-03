@@ -12,6 +12,7 @@
   position: relative;
   height: calc(100vh - 72px);
   max-height: calc((100vw - 21px) * 1.8125);
+  display: block;
 }
 
 .sliderLink {

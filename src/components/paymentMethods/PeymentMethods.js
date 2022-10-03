@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Styles
 import styles from "./PeymentMethods.module.css";
@@ -9,6 +9,10 @@ import klarna from "../../assets/klarna.svg";
 import zippay from "../../assets/zippay-logo1.jpg";
 
 const PeymentMethods = () => {
+  useEffect(() => {
+    document.title = "Flexible Payment Options";
+  }, []);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>FLEXIBLE PAYMENT OPTIONS</h1>

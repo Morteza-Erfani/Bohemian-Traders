@@ -30,9 +30,10 @@
   /* width: 100%; */
 }
 
-.collections p {
+.collections a {
   padding: 10px 0 6.66px 22px;
   height: 33px;
+  color: black;
 }
 
 .category {
@@ -46,7 +47,7 @@
   align-items: center;
 }
 
-.category p {
+.category .categoryName {
   height: 16px;
 }
 

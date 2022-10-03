@@ -18,7 +18,7 @@ const SignIn = () => {
 
   useEffect(() => {
     document.title = "Bohemian Tarders - Sign in";
-  });
+  },[]);
 
   const isEmpty = (value) =>
     value !== "" && value !== "0" ? styles.green : "";

@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 
+// Functions
+import { slugMaker } from "../../../helpers/functions";
+
 // APIs
 import { GET_CATEGORIES_NAME } from "../../../graphql/queries";
 
 // Styles
 import styles from "./HumMenu.module.css";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { showDetails } from "../../../redux/productsPage/productsPageSlice";
 
-const HumMenu = () => {
+const HumMenu = ({ onClose }) => {
   const { loading, data, errors } = useQuery(GET_CATEGORIES_NAME);
+
+  const dispatch = useDispatch();
 
   const [show, setShow] = useState({
     id: "",
@@ -16,6 +24,12 @@ const HumMenu = () => {
   });
 
   console.log(data);
+
+  const slugHandler = (category, collection, title) => {
+    dispatch(
+      showDetails({ category: category, collection: collection, title: title })
+    );
+  };
 
   return (
     <div className={styles.container}>
@@ -31,7 +45,24 @@ const HumMenu = () => {
                   : setShow({ id: category.id, isShow: true });
               }}
             >
-              <p>{category.name}</p>
+              {category.collections.length ? (
+                <p className={styles.categoryName}>{category.name}</p>
+              ) : (
+                <Link
+                  onClick={() => {
+                    slugHandler(
+                      slugMaker(category.name),
+                      "view-all",
+                      category.name
+                    );
+                    onClose();
+                  }}
+                  to={`/${slugMaker(category.name)}/view-all`}
+                  className={styles.categoryName}
+                >
+                  {category.name}
+                </Link>
+              )}
               {category.collections.length ? (
                 <div>
                   <p
@@ -60,11 +91,55 @@ const HumMenu = () => {
                 }
               >
                 {category.name !== "CAMPAIGN" &&
-                  category.name !== "WHAT'S NEW" && <p>VIEW ALL</p>}
+                  category.name !== "WHAT'S NEW" && (
+                    <Link
+                      onClick={() => {
+                        slugHandler(
+                          slugMaker(category.name),
+                          "view-all",
+                          category.name
+                        );
+                        onClose();
+                      }}
+                      to={`/${slugMaker(slugMaker(category.name))}/view-all`}
+                    >
+                      VIEW ALL
+                    </Link>
+                  )}
                 {category.collections.map((collection) => (
-                  <p key={collection.id}>{collection.name}</p>
+                  <Link
+                    onClick={() => {
+                      console.log("click");
+                      slugHandler(
+                        slugMaker(category.name),
+                        slugMaker(collection.name),
+                        collection.name
+                      );
+                      onClose();
+                    }}
+                    to={`/${slugMaker(category.name)}/${slugMaker(
+                      collection.name
+                    )}`}
+                    key={collection.id}
+                  >
+                    {collection.name}
+                  </Link>
                 ))}
-                {category.name === "WHAT'S NEW" && <p>VIEW ALL</p>}
+                {category.name === "WHAT'S NEW" && (
+                  <Link
+                    onClick={() => {
+                      slugHandler(
+                        slugMaker(category.name),
+                        "view-all",
+                        category.name
+                      );
+                      onClose();
+                    }}
+                    to={`/${slugMaker(slugMaker(category.name))}/view-all`}
+                  >
+                    VIEW ALL
+                  </Link>
+                )}
               </div>
             ) : (
               <></>

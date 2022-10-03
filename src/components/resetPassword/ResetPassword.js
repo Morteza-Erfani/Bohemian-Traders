@@ -15,7 +15,7 @@ const ResetPassword = () => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    document.title = "Bohemian Traders - Reset Password";
+    document.title = "Bohemian Traders - Forget Password";
   }, []);
 
   const isEmpty = (value) => (value !== "" ? styles.green : "");

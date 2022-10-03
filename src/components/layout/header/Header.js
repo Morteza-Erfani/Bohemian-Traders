@@ -65,7 +65,7 @@ const Header = () => {
 
           {humShow && (
             <div className={styles.humMenu}>
-              <HumMenu />
+              <HumMenu onClose={() => setHumShow(false)} />
             </div>
           )}
         </div>

@@ -93,7 +93,7 @@ const Footer = () => {
         <p className={styles.subPara}>
           SUBSCRIBE TO REVIEVE UPDATES AND SPECIAL OFFERS!
         </p>
-        <div className={styles.inputContainer}>
+        <form className={styles.inputContainer}>
           <input
             type="email"
             inputMode="email"
@@ -101,7 +101,7 @@ const Footer = () => {
             className={styles.input}
           />
           <button className={styles.subscribeBtn}>SUBSCRIBE</button>
-        </div>
+        </form>
         <p className={styles.contact}>
           CUSTOMERSERVICE@BOHEMIANTRADERS.COM | +61 2 4327 8640 | MON - FRI |
           9AM - 5PM AEST

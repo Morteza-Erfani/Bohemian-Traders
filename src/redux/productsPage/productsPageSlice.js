@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   category: "",
   collection: "",
+  title: "",
   products: [],
   filteredProducts: [],
   filters: {
@@ -33,6 +34,7 @@ export const productsPageSlice = createSlice({
     showDetails: (state, action) => {
       state.category = action.payload.category;
       state.collection = action.payload.collection;
+      state.title = action.payload.title;
     },
     filterReset: (state) => {
       state.filters = initialState.filters;

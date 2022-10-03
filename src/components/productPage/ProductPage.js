@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, selectSize } from "../../redux/cart/cartSlice";
+import { capital } from "../../helpers/functions";
 
 // Styles
 import styles from "./ProductPage.module.css";
@@ -87,6 +88,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     dispatch(selectSize({ size: "" }));
+    document.title = `${capital(productData.name)} | Bohemian Traders`;
   }, []);
 
   // console.log(cart);

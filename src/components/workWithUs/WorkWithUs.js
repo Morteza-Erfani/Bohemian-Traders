@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Styles
 import styles from "./WorkWithUs.module.css";
 
 const WorkWithUs = () => {
+
+  useEffect(() => {
+    document.title = 'Work With Us'
+  },[])
+
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>WORK WITH US</h1>

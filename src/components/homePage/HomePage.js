@@ -10,7 +10,7 @@ import TopSlider from "./topSlider/TopSlider";
 
 const HomePage = () => {
   useEffect(() => {
-    document.title = "Bohemian Traders";
+    document.title = "Bohemian Traders | Classic European Cuts | For The Modern Bohemian";
   }, []);
 
   return (

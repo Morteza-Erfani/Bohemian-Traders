@@ -16,7 +16,7 @@ const ContactUs = () => {
   const [comment, setComment] = useState("0");
 
   useEffect(() => {
-    document.title = "Bohemian Tarders - Sign in";
+    document.title = "Contact Us";
   });
 
   const isEmpty = (value) =>

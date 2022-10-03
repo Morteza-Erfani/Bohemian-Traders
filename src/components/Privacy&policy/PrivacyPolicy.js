@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Styles
 import styles from "./PrivacyPolicy.module.css";
 
 const PrivacyPolicy = () => {
+  useEffect(() => {
+    document.title = "Terms & Privacy Policy";
+  }, []);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>TERMS & PRIVACY POLICY</h1>

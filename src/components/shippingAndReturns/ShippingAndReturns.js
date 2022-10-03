@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Styles
 import styles from "./ShippingAndReturns.module.css";
 
 const ShippingAndReturns = () => {
+  useEffect(() => {
+    document.title = "Shipping & Returns";
+  }, []);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>SHIPPING & RETURNS</h1>

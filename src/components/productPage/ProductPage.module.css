@@ -6,13 +6,14 @@
 }
 
 .carouselContainer {
-  height: calc(100vh - 72px);
-  max-height: calc((100vw - 21px) * 1.8125);
+  max-height: calc(100vh - 72px);
+  /* max-height: calc((100vw - 21px) * 1.8125); */
   margin: 0 -14px 30px;
 }
 
 .carouselContainer button {
   margin-top: 85px;
+  z-index: 1;
 }
 
 .photoContainer img {

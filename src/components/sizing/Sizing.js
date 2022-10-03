@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Styles
 import styles from "./sizing.module.css";
@@ -9,6 +9,10 @@ import secondPic from "../../assets/top_CROP2.png";
 import thirdPic from "../../assets/bot_CROP3.png";
 
 const Sizing = () => {
+  useEffect(() => {
+    document.title = "Inclusive Size Range";
+  }, []);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>INCLUSIVE SIZE RANGE</h1>
@@ -111,8 +115,8 @@ const Sizing = () => {
         </p>
         <p>
           Ensure that the tape is always close against your body, but don't hold
-          it too tight. The general rule is <i>close but comfortable</i> - not tight
-          and not loose.
+          it too tight. The general rule is <i>close but comfortable</i> - not
+          tight and not loose.
         </p>
       </div>
     </div>

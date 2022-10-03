@@ -14,8 +14,10 @@ import styles from "./Explore.module.css";
 const Explore = () => {
   const dispatch = useDispatch();
 
-  const slugHandler = (category, collection) => {
-    dispatch(showDetails({ category: category, collection: collection }));
+  const slugHandler = (category, collection, title) => {
+    dispatch(
+      showDetails({ category: category, collection: collection, title: title })
+    );
   };
 
   return (
@@ -24,7 +26,7 @@ const Explore = () => {
       <div className={styles.catContainer}>
         <div className={styles.firstRowContainer}>
           <Link
-            onClick={() => slugHandler("women", "prints")}
+            onClick={() => slugHandler("women", "prints", 'prints')}
             to="/women/prints"
           >
             <div className={styles.firstRowCat}>
@@ -33,7 +35,7 @@ const Explore = () => {
             </div>
           </Link>
           <Link
-            onClick={() => slugHandler("women", "shop-beach-wear")}
+            onClick={() => slugHandler("women", "shop-beach-wear", 'shop beachwear')}
             to="/women/shop-beach-wear"
           >
             <div className={styles.firstRowCat}>
@@ -43,7 +45,7 @@ const Explore = () => {
           </Link>
         </div>
         <Link
-          onClick={() => slugHandler("women", "shop-co-ords")}
+          onClick={() => slugHandler("women", "shop-co-ords", 'shop co-ords')}
           to="/women/shop-co-ords"
         >
           <div className={styles.secondRowContainer}>

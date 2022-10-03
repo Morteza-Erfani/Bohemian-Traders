@@ -13,6 +13,9 @@ import loader from "../../../assets/loading.svg";
 // Carousel
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { showDetails } from "../../../redux/productsPage/productsPageSlice";
 
 const responsive = {
   superLargeDesktop: {
@@ -37,6 +40,14 @@ const responsive = {
 
 const TopSlider = () => {
   const { loading, data } = useQuery(GET_HERO_PHOTOS);
+
+  const dispatch = useDispatch();
+
+  const slugHandler = (category, collection, title) => {
+    dispatch(
+      showDetails({ category: category, collection: collection, title: title })
+    );
+  };
 
   if (loading) {
     return (
@@ -67,7 +78,18 @@ const TopSlider = () => {
         {data.heroPhotos.map((photo) => (
           <div key={photo.id}>
             {window.innerWidth < 800 ? (
-              <img src={photo.mobilePhoto.url} alt="hero" style={{width: '100%'}}/>
+              <Link
+                onClick={() =>
+                  slugHandler("whats-new", "new-arrivals", "new arrivals")
+                }
+                to="/whats-new/new-arrivals"
+              >
+                <img
+                  src={photo.mobilePhoto.url}
+                  alt="hero"
+                  style={{ width: "100%" }}
+                />
+              </Link>
             ) : (
               <img src={photo.laptopPhoto.url} alt="hero" />
             )}

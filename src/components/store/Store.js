@@ -21,7 +21,7 @@ import ProductCard from "../shared/productCard/ProductCard";
 import pImage from "../../assets/product/ETCH-SIZING-TEMPLATE_02__42182.jpg";
 import mImage from "../../assets/product/SS22-ACT12-BLACK_01__01552.jpg";
 import sImage from "../../assets/product/SS22-ACT12-BLACK_02__22867.jpg";
-import { slugMaker } from "../../helpers/functions";
+import { slugMaker, slugToNormal } from "../../helpers/functions";
 import ScrollToTop from "../shared/ScrollToTop";
 
 const products = [
@@ -220,6 +220,7 @@ const Store = ({ collection, category, searchProducts }) => {
   const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
   const view = useSelector((state) => state.productsPage.view);
+  const title = useSelector((state) => state.productsPage.title);
   const allProducts = useSelector((state) => state.productsPage.products);
   const filteredProducts = useSelector(
     (state) => state.productsPage.filteredProducts
@@ -228,6 +229,9 @@ const Store = ({ collection, category, searchProducts }) => {
   useEffect(() => {
     dispatch(viewType({ view: "product" }));
     dispatch(setProducts({ products: products }));
+    document.title = `${slugToNormal(category)} - ${slugToNormal(
+      collection
+    )} - page ${pageNumber} - Bohemian Traders`;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -262,11 +266,12 @@ const Store = ({ collection, category, searchProducts }) => {
   return (
     <div className={styles.container}>
       {header && <img className={styles.headPhoto} src={header} alt="header" />}
-      {collection ? (
+      <h1 className={styles.header}>{title}</h1>
+      {/* {collection ? (
         <h1 className={styles.header}>{collection}</h1>
       ) : (
         <h1 className={styles.header}>{category}</h1>
-      )}
+      )} */}
       <FilterSort />
       <div className={styles.view}>
         <p

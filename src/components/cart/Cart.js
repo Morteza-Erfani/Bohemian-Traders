@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Styles
@@ -38,6 +38,10 @@ const Cart = () => {
   // const [extraSpace, setExtraSpace] = useState("");
 
   const ref = useRef(null);
+
+  useEffect(() => {
+    document.title = 'Bohemian Traders - Shopping Cart'
+  },[])
 
   // const fillSpace = () => {
   //   const usedSpace =
