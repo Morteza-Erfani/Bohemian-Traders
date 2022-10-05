@@ -22,6 +22,7 @@ import PeymentMethods from "./components/paymentMethods/PeymentMethods";
 import ScrollToTop from "./components/shared/ScrollToTop";
 import ProductPage from "./components/productPage/ProductPage";
 import Cart from "./components/cart/Cart";
+import SignUp from "./components/signup/SignUp";
 
 function App() {
   const category = useSelector((state) => state.productsPage.category);
@@ -29,7 +30,6 @@ function App() {
 
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
-
 
   useEffect(() => {
     dispatch(
@@ -54,6 +54,7 @@ function App() {
         {/* <Route path="/store" element={<Store />} /> */}
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/work-with-us" element={<WorkWithUs />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/shipping-returns" element={<ShippingAndReturns />} />

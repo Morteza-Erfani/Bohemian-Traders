@@ -18,7 +18,7 @@ const SignIn = () => {
 
   useEffect(() => {
     document.title = "Bohemian Tarders - Sign in";
-  },[]);
+  }, []);
 
   const isEmpty = (value) =>
     value !== "" && value !== "0" ? styles.green : "";
@@ -103,7 +103,9 @@ const SignIn = () => {
           <li>Track new orders</li>
           <li>Save items to your wish list</li>
         </ul>
-        <a className={styles.create}>CREATE ACCOUNT</a>
+        <Link to="/sign-up" className={styles.create}>
+          CREATE ACCOUNT
+        </Link>
       </div>
     </div>
   );
