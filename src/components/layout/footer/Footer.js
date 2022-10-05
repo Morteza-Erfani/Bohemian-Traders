@@ -25,7 +25,7 @@ const Footer = () => {
   };
 
   return (
-    <div id='footer'>
+    <div id="footer">
       <div className={styles.container}>
         <img src={logo} alt="logo" className={styles.logo} />
         <ul className={styles.socialUl}>
@@ -65,11 +65,21 @@ const Footer = () => {
         <div
           className={`${styles.links} ${showInfo ? styles.show : styles.hide}`}
         >
-          <Link to="/about-us">ABOUT US</Link>
-          <Link to="/contact-us">CONTACT US</Link>
-          <Link to="/work-with-us">WORK WITH US</Link>
-          <Link to="/privacy-policy">TS & CS</Link>
-          <Link to="/privacy-policy">PRIVACY POLICY</Link>
+          <Link onClick={() => setShowInfo(false)} to="/about-us">
+            ABOUT US
+          </Link>
+          <Link onClick={() => setShowInfo(false)} to="/contact-us">
+            CONTACT US
+          </Link>
+          <Link onClick={() => setShowInfo(false)} to="/work-with-us">
+            WORK WITH US
+          </Link>
+          <Link onClick={() => setShowInfo(false)} to="/privacy-policy">
+            TS & CS
+          </Link>
+          <Link onClick={() => setShowInfo(false)} to="/privacy-policy">
+            PRIVACY POLICY
+          </Link>
         </div>
         <div
           className={styles.downContainer}
@@ -83,10 +93,24 @@ const Footer = () => {
             showCustomCare ? styles.show : styles.hide
           }`}
         >
-          <Link to="/shipping-returns">SHIPPING</Link>
-          <Link to="/shipping-returns">RETURNS</Link>
-          <Link to="/inclusive-size-range">INCLUSIVE SIZING</Link>
-          <Link to="/flexible-payment-options">PAYMENT METHODS</Link>
+          <Link onClick={() => setShowCustomCare(false)} to="/shipping-returns">
+            SHIPPING
+          </Link>
+          <Link onClick={() => setShowCustomCare(false)} to="/shipping-returns">
+            RETURNS
+          </Link>
+          <Link
+            onClick={() => setShowCustomCare(false)}
+            to="/inclusive-size-range"
+          >
+            INCLUSIVE SIZING
+          </Link>
+          <Link
+            onClick={() => setShowCustomCare(false)}
+            to="/flexible-payment-options"
+          >
+            PAYMENT METHODS
+          </Link>
           <a>GIFT CARDS</a>
           <a>OUTLET</a>
         </div>
