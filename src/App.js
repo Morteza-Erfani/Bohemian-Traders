@@ -23,6 +23,7 @@ import ScrollToTop from "./components/shared/ScrollToTop";
 import ProductPage from "./components/productPage/ProductPage";
 import Cart from "./components/cart/Cart";
 import SignUp from "./components/signup/SignUp";
+import CreatedAccount from "./components/createdAccount/CreatedAccount";
 
 function App() {
   const category = useSelector((state) => state.productsPage.category);
@@ -54,6 +55,7 @@ function App() {
         {/* <Route path="/store" element={<Store />} /> */}
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/account-created" element={<CreatedAccount />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/work-with-us" element={<WorkWithUs />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />

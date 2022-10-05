@@ -43,7 +43,7 @@ const Header = () => {
     <header className={styles.container} id="header">
       {/* top header over menu */}
       <div className={styles.topHeader}>
-        <p>FREE SHIPPING FOR ALL AUSTRALIAN ORDERS OVER $200</p>
+        <p>FREE SHIPPING FOR ALL DOMESTIC AUSTRALIAN ORDERS OVER $200</p>
       </div>
       {/* menu */}
       <div className={styles.header}>

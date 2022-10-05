@@ -1,0 +1,45 @@
+@import url('../../Styles/fonts.css');
+
+.container {
+  padding: 0 15px;
+}
+
+.header {
+  font-size: 23.8px;
+  font-weight: 300;
+  color: #272727;
+  line-height: 36px;
+}
+
+.para {
+  font-family: 'Work Sans',sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  text-align: center;
+  margin-bottom: 21px;
+}
+
+.email {
+  font-weight: 700;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.continueBtn {
+  font-size: 12.5px;
+  letter-spacing: 1.25px;
+  padding: 12.5px 20px;
+  opacity: 0.8;
+  color: black;
+  line-height: 14px;
+  font-weight: 500;
+  font-family: Lato,Arial,Helvetica,sans-serif;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 20px;
+}
