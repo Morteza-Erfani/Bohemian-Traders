@@ -69,6 +69,9 @@ const Header = () => {
             </div>
           )}
         </div>
+        <div className={styles.navContainer}>
+          <HumMenu />
+        </div>
         {/* brand name in header */}
         <div className={styles.brandName}>
           <Link to="/">

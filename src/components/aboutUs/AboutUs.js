@@ -1,17 +1,20 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 // Styles
 import styles from "./AbouUs.module.css";
 
 const AboutUs = () => {
-
   useEffect(() => {
-    document.title = 'About Us'
-  },[])
+    document.title = "About Us";
+  }, []);
 
   return (
     <div className={styles.container}>
+      <p className={styles.location}>
+        <Link to="/">HOME</Link> / ABOUT US
+      </p>
       <h1 className={styles.header}>ABOUT US</h1>
       <h3 className={styles.subHeader}>
         CLASSIC EUROPEAN CUTS, FOR THE MODERN BOHEMIAN

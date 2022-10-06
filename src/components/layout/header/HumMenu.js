@@ -23,7 +23,10 @@ const HumMenu = ({ onClose }) => {
     isShow: false,
   });
 
-  console.log(data);
+  const [showBig, setShowBig] = useState({
+    id: "",
+    isShow: false,
+  });
 
   const slugHandler = (category, collection, title) => {
     dispatch(
@@ -35,7 +38,14 @@ const HumMenu = ({ onClose }) => {
     <div className={styles.container}>
       {data &&
         data.categories.map((category) => (
-          <div key={category.id} className={styles.categoryContainer}>
+          <div
+            key={category.id}
+            className={styles.categoryContainer}
+            onMouseEnter={() => setShowBig({ id: category.id, isShow: true })}
+            onMouseLeave={() => {
+              setShowBig({ id: "", isShow: false });
+            }}
+          >
             <div
               className={styles.category}
               onClick={() => {
@@ -45,6 +55,7 @@ const HumMenu = ({ onClose }) => {
                   : setShow({ id: category.id, isShow: true });
               }}
             >
+            <span className={styles.tooltip}></span>
               {category.collections.length ? (
                 <p className={styles.categoryName}>{category.name}</p>
               ) : (
@@ -64,7 +75,7 @@ const HumMenu = ({ onClose }) => {
                 </Link>
               )}
               {category.collections.length ? (
-                <div>
+                <div className={styles.plus}>
                   <p
                     className={
                       category.id === show.id ? styles.hide : styles.show
@@ -86,9 +97,15 @@ const HumMenu = ({ onClose }) => {
             </div>
             {category.collections.length ? (
               <div
-                className={
+                className={`${
                   category.id === show.id ? styles.collections : styles.hide
-                }
+                } 
+                  ${
+                    category.id === showBig.id
+                      ? styles.collectionsBig
+                      : styles.hideBig
+                  }
+                  `}
               >
                 {category.name !== "CAMPAIGN" &&
                   category.name !== "WHAT'S NEW" && (

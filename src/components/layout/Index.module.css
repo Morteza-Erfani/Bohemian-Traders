@@ -1,5 +1,6 @@
-.layout {
+.layoutContainer {
   position: relative;
+  max-width: 100%;
 }
 
 .chatIcon {

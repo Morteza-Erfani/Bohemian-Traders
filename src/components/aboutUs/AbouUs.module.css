@@ -2,6 +2,17 @@
   padding: 0 15px 20px;
 }
 
+p.location a {
+  display: inline;
+  font-size: 11px;
+}
+
+div p.location {
+  font-size: 11px;
+  margin: 10px 0;
+  display: none;
+}
+
 .header {
   font-size: 36px;
   font-weight: 300;
@@ -42,4 +53,26 @@
   cursor: pointer;
   margin-bottom: 6px;
   display: block;
+}
+
+@media (min-width: 551px) {
+  div p.location {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  .container p {
+    margin-bottom: 21px;
+  }
+
+  .container a {
+    margin-bottom: 21px;
+  }
+}
+
+@media (min-width: 960px) {
+  .container {
+    padding: 0 70px 20px;
+  }
 }

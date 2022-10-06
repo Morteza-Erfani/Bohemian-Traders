@@ -2,7 +2,7 @@
 @import url("../../../Styles/fonts.css");
 
 .container {
-  width: 100vw;
+  width: 100%;
   position: sticky;
   top: -54px;
   z-index: 10;
@@ -32,7 +32,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
+  width: 100%;
   padding: 5px 20px;
   height: 59px;
 }
@@ -71,9 +71,14 @@
   text-align: center;
 }
 
+.navContainer {
+  display: none;
+}
+
 .brandName img {
   max-width: 100%;
   height: auto;
+  max-height: 30px;
 }
 
 .humIcon {
@@ -201,5 +206,76 @@
   }
   100% {
     rotate: 0;
+  }
+}
+
+@media (min-width: 502px) {
+  .container {
+    top: -39px;
+  }
+}
+
+@media (min-width: 551px) and (max-width: 799px) {
+  .brandName {
+    padding: 0 10.5px;
+  }
+}
+
+@media (min-width: 630px) {
+  .brandName {
+    margin-right: -44px;
+  }
+}
+
+@media (min-width: 768px) {
+  .topHeader p {
+    font-size: 11px;
+  }
+
+  .brandName {
+    margin-right: -44px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 959px) {
+  .mobileRight a {
+    margin-left: 10px;
+  }
+
+  .brandName {
+    margin-right: -74px;
+  }
+}
+
+@media (min-width: 960px) {
+  .hum {
+    display: none;
+  }
+
+  .navContainer {
+    display: block;
+    justify-content: center;
+    padding-left: 43.3px;
+  }
+
+  .header {
+    height: auto;
+    width: auto;
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+  }
+
+  .mobileRight {
+    justify-content: center;
+  }
+
+  .brandName {
+    margin-right: 0;
+  }
+
+  @media (min-width: 1500px) {
+    .header {
+      grid-template-columns: 4fr 3fr 4fr;
+    }
   }
 }
