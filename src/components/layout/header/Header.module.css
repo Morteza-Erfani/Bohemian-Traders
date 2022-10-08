@@ -262,11 +262,16 @@
     height: auto;
     width: auto;
     display: grid;
-    grid-template-columns: 2fr 3fr 2fr;
+    grid-template-columns: 2fr 1.5fr 2fr;
   }
 
   .mobileRight {
-    justify-content: center;
+    justify-content: right;
+    padding-right: 50px;
+  }
+
+  .mobileRight a {
+    margin-left: 10px;
   }
 
   .brandName {
