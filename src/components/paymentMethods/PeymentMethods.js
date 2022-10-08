@@ -7,6 +7,7 @@ import styles from "./PeymentMethods.module.css";
 import afterPay from "../../assets/afterpay-logo1.jpg";
 import klarna from "../../assets/klarna.svg";
 import zippay from "../../assets/zippay-logo1.jpg";
+import { Link } from "react-router-dom";
 
 const PeymentMethods = () => {
   useEffect(() => {
@@ -15,6 +16,9 @@ const PeymentMethods = () => {
 
   return (
     <div className={styles.container}>
+      <p className={styles.location}>
+        <Link to="/">HOME</Link> / FLEXIBLE PAYMENT OPTIONS
+      </p>
       <h1 className={styles.header}>FLEXIBLE PAYMENT OPTIONS</h1>
       <p>Shopping with Bohemian Traders has never been easier!</p>
       <p>

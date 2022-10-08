@@ -2,6 +2,24 @@
   padding: 0 15px 20px;
 }
 
+p.location a {
+  display: inline;
+  font-size: 11px;
+  color: #c4a173;
+  letter-spacing: 1.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
+div p.location {
+  font-size: 11px;
+  margin: 10px 0;
+  display: none;
+  letter-spacing: 1.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
 .header {
   font-size: 36px;
   font-weight: 300;
@@ -38,11 +56,29 @@
 .methods span {
   background-color: #aaa;
   height: 60px;
-  margin:0 20px;
+  margin: 0 20px;
   width: 1px;
 }
 
 .klarna {
   height: 55px;
   padding: 10px 0;
+}
+
+@media (min-width: 550px) {
+  div p.location {
+    display: block;
+  }
+}
+
+@media (min-width: 800px) {
+  .container {
+    padding-bottom: 150px;
+  }
+}
+
+@media (min-width: 960px) {
+  .container {
+    padding: 0 70px 100px;
+  }
 }
