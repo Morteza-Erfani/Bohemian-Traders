@@ -9,6 +9,7 @@ import redCross from "../../assets/redCross.svg";
 
 // functions
 import { validateEmail } from "../../helpers/functions";
+import { Link } from "react-router-dom";
 
 const ContactUs = () => {
   const [isValid, setIsValid] = useState(true);
@@ -31,6 +32,9 @@ const ContactUs = () => {
 
   return (
     <div className={styles.container}>
+      <p className={styles.location}>
+        <Link to="/">HOME</Link> / CONTACT US
+      </p>
       <div className={styles.headContainer}>
         <h1 className={styles.header}>CONTACT US</h1>
         <div className={styles.return}>Return address for online orders:</div>
@@ -111,32 +115,50 @@ const ContactUs = () => {
         </div>
       </div>
       <form className={styles.form}>
-        <label htmlFor="fullName">FULL NAME</label>
-        <input id="fullName" type="string" inputMode="text" name="fullName" />
-        <label htmlFor="phoneNumber">PHONE NUMBER</label>
-        <input id="phoneNumber" type="tel" inputMode="tel" name="phoneNumber" />
-        <div className={styles.requiredLabel}>
-          <label htmlFor="email">EMAIL ADDRESS</label>
-          <p className={styles.required}>REQUIRED</p>
-        </div>
-        <input
-          id="email"
-          type="email"
-          inputMode="email"
-          name="email"
-          onChange={(e) => {
-            setEmail(e.target.value);
-            setIsValid(validateEmail(email));
-            // console.log(email);
-          }}
-          onBlur={() => setIsValid(validateEmail(email))}
-          className={isValid ? isEmpty(email) : styles.invalid}
-        />
-        <div className={styles.err}>
-          <p className={isValid ? "" : styles.show}>
-            <img src={redCross} alt="cross" />
-            Please use a valid email address, such as user@example.com.
-          </p>
+        <div className={styles.formInnerContainer}>
+          <div>
+            <label htmlFor="fullName">FULL NAME</label>
+            <input
+              id="fullName"
+              type="string"
+              inputMode="text"
+              name="fullName"
+            />
+          </div>
+          <div>
+            <label htmlFor="phoneNumber">PHONE NUMBER</label>
+            <input
+              id="phoneNumber"
+              type="tel"
+              inputMode="tel"
+              name="phoneNumber"
+            />
+          </div>
+          <div>
+            <div className={styles.requiredLabel}>
+              <label htmlFor="email">EMAIL ADDRESS</label>
+              <p className={styles.required}>REQUIRED</p>
+            </div>
+            <input
+              id="email"
+              type="email"
+              inputMode="email"
+              name="email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setIsValid(validateEmail(email));
+                // console.log(email);
+              }}
+              onBlur={() => setIsValid(validateEmail(email))}
+              className={isValid ? isEmpty(email) : styles.invalid}
+            />
+            <div className={styles.err}>
+              <p className={isValid ? "" : styles.show}>
+                <img src={redCross} alt="cross" />
+                Please use a valid email address, such as user@example.com.
+              </p>
+            </div>
+          </div>
         </div>
         <div className={styles.requiredLabel}>
           <label htmlFor="comment">COMMENTS/QUESTIONS</label>

@@ -4,6 +4,24 @@
   padding: 0 15px 20px;
 }
 
+p.location a {
+  display: inline;
+  font-size: 11px;
+  color: #c4a173;
+  letter-spacing: 1.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
+div p.location {
+  font-size: 11px;
+  margin: 10px 0;
+  display: none;
+  letter-spacing: 1.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
 /* .container div {
   font-size: 13px;
   font-weight: 500;
@@ -182,4 +200,32 @@ p.show {
 
 div.err {
   margin: -18px 0 18px;
+}
+
+@media (min-width: 550px) {
+  div p.location {
+    display: block;
+  }
+
+  .formInnerContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 21px;
+  }
+
+  .form label {
+    color: black;
+  }
+}
+
+@media (min-width: 768px) {
+  .formInnerContainer {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 960px) {
+  .container {
+    padding: 0 70px 20px;
+  }
 }
