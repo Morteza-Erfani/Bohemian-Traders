@@ -43,3 +43,16 @@
   display: inline-block;
   margin-bottom: 20px;
 }
+
+@media (min-width: 770px) {
+  .header {
+    font-size: 32px;
+    margin-bottom: 42px;
+  }
+}
+
+@media (min-width: 960px) {
+  .container {
+    padding: 0 70px 150px;
+  }
+}
