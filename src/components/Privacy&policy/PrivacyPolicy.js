@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // Styles
 import styles from "./PrivacyPolicy.module.css";
@@ -10,6 +11,9 @@ const PrivacyPolicy = () => {
 
   return (
     <div className={styles.container}>
+      <p className={styles.location}>
+        <Link to="/">HOME</Link> / TERMS & PRIVACY POLICY
+      </p>
       <h1 className={styles.header}>TERMS & PRIVACY POLICY</h1>
       <h6>TERMS & CONDITIONS</h6>
       <div>
