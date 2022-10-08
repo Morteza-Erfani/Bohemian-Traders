@@ -30,6 +30,9 @@ const ResetPassword = () => {
 
   return (
     <div className={styles.container}>
+      <p className={styles.location}>
+        <Link to="/">HOME</Link> / FORGET PASSWORD
+      </p>
       <h2>RESET PASSWORD</h2>
       <p>
         Fill in your email below to request a new password. An email will be
