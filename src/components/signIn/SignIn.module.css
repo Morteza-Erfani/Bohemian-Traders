@@ -4,6 +4,24 @@
   padding: 0 21px;
 }
 
+p.location a {
+  display: inline;
+  font-size: 11px;
+  color: #c4a173;
+  letter-spacing: 1.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
+div p.location {
+  font-size: 11px;
+  margin: 10px 0;
+  display: none;
+  letter-spacing: 1.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
 .header {
   font-size: 1.5rem;
   font-weight: 300;
@@ -169,4 +187,43 @@ p.show {
   font-weight: 400;
   font-family: Lato, Arial, Helvetica, sans-serif;
   display: inline-block;
+}
+
+@media (min-width: 550px) {
+  div p.location {
+    display: block;
+  }
+  
+  .form button {
+   width: 92px; 
+  }
+
+  .buttons {
+    justify-content: space-between;
+  }
+
+  .form a {
+    text-align: right;
+  }
+}
+
+@media (min-width: 770px) {
+  .header {
+    font-size: 32px;
+    margin-bottom: 42px;
+  }  
+}
+
+@media (min-width: 800px) {
+  .innerContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 18px;
+  }
+}
+
+@media (min-width: 960px) {
+  .container {
+    padding: 0 70px;
+  }
 }

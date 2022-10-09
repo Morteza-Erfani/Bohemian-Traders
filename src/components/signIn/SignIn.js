@@ -32,6 +32,9 @@ const SignIn = () => {
 
   return (
     <div className={styles.container}>
+      <p className={styles.location}>
+        <Link to="/">HOME</Link> / LOGIN
+      </p>
       <h1 className={styles.header}>SIGN IN</h1>
       {/* Caution message */}
       <div style={{ display: "none" }}>
@@ -47,65 +50,67 @@ const SignIn = () => {
           </p>
         </div>
       </div>
-      <form className={styles.form}>
-        <div className={styles.inputContainer}>
-          <label htmlFor="email">EMAIL ADDRESS:</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            inputMode="email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setIsValid(validateEmail(email));
-              // console.log(email);
-            }}
-            onBlur={() => setIsValid(validateEmail(email))}
-            className={isValid ? isEmpty(email) : styles.invalid}
-          />
-          <p className={isValid ? "" : styles.show}>
-            <img src={redCross} alt="cross" />
-            Please use a valid email address, such as user@example.com.
-          </p>
+      <div className={styles.innerContainer}>
+        <form className={styles.form}>
+          <div className={styles.inputContainer}>
+            <label htmlFor="email">EMAIL ADDRESS:</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              inputMode="email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setIsValid(validateEmail(email));
+                // console.log(email);
+              }}
+              onBlur={() => setIsValid(validateEmail(email))}
+              className={isValid ? isEmpty(email) : styles.invalid}
+            />
+            <p className={isValid ? "" : styles.show}>
+              <img src={redCross} alt="cross" />
+              Please use a valid email address, such as user@example.com.
+            </p>
+          </div>
+          <div className={styles.inputContainer}>
+            <label htmlFor="password">PASSWORD:</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              inputMode="text"
+              onChange={(e) => {
+                setPass(e.target.value);
+              }}
+              className={pass ? isEmpty(pass) : styles.invalid}
+              onBlur={(e) => setPass(e.target.value)}
+            />
+            <p className={pass ? "" : styles.show}>
+              <img src={redCross} alt="cross" />
+              You must enter a password.
+            </p>
+          </div>
+          <div className={styles.buttons}>
+            <button type="submit" onClick={(e) => clickHandler(e)}>
+              SIGN IN
+            </button>
+            <Link to="/reset">FORGOT YOUR PASSWORD?</Link>
+          </div>
+        </form>
+        <div className={styles.description}>
+          <h2>NEW CUSTOMER?</h2>
+          <p>Create an account with us and you'll be able to:</p>
+          <ul>
+            <li>Check out faster</li>
+            <li>Save multiple shipping addresses</li>
+            <li>Access your order history</li>
+            <li>Track new orders</li>
+            <li>Save items to your wish list</li>
+          </ul>
+          <Link to="/sign-up" className={styles.create}>
+            CREATE ACCOUNT
+          </Link>
         </div>
-        <div className={styles.inputContainer}>
-          <label htmlFor="password">PASSWORD:</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            inputMode="text"
-            onChange={(e) => {
-              setPass(e.target.value);
-            }}
-            className={pass ? isEmpty(pass) : styles.invalid}
-            onBlur={(e) => setPass(e.target.value)}
-          />
-          <p className={pass ? "" : styles.show}>
-            <img src={redCross} alt="cross" />
-            You must enter a password.
-          </p>
-        </div>
-        <div className={styles.buttons}>
-          <button type="submit" onClick={(e) => clickHandler(e)}>
-            SIGN IN
-          </button>
-          <Link to="/reset">FORGOT YOUR PASSWORD?</Link>
-        </div>
-      </form>
-      <div className={styles.description}>
-        <h2>NEW CUSTOMER?</h2>
-        <p>Create an account with us and you'll be able to:</p>
-        <ul>
-          <li>Check out faster</li>
-          <li>Save multiple shipping addresses</li>
-          <li>Access your order history</li>
-          <li>Track new orders</li>
-          <li>Save items to your wish list</li>
-        </ul>
-        <Link to="/sign-up" className={styles.create}>
-          CREATE ACCOUNT
-        </Link>
       </div>
     </div>
   );
