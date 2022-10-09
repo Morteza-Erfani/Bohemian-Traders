@@ -103,6 +103,11 @@
     padding-left: 0;
   }
 
+  .categoryContainer {
+    padding: 3px 6.66px;
+    font-family: 'Work Sans',sans-serif;
+  }
+
   .plus {
     display: none;
   }
@@ -114,11 +119,11 @@
     letter-spacing: 1.25px;
     padding: 6px 0;
     margin-left: -22px;
-    margin-top: 10px;
+    margin-top: 0;
     display: block;
     position: absolute;
     opacity: 1;
-    z-index: 100;
+    z-index: 99;
     transition: all 0.3s;
   }
 
@@ -154,6 +159,7 @@
     margin-top: 12px;
     border-width: 5px;
     border-style: solid;
+    z-index: 100;
     border-color: #555 transparent transparent transparent;
   }
 
@@ -168,7 +174,7 @@
   }
 
   .hideBig {
-    /* display: none; */
+    display: none;
     position: absolute;
     opacity: 0;
     z-index: -10;
@@ -180,6 +186,6 @@
     padding: 6px 0;
     margin-left: -22px;
     margin-top: 10px;
-    display: block;
+    /* display: block; */
   }
 }

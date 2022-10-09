@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // Styles
 import styles from "./ShippingAndReturns.module.css";
@@ -10,6 +11,9 @@ const ShippingAndReturns = () => {
 
   return (
     <div className={styles.container}>
+      <p className={styles.location}>
+        <Link to="/">HOME</Link> / SHIPPING & RETURNS
+      </p>
       <h1 className={styles.header}>SHIPPING & RETURNS</h1>
       <div>
         <p>

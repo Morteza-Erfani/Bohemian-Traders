@@ -7,6 +7,24 @@
   color: #333;
 }
 
+p.location a {
+  display: inline;
+  font-size: 11px;
+  color: #c4a173;
+  letter-spacing: 1.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
+div p.location {
+  font-size: 11px;
+  margin: 10px 0;
+  display: none;
+  letter-spacing: 1.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
 .header {
   font-size: 36px;
   font-weight: 300;
@@ -36,4 +54,31 @@
   list-style-position: inside;
   list-style-type: disc;
   text-indent: 22px;
+}
+
+@media (min-width: 550px) {
+  div p.location {
+    display: block;
+  }
+}
+
+@media (min-width: 770px) {
+  .container p {
+    margin-bottom: 21px;
+  }
+
+  .container li {
+    margin-bottom: 21px;
+  }
+}
+
+@media (min-width: 960px) {
+  .container {
+    padding: 0 0 11px 70px;
+    width: 790px;
+  }
+
+  div p.location {
+    margin-bottom: 30px;
+  }
 }
