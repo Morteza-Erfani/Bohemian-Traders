@@ -1,16 +1,19 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // Styles
 import styles from "./WorkWithUs.module.css";
 
 const WorkWithUs = () => {
-
   useEffect(() => {
-    document.title = 'Work With Us'
-  },[])
+    document.title = "Work With Us";
+  }, []);
 
   return (
     <div className={styles.container}>
+      <p className={styles.location}>
+        <Link to="/">HOME</Link> / WORK WITH US
+      </p>
       <h1 className={styles.header}>WORK WITH US</h1>
       <div>We are currently recruiting for the following roles:</div>
       <div>

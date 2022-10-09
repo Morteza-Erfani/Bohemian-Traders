@@ -1,5 +1,24 @@
 .container {
   padding: 0 15px 20px;
+  max-width: 790px;
+}
+
+p.location a {
+  display: inline;
+  font-size: 11px;
+  color: #c4a173;
+  letter-spacing: 1.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
+div p.location {
+  font-size: 11px;
+  margin: 10px 0;
+  display: none;
+  letter-spacing: 1.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
 }
 
 .header {
@@ -25,4 +44,22 @@
 
 .email {
   margin-top: 24px;
+}
+
+@media (min-width: 550px) {
+  div p.location {
+    display: block;
+  }
+}
+
+@media (min-width: 770px) {
+  .container div {
+    margin-bottom: 21px;
+  }
+}
+
+@media (min-width: 960px) {
+  .container {
+    padding: 0 70px 150px;
+  }
 }

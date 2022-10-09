@@ -2,6 +2,24 @@
   padding: 0 15px 20px;
 }
 
+p.location a {
+  display: inline;
+  font-size: 11px;
+  color: #c4a173;
+  letter-spacing: 1.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
+div p.location {
+  font-size: 11px;
+  margin: 10px 0;
+  display: none;
+  letter-spacing: 1.5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
 .header {
   font-size: 36px;
   font-weight: 300;
@@ -36,4 +54,25 @@
 
 .container h5 {
   font-weight: 600;
+}
+
+@media (min-width: 550px) {
+  div p.location {
+    display: block;
+  }
+}
+
+@media (min-width: 770px) {
+  .container p,
+  .container h6,
+  .container h5 {
+    margin-bottom: 21px;
+  }
+}
+
+@media (min-width: 960px) {
+  .container {
+    padding: 0 0px 20px 70px;
+    max-width: 790px;
+  }
 }

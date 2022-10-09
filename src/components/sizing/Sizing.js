@@ -7,6 +7,7 @@ import styles from "./sizing.module.css";
 import firstPic from "../../assets/size-guide-working-2a.jpg";
 import secondPic from "../../assets/top_CROP2.png";
 import thirdPic from "../../assets/bot_CROP3.png";
+import { Link } from "react-router-dom";
 
 const Sizing = () => {
   useEffect(() => {
@@ -15,6 +16,9 @@ const Sizing = () => {
 
   return (
     <div className={styles.container}>
+      <p className={styles.location}>
+        <Link to="/">HOME</Link> / INCLUSIVE SIZE RANGE
+      </p>
       <h1 className={styles.header}>INCLUSIVE SIZE RANGE</h1>
       <div>
         <p>
