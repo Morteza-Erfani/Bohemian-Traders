@@ -10,6 +10,7 @@ import check from "../../assets/check.svg";
 
 // functions
 import { validateEmail, validatePass } from "../../helpers/functions";
+import { Link } from "react-router-dom";
 
 const country = [
   {
@@ -53,6 +54,9 @@ const SignUp = () => {
 
   return (
     <div className={styles.container}>
+      <p className={styles.location}>
+        <Link to="/">HOME</Link> / CREATE ACCOUNT
+      </p>
       <h1 className={styles.header}>NEW ACCOUNT</h1>
       <form className={styles.form}>
         <div>
@@ -529,12 +533,13 @@ const SignUp = () => {
             I DO NOT PROVIDE AUTHORITY TO LEAVE
           </label>
         </div>
+        <div className={styles.strech}>
+          <div className={styles.reCapcha}>
+            <ReCaptchaV2 sitekey={process.env.REACT_APP_SITE_KEY} />
+          </div>
 
-        <div className={styles.reCapcha}>
-          <ReCaptchaV2 sitekey={process.env.REACT_APP_SITE_KEY} />
+          <button className={styles.signUpBtn}>CREATE ACCOUNT</button>
         </div>
-
-        <button className={styles.signUpBtn}>CREATE ACCOUNT</button>
       </form>
     </div>
   );
