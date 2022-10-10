@@ -44,6 +44,9 @@ function App() {
     // console.log(cart);
   }, []);
 
+  console.log(category);
+  console.log(collection);
+
   return (
     <Layout>
       <ScrollToTop />
@@ -67,7 +70,7 @@ function App() {
           path={`/:${category}/:${collection}`}
           element={<Store collection={collection} category={category} />}
         />
-        <Route path="/:id" element={<ProductPage />} />
+        <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     </Layout>

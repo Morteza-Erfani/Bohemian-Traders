@@ -70,7 +70,7 @@ const Header = () => {
           )}
         </div>
         <div className={styles.navContainer}>
-          <HumMenu />
+          <HumMenu onClose={() => null} />
         </div>
         {/* brand name in header */}
         <div className={styles.brandName}>

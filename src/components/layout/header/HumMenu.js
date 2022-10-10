@@ -55,7 +55,7 @@ const HumMenu = ({ onClose }) => {
                   : setShow({ id: category.id, isShow: true });
               }}
             >
-            <span className={styles.tooltip}></span>
+              <span className={styles.tooltip}></span>
               {category.collections.length ? (
                 <p className={styles.categoryName}>{category.name}</p>
               ) : (
@@ -110,7 +110,7 @@ const HumMenu = ({ onClose }) => {
                 {category.name !== "CAMPAIGN" &&
                   category.name !== "WHAT'S NEW" && (
                     <Link
-                      onClick={() => {
+                      onClick={(e) => {
                         slugHandler(
                           slugMaker(category.name),
                           "view-all",

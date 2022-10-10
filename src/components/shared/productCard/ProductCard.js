@@ -31,7 +31,7 @@ const ProductCard = ({ data, titleType, slug }) => {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <Link to={`/${slug}`}>
+        <Link to={`/product/${slug}`}>
           <img
             src={image}
             alt={name}
