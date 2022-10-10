@@ -24,22 +24,21 @@ const responsive = {
     items: 5,
   },
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
+    breakpoint: { max: 3000, min: 800 },
+    items: 5,
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
+    breakpoint: { max: 800, min: 550 },
+    items: 3,
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 550, min: 0 },
     items: 2,
     slidesToSlide: 2,
   },
 };
 
-const Products = ({category}) => {
-
+const Products = ({ category, number }) => {
   // console.log(category)
 
   const { loading, data } = useQuery(GET_CATEGORY_PRODUCTS, {
@@ -52,7 +51,7 @@ const Products = ({category}) => {
     return <></>;
   }
 
-  const categoryProducts = data.categories[0].products.slice(0, 4);
+  const categoryProducts = data.categories[0].products.slice(0, +number);
   if (!loading) {
     // console.log(categoryProducts);
   }

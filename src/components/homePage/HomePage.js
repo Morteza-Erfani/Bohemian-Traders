@@ -18,7 +18,7 @@ const HomePage = () => {
       {/* <ImageSlider /> */}
       <TopSlider />
       <Catalog />
-      <Products category="CAMPAIGN" />
+      <Products category="CAMPAIGN" number='4' />
       <BottomSlider />
       <Explore />
       <AboutUs />
