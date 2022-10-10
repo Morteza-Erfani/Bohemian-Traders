@@ -14,3 +14,15 @@
   width: 10px;
   height: 10px;
 }
+
+@media (min-width: 800px) {
+  .container {
+    margin: 0 10.5px 80px;
+    object-fit: contain;
+    height: auto;
+  }
+
+  .items div img {
+    width: 100%;
+  }
+}

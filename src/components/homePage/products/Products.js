@@ -57,7 +57,7 @@ const Products = ({ category, number }) => {
   }
   return (
     <div className="container">
-      <Carousel arrows responsive={responsive}>
+      <Carousel arrows responsive={responsive} containerClass="innerContainer">
         {categoryProducts.map((product) => (
           <div key={product.id}>
             <ProductCard

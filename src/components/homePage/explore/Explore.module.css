@@ -23,12 +23,12 @@
 }
 
 .firstRowCat {
-  width: 50vw;
+  width: 100%;
   margin-bottom: -4px;
 }
 
 .firstRowCat img {
-  width: 50vw;
+  width: 100%;
 }
 
 .firstRowCat p,
@@ -47,5 +47,32 @@
 }
 
 .secondRowContainer img {
-  width: 100vw;
+  width: 100%;
+}
+
+@media (min-width: 800px) {
+  .container {
+    padding: 0 2.5px;
+  }
+
+  .catContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .secondRowContainer img {
+    height: calc((25vw - 2.5px) * 1.485);
+    width: 50vw;
+    object-fit: cover;
+  }
+
+  div.secondRowContainer {
+    /* position: inherit; */
+    /* overflow: hidden !important; */
+  }
+
+  .link {
+    overflow: hidden;
+  }
 }

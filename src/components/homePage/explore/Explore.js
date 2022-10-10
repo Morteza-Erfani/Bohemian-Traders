@@ -47,6 +47,7 @@ const Explore = () => {
         <Link
           onClick={() => slugHandler("women", "shop-co-ords", 'shop co-ords')}
           to="/women/shop-co-ords"
+          className={styles.link}
         >
           <div className={styles.secondRowContainer}>
             <img src={cat3} alt="shop co-ords" />

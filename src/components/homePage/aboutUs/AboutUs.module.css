@@ -32,3 +32,32 @@
   font-weight: 500;
   line-height: 1.5;
 }
+
+@media (min-width: 800px) {
+  .container {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 70px;
+  }
+
+  .container p {
+    padding: 0 20px;
+  }
+
+  .container h2 {
+    text-align: left;
+  }
+
+  .container a {
+    margin: 35px 0 0 20px;
+    display: inline-block;
+  }
+}
+
+@media (min-width: 960px) {
+  .container {
+    margin: 104px 70px 70px;
+  }
+}

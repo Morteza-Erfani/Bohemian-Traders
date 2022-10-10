@@ -21,3 +21,7 @@
 .container {
   margin-top: 55px;
 }
+
+.innerContainer {
+  justify-content: center;
+}

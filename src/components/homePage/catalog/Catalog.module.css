@@ -13,7 +13,7 @@
   display: block;
 }
 
-.catalog{
+.catalog {
   object-fit: cover;
   width: 100%;
 }
@@ -27,4 +27,11 @@
   bottom: 4%;
   left: 5.5%;
   font-weight: 500;
+}
+
+@media (min-width: 800px) {
+  .container {
+    display: flex;
+    height: fit-content;
+  }
 }

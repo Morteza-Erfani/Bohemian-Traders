@@ -42,3 +42,13 @@
   margin-top: 100px;
   max-height: calc((100vw - 21px) * 1.8125);
 }
+
+@media (min-width: 800px) {
+  .items div img {
+    width: 100%;
+  }
+
+  .innerContainer {
+    height: auto;
+  }
+}
