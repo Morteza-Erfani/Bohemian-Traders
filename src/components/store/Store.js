@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setProducts,
+  showDetails,
   viewType,
 } from "../../redux/productsPage/productsPageSlice";
 
@@ -23,6 +24,7 @@ import mImage from "../../assets/product/SS22-ACT12-BLACK_01__01552.jpg";
 import sImage from "../../assets/product/SS22-ACT12-BLACK_02__22867.jpg";
 import { slugMaker, slugToNormal } from "../../helpers/functions";
 import ScrollToTop from "../shared/ScrollToTop";
+import { Link } from "react-router-dom";
 
 const products = [
   {
@@ -30,6 +32,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 217.83,
     id: 1,
     sizes: ["xxs", "xs", "s", "l", "xl", "2xl", "3xl", "4xl"],
@@ -39,15 +42,17 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: '1',
     prices: 127.83,
     id: 2,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+    sizes: ["1", "2", "3"],
   },
   {
     productImage: { url: pImage },
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 147.83,
     id: 3,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -57,6 +62,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 137.83,
     id: 4,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -66,6 +72,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 5,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -75,6 +82,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 6,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -84,6 +92,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 7,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -93,6 +102,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 8,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -102,6 +112,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 9,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -111,6 +122,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 10,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -120,6 +132,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 11,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -129,6 +142,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 12,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -138,6 +152,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 13,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -147,6 +162,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 14,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -156,6 +172,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 15,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -165,6 +182,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 16,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -174,6 +192,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 17,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -183,6 +202,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 18,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -192,6 +212,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 19,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -201,6 +222,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 20,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -210,6 +232,7 @@ const products = [
     modelImage: { url: mImage },
     sideImage: { url: sImage },
     name: "swing jacket in black",
+    sizeType: 'x',
     prices: 117.83,
     id: 21,
     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
@@ -260,79 +283,108 @@ const Store = ({ collection, category, searchProducts }) => {
     }
     numbers.push(i);
   }
+
+  const slugHandler = (category, collection, title) => {
+    dispatch(
+      showDetails({
+        category: category,
+        collection: collection,
+        title: title,
+      })
+    );
+  };
   // console.log(productsInPage);
   // console.log(numbers);
 
   return (
     <div className={styles.container}>
-      {header && <img className={styles.headPhoto} src={header} alt="header" />}
-      <h1 className={styles.header}>{title}</h1>
-      {/* {collection ? (
-        <h1 className={styles.header}>{collection}</h1>
-      ) : (
-        <h1 className={styles.header}>{category}</h1>
-      )} */}
-      <FilterSort />
-      <div className={styles.view}>
-        <p
-          onClick={() => dispatch(viewType({ view: "model" }))}
-          className={view === "model" ? styles.underline : ""}
-        >
-          MODEL VIEW
-        </p>
-        <p
-          onClick={() => dispatch(viewType({ view: "product" }))}
-          className={view === "product" ? styles.underline : ""}
-        >
-          PRODUCT VIEW
-        </p>
-      </div>
-      <div className={styles.productsContainer}>
-        {productsInPage[pageNumber - 1].map((product) => (
-          <div key={product.id} className={styles.productContainer}>
-            <ProductCard
-              data={product}
-              titleType="capital"
-              slug={slugMaker(product.name)}
-            />
-          </div>
-        ))}
-      </div>
-      <div className={styles.pageNumbersContainer}>
-        <a
-          href="#top"
-          className={styles.previous}
-          onClick={() => {
-            setPageNumber((prevPageNumber) => prevPageNumber - 1);
-          }}
-        >
-          <img src={leftArrow} alt="previous" />
-          <p>PREVIOUS</p>
-        </a>
-        {numbers.map((number) => (
-          <a
-            key={number}
-            href="#top"
-            className={`${styles.number} ${
-              pageNumber === number && styles.active
-            }`}
+      <p className={styles.location}>
+        <Link to="/">HOME</Link> /{" "}
+        {collection === "view-all" ? (
+          category.toUpperCase()
+        ) : (
+          <Link
             onClick={() => {
-              setPageNumber(number);
+              slugHandler(slugMaker(category), "view-all", category);
             }}
+            to={`/${slugMaker(category)}/view-all`}
           >
-            {number}
-          </a>
-        ))}
-        <a
-          href="#top"
-          className={styles.next}
-          onClick={() => {
-            setPageNumber((prevPageNumber) => prevPageNumber + 1);
-          }}
-        >
-          <p>NEXT</p>
-          <img src={rightArrow} alt="next" />
-        </a>
+            {category.toUpperCase()}
+          </Link>
+        )}
+        {collection !== "view-all" &&
+          ` / ${slugToNormal(collection).toUpperCase()}`}
+      </p>
+      {header && <img className={styles.headPhoto} src={header} alt="header" />}
+      <div className={styles.headerContainer}>
+        <h1 className={styles.header}>{slugToNormal(title)}</h1>
+        {window.innerWidth < 800 && <FilterSort />}
+        <div className={styles.view}>
+          <p
+            onClick={() => dispatch(viewType({ view: "model" }))}
+            className={view === "model" ? styles.underline : ""}
+          >
+            MODEL VIEW
+          </p>
+          <p
+            onClick={() => dispatch(viewType({ view: "product" }))}
+            className={view === "product" ? styles.underline : ""}
+          >
+            PRODUCT VIEW
+          </p>
+        </div>
+      </div>
+      <div className={styles.contentContainer}>
+        {window.innerWidth >= 800 && <FilterSort />}
+        <div className={styles.productPage}>
+          <div className={styles.productsContainer}>
+            {productsInPage[pageNumber - 1].map((product) => (
+              <div key={product.id} className={styles.productContainer}>
+                <ProductCard
+                  data={product}
+                  titleType="capital"
+                  slug={slugMaker(product.name)}
+                />
+              </div>
+            ))}
+          </div>
+          <div className={styles.pageNumbersContainer}>
+            <a
+              href="#top"
+              className={styles.previous}
+              onClick={() => {
+                setPageNumber((prevPageNumber) => prevPageNumber - 1);
+              }}
+            >
+              <img src={leftArrow} alt="previous" />
+              <p>PREVIOUS</p>
+            </a>
+            {numbers.map((number) => (
+              <a
+                key={number}
+                href="#top"
+                className={`${styles.number} ${
+                  pageNumber === number && styles.active
+                }`}
+                onClick={() => {
+                  setPageNumber(number);
+                }}
+              >
+                {number}
+              </a>
+            ))}
+            <a
+              href="#top"
+              className={styles.next}
+              onClick={() => {
+                setPageNumber((prevPageNumber) => prevPageNumber + 1);
+              }}
+            >
+              <p>NEXT</p>
+              <img src={rightArrow} alt="next" />
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );

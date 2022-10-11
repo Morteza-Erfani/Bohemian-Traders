@@ -76,14 +76,12 @@ div.openRefine {
 }
 
 .sizes,
+.other,
 .price,
 .sorts {
   transition: all 0.2s;
   overflow: hidden;
   max-height: 0;
-}
-
-.sorts {
 }
 
 div.openSize {
@@ -224,4 +222,57 @@ div.openSort {
 .error img {
   width: 14px;
   margin-right: 3px;
+}
+
+.bigSort {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .container {
+    padding-right: 10.5px;
+  }
+
+  .refineMenu {
+    max-height: none;
+  }
+
+  .sorts {
+    max-height: none;
+  }
+
+  .filterHeaderContainer {
+    display: none;
+  }
+
+  .filterContainer {
+    border: none;
+  }
+
+  .refineItem {
+    border-top: 1px solid #dddddb;
+    padding-left: 0;
+    padding: 15px 0 38px;
+  }
+
+  .bigSort {
+    display: block;
+    color: #333;
+    font-size: 12px;
+    letter-spacing: 1.25px;
+    font-weight: 500;
+    cursor: pointer;
+    line-height: 1.5;
+    padding: 15px 15px 15px 0;
+    border-top: 1px solid #dddddb;
+  }
+
+  .checkboxContainer {
+    width: 100%;
+  }
+
+  .sizes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }

@@ -279,7 +279,7 @@ const FilterSort = () => {
               </div>
             </div>
             <div
-              className={`${styles.sizes} ${
+              className={`${styles.other} ${
                 openField === "other" && styles.openOther
               }`}
             >
@@ -314,6 +314,7 @@ const FilterSort = () => {
             openFilter === "sort" && styles.openSort
           }`}
         >
+          <p className={styles.bigSort}>SORT BY</p>
           {allSorts.map((option) => (
             <div
               key={option}

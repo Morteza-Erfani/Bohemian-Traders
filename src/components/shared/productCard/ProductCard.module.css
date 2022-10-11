@@ -45,3 +45,27 @@
   color: #272727;
   font-weight: 500;
 }
+
+@media (min-width: 800px) {
+  .imageContainer {
+    position: relative;
+  }
+
+  .size {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    width: 50px;
+    max-width: 100%;
+    height: 50px;
+    bottom: 20px;
+    
+  }
+
+  .size p {
+    color: black;
+  }
+
+  .unavailable {
+  }
+}
