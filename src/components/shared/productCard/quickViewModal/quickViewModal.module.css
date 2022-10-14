@@ -1,0 +1,259 @@
+@import url("../../../../Styles/fonts.css");
+
+.container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(51, 51, 51, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 31.5px;
+  overflow-y: scroll;
+}
+
+.modalContent {
+  background-color: white;
+  margin-top: 400px;
+  padding: 0 31.5px;
+  width: 100%;
+  /* height: 100%; */
+  position: relative;
+}
+
+.modalHeader {
+  position: relative;
+  padding: 14px 42.5px 14px 31.5px;
+  text-align: center;
+}
+
+.modalHeader p {
+  position: absolute;
+  font-size: 32px;
+  margin: -9px -35px 0 0;
+  color: #757575;
+  cursor: pointer;
+  font-weight: 500;
+  top: 14.7px;
+  right: 10.5px;
+  height: 32px;
+  width: 32px;
+  line-height: 32px;
+  font-family: "Work Sans", sans-serif;
+}
+
+.modalBody {
+  position: relative;
+}
+
+.carouselContainer {
+  margin: 0 0 30px;
+  width: 100%;
+  /* height: 600px; */
+}
+
+.carouselContainer button {
+  margin-top: 85px;
+  z-index: 1;
+}
+
+.photoContainer img {
+  width: 100%;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 300;
+  color: #272727;
+  line-height: 36px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.brand {
+  color: #8d7f7f;
+  font-size: 12px;
+  letter-spacing: 1.8px;
+  font-weight: 300;
+  font-family: "Work Sans", sans-serif;
+  margin-bottom: 11.2px;
+}
+
+.price {
+  padding: 3px 0;
+  font-size: 12px;
+  letter-spacing: 1.8px;
+  color: #272727;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.ratingContainer {
+  display: flex;
+}
+
+.starContainer img {
+  width: 16px;
+}
+
+.ratingContainer p {
+  letter-spacing: 1.5px;
+  color: #4d4d4d;
+  font-weight: 500;
+  line-height: 1.5;
+  font-size: 10px;
+  margin-left: 11px;
+}
+
+.review {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  transition: all 0.2s;
+  letter-spacing: 1.5px;
+  font-size: 10px;
+  font-weight: 500;
+  margin-top: 10px;
+  padding: 2.5px 5px;
+  display: inline-block;
+}
+
+.review:hover {
+  background-color: black;
+}
+
+.sizeTitle {
+  margin: 14px 0 11px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  counter-reset: #444;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  display: block;
+  line-height: 1.5;
+}
+
+.sizeContainer {
+  margin-bottom: 15px;
+}
+
+.size {
+  margin: 0 5px 5px 0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: inline-block;
+  padding: 1px;
+  transition: all 0.2s;
+  line-height: 1.1;
+  min-height: 20px;
+  min-width: 40px;
+  padding: 15px 10px;
+  justify-content: center;
+  font-size: 10px;
+  color: #272727;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+}
+
+.size:hover {
+  border: 1px solid black;
+}
+
+li.select {
+  background-color: #333;
+  border-color: #333;
+  color: white;
+}
+
+ul li.unavailable {
+  background-color: #ddd;
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+ul li.unavailable::before {
+  background-color: black;
+  content: "";
+  height: 2px;
+  width: 141%;
+  bottom: 19px;
+  left: -9px;
+  position: absolute;
+  transform: rotate(-45deg);
+}
+
+.addToCart {
+  margin-bottom: 20px;
+  background-color: #333;
+  color: white;
+  width: 100%;
+  transition: all 0.4s;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 1.25px;
+  padding: 12.5px 20px;
+  line-height: 14px;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  display: block;
+  border: none;
+}
+
+
+.shippingContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 55px;
+}
+
+.shippingItem:first-child {
+  margin-right: 20px;
+  padding-right: 15px;
+}
+
+.shippingItem {
+  display: flex;
+  width: 50%;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #272727;
+  font-weight: 500;
+  line-height: 1.5;
+  align-items: center;
+}
+
+.shippingItem img {
+  width: 24px;
+  margin-right: 10px;
+}
+
+@media (min-width: 960px) {
+  .upperSection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .innerSection {
+    padding: 0 14px;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  .carouselContainer {
+    align-items: flex-start;
+  }
+
+  
+.carouselContainer button {
+  margin-top: 0;
+}
+
+.modalContent {
+  margin-top: 0;
+}
+}
