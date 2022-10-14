@@ -344,6 +344,7 @@ const Store = ({ collection, category, searchProducts }) => {
                   data={product}
                   titleType="capital"
                   slug={slugMaker(product.name)}
+                  quickView={true}
                 />
               </div>
             ))}

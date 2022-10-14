@@ -64,6 +64,7 @@ const Products = ({ category, number }) => {
               data={product}
               titleType="capital"
               slug={slugMaker(product.name)}
+              quickView={false}
             />
           </div>
         ))}

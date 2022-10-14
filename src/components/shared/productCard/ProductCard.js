@@ -8,12 +8,15 @@ import styles from "./ProductCard.module.css";
 import { capital } from "../../../helpers/functions";
 import { Link } from "react-router-dom";
 
+// Components
+import QuickViewModal from "./quickViewModal/QuickViewModal";
+
 const allSizes = {
   x: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
   1: ["1", "2", "3"],
 };
 
-const ProductCard = ({ data, titleType, slug }) => {
+const ProductCard = ({ data, titleType, slug, quickView }) => {
   const {
     productImage,
     modelImage,
@@ -27,6 +30,8 @@ const ProductCard = ({ data, titleType, slug }) => {
 
   const view = useSelector((state) => state.productsPage.view);
   const [image, setImage] = useState(productImage.url);
+
+  const [showQuickView, setShowQuickView] = useState(false);
 
   // useEffect(() => {
   //   sizes.map((size) => allSize.push(size));
@@ -45,11 +50,30 @@ const ProductCard = ({ data, titleType, slug }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.imageContainer}>
+      <div
+        className={styles.imageContainer}
+        onMouseOver={
+          view === "model"
+            ? () => changeImage(sideImage)
+            : () => changeImage(modelImage)
+        }
+        onMouseLeave={
+          view === "model"
+            ? () => changeImage(modelImage)
+            : () => changeImage(productImage)
+        }
+      >
         <Link to={`/product/${slug}`}>
-          <img
-            src={image}
-            alt={name}
+          <img src={image} alt={name} className={styles.image} />
+        </Link>
+        {quickView && (
+          <p className={styles.button} onClick={() => setShowQuickView(true)}>
+            QUICK VIEW
+          </p>
+        )}
+        {quickView && (
+          <div
+            className={styles.size}
             onMouseOver={
               view === "model"
                 ? () => changeImage(sideImage)
@@ -60,33 +84,36 @@ const ProductCard = ({ data, titleType, slug }) => {
                 ? () => changeImage(modelImage)
                 : () => changeImage(productImage)
             }
-            className={styles.image}
-          />
-        </Link>
-        <p className={styles.button}>QUICK VIEW</p>
-        <div className={styles.size}>
-          {sizeType === "x"
-            ? allSizes.x.map((size) => (
-                <p
-                  key={size}
-                  className={
-                    sizes.includes(size) ? styles.available : styles.unavailable
-                  }
-                >
-                  {size}
-                </p>
-              ))
-            : allSizes[1].map((size) => (
-                <p
-                  key={size}
-                  className={
-                    sizes.includes(size) ? styles.available : styles.unavailable
-                  }
-                >
-                  {size}
-                </p>
-              ))}
-        </div>
+          >
+            {sizeType === "x"
+              ? allSizes.x.map((size) => (
+                  <p
+                    key={size}
+                    className={
+                      sizes.includes(size)
+                        ? styles.available
+                        : styles.unavailable
+                    }
+                  >
+                    {size}
+                    <span></span>
+                  </p>
+                ))
+              : allSizes[1].map((size) => (
+                  <p
+                    key={size}
+                    className={
+                      sizes.includes(size)
+                        ? styles.available
+                        : styles.unavailable
+                    }
+                  >
+                    {size}
+                    <span></span>
+                  </p>
+                ))}
+          </div>
+        )}
       </div>
       <div className={styles.detail}>
         <Link to={`/${slug}`}>
@@ -98,6 +125,10 @@ const ProductCard = ({ data, titleType, slug }) => {
         <h2 className={styles.brand}>BOHEMIAN TRADERS</h2>
         <p className={styles.price}>$ {prices}</p>
       </div>
+      <QuickViewModal
+        onClose={() => setShowQuickView(false)}
+        show={showQuickView}
+      />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-@import url('../../../Styles/fonts.css');
+@import url("../../../Styles/fonts.css");
 
 .container {
   max-width: 100%;
@@ -26,7 +26,7 @@
   font-weight: 500;
   padding-left: 10px;
   margin-bottom: 4px;
-  font-family: 'Work Sans',sans-serif;
+  font-family: "Work Sans", sans-serif;
 }
 
 .brand {
@@ -35,7 +35,7 @@
   font-size: 12px;
   letter-spacing: 1.8px;
   font-weight: 500;
-  font-family: 'Work Sans',sans-serif;
+  font-family: "Work Sans", sans-serif;
 }
 
 .price {
@@ -51,21 +51,74 @@
     position: relative;
   }
 
+  .button {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    letter-spacing: 1.25px;
+    padding: 12.5px 20px;
+    line-height: 14px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    cursor: pointer;
+    font-family: Lato,Arial,Helvetica,sans-serif;
+    font-weight: 400;
+    text-align: center;
+    width: max-content;
+    transition: all 0.3s;
+    opacity: 0;
+  }
+
+  .imageContainer:hover .button {
+    opacity: 1;
+  }
+
   .size {
     position: absolute;
     display: flex;
     flex-wrap: wrap;
-    width: 50px;
-    max-width: 100%;
-    height: 50px;
-    bottom: 20px;
-    
+    width: 100%;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px 10px;
+    transition: all 0.375s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: translateY(20px);
+    opacity: 0;
   }
 
-  .size p {
-    color: black;
+  .container:hover .size {
+    opacity: 1;
+    transform: none;
   }
 
   .unavailable {
+    opacity: 0.5;
+  }
+
+  .unavailable span {
+    background-color: #333;
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    width: 15px;
+  }
+
+  .size p {
+    position: relative;
+    color: black;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1.65px;
+    line-height: 18px;
+    color: #4d4d4d;
+    padding: 2.5px 6px;
+    font-weight: 500;
+    font-family: "Work Sans", sans-serif;
   }
 }
