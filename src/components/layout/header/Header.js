@@ -39,6 +39,12 @@ const Header = () => {
   //   console.log(cart);
   // }, []);
 
+  if (showSearch) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = 'scroll'
+  }
+
   return (
     <header className={styles.container} id="header">
       {/* top header over menu */}

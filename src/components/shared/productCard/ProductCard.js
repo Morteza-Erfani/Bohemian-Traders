@@ -48,6 +48,12 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
     setImage(image.url);
   };
 
+  if (showQuickView) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = 'scroll'
+  }
+
   return (
     <div className={styles.container}>
       <div

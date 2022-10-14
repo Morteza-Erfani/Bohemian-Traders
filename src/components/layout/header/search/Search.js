@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Styles
 import styles from "./Search.module.css";
@@ -208,6 +208,10 @@ const products = [
 const Search = ({ show, onClose }) => {
   const [searchText, setSearchText] = useState("");
 
+  useEffect(() => {
+    setSearchText("");
+  }, []);
+
   const searchedProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchText.toLowerCase())
   );
@@ -244,7 +248,11 @@ const Search = ({ show, onClose }) => {
           <div className={styles.modalHeader}>
             {searchedProducts.length} RESULT '{searchText.toUpperCase()}'
           </div>
-          <Store searchProducts={searchedProducts} />
+          <Store
+            searchProducts={searchedProducts}
+            category="search"
+            collection={searchText}
+          />
         </div>
       </div>
     </div>

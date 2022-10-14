@@ -19,7 +19,7 @@
   position: absolute;
   color: white;
   z-index: 15;
-  bottom: 56px;
+  /* bottom: 56px; */
   border: 1px solid white;
   font-size: 12px;
   letter-spacing: 1.6px;
@@ -29,9 +29,16 @@
   font-family: "Work Sans", sans-serif;
   width: 202px;
   line-height: 1.5;
-  margin-left: 50vw;
   transform: translateX(-50%);
   display: inline-block;
+  top: 40%;
+  left: 60%;
+  transition: all 0.3s;
+}
+
+.sliderLink:hover {
+  background-color: white;
+  color: #333;
 }
 
 .bottomDots {

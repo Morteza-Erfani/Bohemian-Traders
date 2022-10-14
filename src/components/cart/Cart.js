@@ -56,6 +56,12 @@ const Cart = () => {
   //   }
   // };
 
+  if (showChange) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = 'scroll'
+  }
+
   if (cart.length === 0) {
     return (
       <>
