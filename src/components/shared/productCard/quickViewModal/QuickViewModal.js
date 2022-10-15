@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 
 // Styles
-import styles from "./quickViewModal.module.css";
+import styles from "./QuickViewModal.module.css";
 
 // Assets
 import pic1 from "../../../../assets/product/SS22-ACT12-BLACK_01__01552.jpg";

@@ -32,6 +32,7 @@ import shipping from "../../assets/shipping-svgrepo-com.svg";
 import sizePic from "../../assets/bt-ss22-act06-01.jpg";
 import { Link } from "react-router-dom";
 import { showDetails } from "../../redux/productsPage/productsPageSlice";
+import AddToCardModal from "./addToCardModal/AddToCardModal";
 
 const productData = {
   photos: [pic1, pic2, pic3, pic4, pic5, pic6],
@@ -87,6 +88,7 @@ const ProductPage = () => {
   const cart = useSelector((state) => state.cart.cart);
   const [wishList, setWishList] = useState(false);
   const [infoShow, setInfoShow] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     dispatch(selectSize({ size: "" }));
@@ -110,6 +112,12 @@ const ProductPage = () => {
         : dispatch(selectSize({ size: size }));
     }
   };
+
+  if (showModal) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "scroll";
+  }
 
   return (
     <div className={styles.container}>
@@ -215,6 +223,7 @@ const ProductPage = () => {
                       allSize: productData.sizes,
                     })
                   );
+                  selectedSize !== "" && setShowModal(true);
               }}
             >
               ADD TO CART
@@ -365,6 +374,14 @@ const ProductPage = () => {
       </p>
       <h1 className={styles.moreHeader}>MORE FROM THIS COLLECTION</h1>
       <Products category="CAMPAIGN" number="6" />
+      <AddToCardModal
+        onClose={() => setShowModal(false)}
+        show={showModal}
+        photo={productData.photos[0]}
+        name={productData.name}
+        price={productData.prices}
+        size={selectedSize}
+      />
     </div>
   );
 };

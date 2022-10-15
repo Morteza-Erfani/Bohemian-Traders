@@ -1,0 +1,232 @@
+@import url("../../../Styles/fonts.css");
+
+.container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(51, 51, 51, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 31.5px;
+  overflow-y: scroll;
+}
+
+.modalContent {
+  background-color: white;
+  margin-top: 750px;
+  padding: 0 31.5px;
+  width: 100%;
+  /* height: 100%; */
+  position: relative;
+}
+
+.modalHeader {
+  position: relative;
+  padding: 14px 42.5px 14px 31.5px;
+  text-align: center;
+}
+
+.modalHeader p {
+  position: absolute;
+  font-size: 32px;
+  margin: -9px -35px 0 0;
+  color: #757575;
+  cursor: pointer;
+  font-weight: 500;
+  top: 14.7px;
+  right: 10.5px;
+  height: 32px;
+  width: 32px;
+  line-height: 32px;
+  font-family: "Work Sans", sans-serif;
+}
+
+.modalHeader h2 {
+  font-size: 28px;
+  font-weight: 300;
+  color: #272727;
+  line-height: 36px;
+  text-transform: uppercase;
+}
+
+.modalBody {
+  position: relative;
+}
+
+.btnContainer {
+  background-color: #f8f8f8;
+  padding: 14px;
+  text-align: center;
+}
+
+.btn {
+  background-color: black;
+  color: white;
+  display: block;
+  font-size: 12px;
+  letter-spacing: 1.25px;
+  padding: 12.5px 20px;
+  opacity: 0.8;
+  line-height: 14px;
+  cursor: pointer;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.use {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  margin: 7px 0;
+}
+
+.paypal {
+  display: block;
+  border-radius: 20px;
+  background-color: #ffc439;
+  cursor: pointer;
+}
+
+.paypal img {
+  padding: 10px 45px;
+  height: 40px;
+  vertical-align: middle;
+}
+
+.gPay {
+  text-align: center;
+  margin: 20px 0 0;
+  display: block;
+  background-color: black;
+  border-radius: 4px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.gPay img {
+  padding: 12px 24px 10px;
+}
+
+.order {
+  display: block;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #333;
+  margin-top: 21px;
+}
+
+.totalPrice {
+  font-family: "FreightDisp Pro";
+  font-weight: 400;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 21px;
+}
+
+.cartItemCount {
+  margin-bottom: 21px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #333;
+}
+
+.viewCart {
+  margin-top: 11px;
+  display: block;
+  font-size: 12px;
+  letter-spacing: 1.25px;
+  padding: 12.5px 20px;
+  line-height: 14px;
+  transition: all 0.2s;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  color: #666;
+}
+
+.viewCart:hover {
+  border-color: #999;
+  color: #333;
+}
+
+.photo {
+  width: 100%;
+}
+
+.productContainer h4 {
+  font-size: 32px;
+  font-weight: 300;
+  color: #272727;
+  line-height: 36px;
+  text-transform: uppercase;
+}
+
+.brand {
+  color: black;
+  font-size: 13px;
+  letter-spacing: 1.25px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.price {
+  font-size: 15px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 7px;
+}
+
+.size {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #444;
+  font-family: "Work Sans", sans-serif;
+  line-height: 1.5;
+  margin-bottom: 3px;
+}
+
+.productContainer {
+  margin-bottom: 31.5px;
+}
+
+@media (min-width: 800px) {
+  .modalBody {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    direction: rtl;
+    margin: 31px 0 31px 31px;
+  }
+
+  .modalContent {
+    margin-top: 90px;
+  }
+
+  .productContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    direction: ltr;
+  }
+
+  .photo {
+    padding: 0 10.5px;
+    /* max-height: 442.6px; */
+  }
+
+  .productContainer div {
+    padding: 0 10.5px;
+  }
+}

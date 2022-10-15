@@ -39,3 +39,10 @@
   font-weight: 600;
   src: url("../fonts/WorkSans-SemiBold.ttf");
 }
+
+@font-face {
+  font-family: "FreightDisp Pro;";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/FreightSansProMedium-Regular.ttf");
+}
