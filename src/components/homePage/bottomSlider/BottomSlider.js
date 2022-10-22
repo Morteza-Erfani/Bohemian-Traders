@@ -1,5 +1,8 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { showDetails } from "../../../redux/productsPage/productsPageSlice";
 
 // Carousel
 import Carousel from "react-multi-carousel";
@@ -13,9 +16,6 @@ import loader from "../../../assets/loading.svg";
 
 // Styles
 import styles from "./BottomSlider.module.css";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { showDetails } from "../../../redux/productsPage/productsPageSlice";
 
 const responsive = {
   superLargeDesktop: {

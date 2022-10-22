@@ -5,6 +5,7 @@ import {
   showDetails,
   viewType,
 } from "../../redux/productsPage/productsPageSlice";
+import { Link } from "react-router-dom";
 
 // Styles
 import styles from "./Store.module.css";
@@ -22,222 +23,227 @@ import ProductCard from "../shared/productCard/ProductCard";
 import pImage from "../../assets/product/ETCH-SIZING-TEMPLATE_02__42182.jpg";
 import mImage from "../../assets/product/SS22-ACT12-BLACK_01__01552.jpg";
 import sImage from "../../assets/product/SS22-ACT12-BLACK_02__22867.jpg";
-import { slugMaker, slugToNormal } from "../../helpers/functions";
-import ScrollToTop from "../shared/ScrollToTop";
-import { Link } from "react-router-dom";
 
-const products = [
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 217.83,
-    id: 1,
-    sizes: ["xxs", "xs", "s", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: '1',
-    prices: 127.83,
-    id: 2,
-    sizes: ["1", "2", "3"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 147.83,
-    id: 3,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 137.83,
-    id: 4,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 5,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 6,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 7,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 8,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 9,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 10,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 11,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 12,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 13,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 14,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 15,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 16,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 17,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 18,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 19,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 20,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-  {
-    productImage: { url: pImage },
-    modelImage: { url: mImage },
-    sideImage: { url: sImage },
-    name: "swing jacket in black",
-    sizeType: 'x',
-    prices: 117.83,
-    id: 21,
-    sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  },
-];
+// Functions
+import { slugMaker, slugToNormal } from "../../helpers/functions";
+import { useQuery } from "@apollo/client";
+import { GET_STORE_PRODUCTS } from "../../graphql/queries";
+
+
+import loader from '../../assets/loading.svg'
+
+// const products = [
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 217.83,
+//     id: 1,
+//     sizes: ["xxs", "xs", "s", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: '1',
+//     prices: 127.83,
+//     id: 2,
+//     sizes: ["1", "2", "3"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 147.83,
+//     id: 3,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 137.83,
+//     id: 4,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 5,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 6,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 7,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 8,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 9,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 10,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 11,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 12,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 13,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 14,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 15,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 16,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 17,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 18,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 19,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 20,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+//   {
+//     productImage: { url: pImage },
+//     modelImage: { url: mImage },
+//     sideImage: { url: sImage },
+//     name: "swing jacket in black",
+//     sizeType: 'x',
+//     prices: 117.83,
+//     id: 21,
+//     sizes: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
+//   },
+// ];
 
 const Store = ({ collection, category, searchProducts }) => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -249,14 +255,38 @@ const Store = ({ collection, category, searchProducts }) => {
     (state) => state.productsPage.filteredProducts
   );
 
+  const { data, loading } = useQuery(GET_STORE_PRODUCTS, {
+    variables: {
+      category: category.toUpperCase(),
+      collection: collection.toUpperCase(),
+    },
+  });
+
   useEffect(() => {
     dispatch(viewType({ view: "product" }));
-    dispatch(setProducts({ products: products }));
+    // dispatch(setProducts({ products: products }));
     document.title = `${slugToNormal(category)} - ${slugToNormal(
       collection
     )} - page ${pageNumber} - Bohemian Traders`;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (loading) {
+    return (
+      <section className="styles.container">
+        <img src={loader} alt="loader" className={styles.loader} />
+      </section>
+    );
+  }
+
+  const products = data.products 
+  
+  console.log(category.toUpperCase())
+  console.log(collection.toUpperCase())
+  console.log(data.products)
+
+  dispatch(setProducts({ products: products }));
+
 
   let pages;
   if (filteredProducts.length === 0) {
@@ -283,6 +313,7 @@ const Store = ({ collection, category, searchProducts }) => {
     }
     numbers.push(i);
   }
+
 
   const slugHandler = (category, collection, title) => {
     dispatch(

@@ -15,11 +15,15 @@ import {
   remove,
   selectSize,
 } from "../../redux/cart/cartSlice";
+import { Link } from "react-router-dom";
+
+// Assets
 import zip from "../../assets/zip-button-wht.svg";
 import paypal from "../../assets/paypal.svg";
 import gPay from "../../assets/dark_gpay.svg";
+
+// Modals
 import ChangeSizeModal from "./changeSizeModal/ChangeSizeModal";
-import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart.cart);

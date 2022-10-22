@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 // Styles
 import styles from "./ProductCard.module.css";
 
 // Functions
 import { capital } from "../../../helpers/functions";
-import { Link } from "react-router-dom";
 
 // Components
 import QuickViewModal from "./quickViewModal/QuickViewModal";
@@ -22,10 +22,10 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
     modelImage,
     sideImage,
     name,
-    prices,
+    price,
     sizes,
     id,
-    sizeType,
+    sizeGuide,
   } = data;
 
   const view = useSelector((state) => state.productsPage.view);
@@ -49,9 +49,9 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
   };
 
   if (showQuickView) {
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflow = "hidden";
   } else {
-    document.body.style.overflow = 'scroll'
+    document.body.style.overflow = "scroll";
   }
 
   return (
@@ -91,12 +91,14 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
                 : () => changeImage(productImage)
             }
           >
-            {sizeType === "x"
+            {sizeGuide.name === "x-top" ||
+            sizeGuide.name === "x-bottom" ||
+            sizeGuide.name === "x-skirt"
               ? allSizes.x.map((size) => (
                   <p
                     key={size}
                     className={
-                      sizes.includes(size)
+                      sizes.includes({ name: size })
                         ? styles.available
                         : styles.unavailable
                     }
@@ -109,7 +111,7 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
                   <p
                     key={size}
                     className={
-                      sizes.includes(size)
+                      sizes.includes({ name: size })
                         ? styles.available
                         : styles.unavailable
                     }
@@ -125,15 +127,15 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
         <Link to={`/${slug}`}>
           <h3 className={styles.name}>
             {titleType === "capital" ? name : capital(name)}
-            {id}
           </h3>
         </Link>
         <h2 className={styles.brand}>BOHEMIAN TRADERS</h2>
-        <p className={styles.price}>$ {prices}</p>
+        <p className={styles.price}>$ {price}</p>
       </div>
       <QuickViewModal
         onClose={() => setShowQuickView(false)}
         show={showQuickView}
+        id={id}
       />
     </div>
   );

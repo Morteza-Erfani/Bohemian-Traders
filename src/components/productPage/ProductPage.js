@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, selectSize } from "../../redux/cart/cartSlice";
+import { Link } from "react-router-dom";
+import { showDetails } from "../../redux/productsPage/productsPageSlice";
+import AddToCardModal from "./addToCardModal/AddToCardModal";
+
+// Functions
 import { capital, slugMaker } from "../../helpers/functions";
 
 // Styles
@@ -30,9 +34,6 @@ import arrowDown from "../../assets/down-chevron-svgrepo-com.svg";
 import creditCard from "../../assets/credit-card-svgrepo-com.svg";
 import shipping from "../../assets/shipping-svgrepo-com.svg";
 import sizePic from "../../assets/bt-ss22-act06-01.jpg";
-import { Link } from "react-router-dom";
-import { showDetails } from "../../redux/productsPage/productsPageSlice";
-import AddToCardModal from "./addToCardModal/AddToCardModal";
 
 const productData = {
   photos: [pic1, pic2, pic3, pic4, pic5, pic6],

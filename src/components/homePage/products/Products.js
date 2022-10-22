@@ -17,6 +17,8 @@ import "./Products.css";
 // Functions
 import { slugMaker } from "../../../helpers/functions";
 
+import loader from "../../../assets/loading.svg";
+
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -48,7 +50,11 @@ const Products = ({ category, number }) => {
   });
 
   if (loading) {
-    return <></>;
+    return (
+      <section className="styles.container">
+        <img src={loader} alt="loader" className={"loader"} />
+      </section>
+    );
   }
 
   const categoryProducts = data.categories[0].products.slice(0, +number);

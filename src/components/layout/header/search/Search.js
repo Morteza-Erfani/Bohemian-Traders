@@ -11,7 +11,6 @@ import pImage from "../../../../assets/product/ETCH-SIZING-TEMPLATE_02__42182.jp
 import mImage from "../../../../assets/product/SS22-ACT12-BLACK_01__01552.jpg";
 import sImage from "../../../../assets/product/SS22-ACT12-BLACK_02__22867.jpg";
 import Store from "../../../store/Store";
-import ScrollToTop from "../../../shared/ScrollToTop";
 
 const products = [
   {
