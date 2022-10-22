@@ -13,7 +13,7 @@ import QuickViewModal from "./quickViewModal/QuickViewModal";
 
 const allSizes = {
   x: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-  1: ["1", "2", "3"],
+  1: ["0", "1", "2"],
 };
 
 const ProductCard = ({ data, titleType, slug, quickView }) => {
@@ -53,6 +53,20 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
   } else {
     document.body.style.overflow = "scroll";
   }
+
+  const sizeFound = (size) => {
+    const isFound = sizes.some((element) => {
+      if (element.name === size.toUpperCase()) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return isFound;
+  };
+
+  console.log(sizes);
+  console.log(sizeFound("3"));
 
   return (
     <div className={styles.container}>
@@ -98,9 +112,7 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
                   <p
                     key={size}
                     className={
-                      sizes.includes({ name: size })
-                        ? styles.available
-                        : styles.unavailable
+                      sizeFound(size) ? styles.available : styles.unavailable
                     }
                   >
                     {size}
@@ -111,7 +123,7 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
                   <p
                     key={size}
                     className={
-                      sizes.includes({ name: size })
+                      sizeFound(size)
                         ? styles.available
                         : styles.unavailable
                     }
