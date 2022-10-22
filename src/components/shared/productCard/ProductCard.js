@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 // Styles
@@ -10,13 +10,21 @@ import { capital } from "../../../helpers/functions";
 
 // Components
 import QuickViewModal from "./quickViewModal/QuickViewModal";
+import { setProductInfo } from "../../../redux/productsDetail/productDetailsSlice";
 
 const allSizes = {
   x: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
   1: ["0", "1", "2"],
 };
 
-const ProductCard = ({ data, titleType, slug, quickView }) => {
+const ProductCard = ({
+  data,
+  titleType,
+  slug,
+  quickView,
+  category,
+  collection,
+}) => {
   const {
     productImage,
     modelImage,
@@ -30,6 +38,8 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
 
   const view = useSelector((state) => state.productsPage.view);
   const [image, setImage] = useState(productImage.url);
+
+  const dispatch = useDispatch();
 
   const [showQuickView, setShowQuickView] = useState(false);
 
@@ -65,9 +75,6 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
     return isFound;
   };
 
-  console.log(sizes);
-  console.log(sizeFound("3"));
-
   return (
     <div className={styles.container}>
       <div
@@ -83,7 +90,18 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
             : () => changeImage(productImage)
         }
       >
-        <Link to={`/product/${slug}`}>
+        <Link
+          to={`/product/${slug}`}
+          onClick={() => {
+            dispatch(
+              setProductInfo({
+                category: category,
+                collection: collection,
+                id: id,
+              })
+            );
+          }}
+        >
           <img src={image} alt={name} className={styles.image} />
         </Link>
         {quickView && (
@@ -123,9 +141,7 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
                   <p
                     key={size}
                     className={
-                      sizeFound(size)
-                        ? styles.available
-                        : styles.unavailable
+                      sizeFound(size) ? styles.available : styles.unavailable
                     }
                   >
                     {size}
@@ -136,7 +152,18 @@ const ProductCard = ({ data, titleType, slug, quickView }) => {
         )}
       </div>
       <div className={styles.detail}>
-        <Link to={`/${slug}`}>
+        <Link
+          to={`/product/${slug}`}
+          onClick={() => {
+            dispatch(
+              setProductInfo({
+                category: category,
+                collection: collection,
+                id: id,
+              })
+            );
+          }}
+        >
           <h3 className={styles.name}>
             {titleType === "capital" ? name : capital(name)}
           </h3>

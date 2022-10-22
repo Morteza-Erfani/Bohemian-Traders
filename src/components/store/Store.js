@@ -40,7 +40,7 @@ const isFound = hi.some((element) => {
   }
 });
 
-console.log(isFound)
+console.log(isFound);
 
 const Store = ({ collection, category, searchProducts }) => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -167,6 +167,8 @@ const Store = ({ collection, category, searchProducts }) => {
             {productsInPage[pageNumber - 1].map((product) => (
               <div key={product.id} className={styles.productContainer}>
                 <ProductCard
+                  category={category}
+                  collection={collection}
                   data={product}
                   titleType="capital"
                   slug={slugMaker(product.name)}

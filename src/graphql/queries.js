@@ -81,6 +81,31 @@ const GET_STORE_PRODUCTS = gql`
   }
 `;
 
+const GET_PRODUCT_DETAILS = gql`
+  query productDetails($id: ID!) {
+    product(where: { id: $id }) {
+      price
+      images {
+        url
+      }
+      productDetails
+      productFeatures
+      sizeGuide {
+        name
+        image {
+          url
+        }
+      }
+      code
+      sizes {
+        ... on Size {
+          name
+        }
+      }
+    }
+  }
+`;
+
 const GET_CATEGORY_PRODUCTS = gql`
   query categoryProduct($category: String!) {
     categories(where: { name: $category }) {
@@ -169,4 +194,5 @@ export {
   GET_EXPLORE_DATA,
   GET_QUICK_VIEW_PRODUCT,
   GET_STORE_PRODUCTS,
+  GET_PRODUCT_DETAILS,
 };

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, selectSize } from "../../redux/cart/cartSlice";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { showDetails } from "../../redux/productsPage/productsPageSlice";
 import AddToCardModal from "./addToCardModal/AddToCardModal";
 
 // Functions
-import { capital, slugMaker } from "../../helpers/functions";
+import { capital, slugMaker, slugToNormal } from "../../helpers/functions";
 
 // Styles
 import styles from "./ProductPage.module.css";
@@ -34,29 +34,31 @@ import arrowDown from "../../assets/down-chevron-svgrepo-com.svg";
 import creditCard from "../../assets/credit-card-svgrepo-com.svg";
 import shipping from "../../assets/shipping-svgrepo-com.svg";
 import sizePic from "../../assets/bt-ss22-act06-01.jpg";
+import { useQuery } from "@apollo/client";
+import { GET_PRODUCT_DETAILS } from "../../graphql/queries";
 
 const productData = {
-  photos: [pic1, pic2, pic3, pic4, pic5, pic6],
-  name: "swing jacket in black",
-  prices: 117.83,
-  id: 1,
-  sizes: ["xxs", "xs", "s", "l", "xl", "2xl", "3xl", "4xl"],
-  category: "women",
-  collection: "prints",
-  sizeType: "x-top",
-  productDetails:
-    "A swing jacket designed for the everyday with micro mesh on the back yoke for breathability and flexible wear. A scooping back hem covered the bottom for a flattering fit and A-line silhouette means it skims the body. Pair yours with the sports bra and new 7/8th legging for the complete look.",
-  productFeatures:
-    "- Walking jacket with A-line silhouette and swing back\n\n- Micro mesh on the back yoke\n\n- Zipper at center front closure\n\n- Side front zipper phone pockets\n\n- Low to Medium Impact Activities\n\n- Bohemian Traders Embroidered Logo\n\n- Fits true to size\n\n- 75% polyester / 25% spandex\n\n- Mid weight, stretchy fabric\n\n- Gentle hand wash in cold waterul",
-  sizeGuide: {
-    url: sizePic,
-  },
-  code: "BT-SS22-ACT12 BLACK",
+  // photos: [pic1, pic2, pic3, pic4, pic5, pic6],
+  // name: "swing jacket in black",
+  // prices: 117.83,
+  // id: 1,
+  // sizes: ["xxs", "xs", "s", "l", "xl", "2xl", "3xl", "4xl"],
+  // category: "women",
+  // collection: "prints",
+  // sizeType: "x-top",
+  // productDetails:
+  //   "A swing jacket designed for the everyday with micro mesh on the back yoke for breathability and flexible wear. A scooping back hem covered the bottom for a flattering fit and A-line silhouette means it skims the body. Pair yours with the sports bra and new 7/8th legging for the complete look.",
+  // productFeatures:
+  //   "- Walking jacket with A-line silhouette and swing back\n\n- Micro mesh on the back yoke\n\n- Zipper at center front closure\n\n- Side front zipper phone pockets\n\n- Low to Medium Impact Activities\n\n- Bohemian Traders Embroidered Logo\n\n- Fits true to size\n\n- 75% polyester / 25% spandex\n\n- Mid weight, stretchy fabric\n\n- Gentle hand wash in cold waterul",
+  // sizeGuide: {
+  //   url: sizePic,
+  // },
+  // code: "BT-SS22-ACT12 BLACK",
 };
 
 let allSizes = [];
 
-if (productData.sizeType === "x-top") {
+if (productData.sizeType !== 1) {
   allSizes = ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"];
 } else {
   allSizes = [1, 2, 3];
@@ -90,10 +92,25 @@ const ProductPage = () => {
   const [wishList, setWishList] = useState(false);
   const [infoShow, setInfoShow] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const category = useSelector((state) => state.productDetails.category);
+  const collection = useSelector((state) => state.productDetails.collection);
+  const id = useSelector((state) => state.productDetails.id);
+
+  const { data, loading } = useQuery(GET_PRODUCT_DETAILS, {
+    variables: {
+      id: id,
+    },
+  });
+
+  console.log(category);
+  console.log(collection);
+  console.log(id);
+
+  const name = slugToNormal(useParams().id);
 
   useEffect(() => {
     dispatch(selectSize({ size: "" }));
-    document.title = `${capital(productData.name)} | Bohemian Traders`;
+    document.title = `${capital(name)} | Bohemian Traders`;
   }, []);
 
   const slugHandler = (category, collection, title) => {
@@ -106,8 +123,27 @@ const ProductPage = () => {
     );
   };
 
+  if (loading) {
+    return (
+      <section className="styles.container">
+        <img src={loader} alt="loader" className={styles.loader} />
+      </section>
+    );
+  }
+
+  const sizeFound = (size) => {
+    const isFound = data.product.sizes.some((element) => {
+      if (element.name === size.toUpperCase()) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return isFound;
+  };
+
   const sizeHandler = (size) => {
-    if (productData.sizes.includes(size)) {
+    if (sizeFound(size)) {
       selectedSize === size
         ? dispatch(selectSize({ size: "" }))
         : dispatch(selectSize({ size: size }));
@@ -126,32 +162,22 @@ const ProductPage = () => {
         <Link to="/">HOME</Link> /{" "}
         <Link
           onClick={() => {
-            slugHandler(
-              slugMaker(productData.category),
-              "view-all",
-              productData.category
-            );
+            slugHandler(slugMaker(category), "view-all", category);
           }}
-          to={`/${slugMaker(productData.category)}/view-all`}
+          to={`/${slugMaker(category)}/view-all`}
         >
-          {productData.category.toUpperCase()}
+          {category.toUpperCase()}
         </Link>
         {" / "}
         <Link
           onClick={() => {
-            slugHandler(
-              slugMaker(productData.category),
-              slugMaker(productData.collection),
-              productData.collection
-            );
+            slugHandler(slugMaker(category), slugMaker(collection), collection);
           }}
-          to={`/${slugMaker(productData.category)}/${slugMaker(
-            productData.collection
-          )}`}
+          to={`/${slugMaker(category)}/${slugMaker(collection)}`}
         >
-          {productData.collection.toUpperCase()}
+          {collection.toUpperCase()}
         </Link>
-        {" / "} {productData.name.toUpperCase()}
+        {" / "} {name.toUpperCase()}
       </p>
       <div className={styles.upperSection}>
         <Carousel
@@ -166,17 +192,17 @@ const ProductPage = () => {
           slidesToSlide={1}
           swipeable={true}
         >
-          {productData.photos.map((photo) => (
-            <div key={photo}>
-              <img src={photo} alt="product" />
+          {data.product.images.map((photo) => (
+            <div key={photo.url}>
+              <img src={photo.url} alt="product" />
             </div>
           ))}
         </Carousel>
         <section className={styles.innerUpperSection}>
           <div className={styles.innerSection}>
-            <h1 className={styles.title}>{productData.name}</h1>
+            <h1 className={styles.title}>{name}</h1>
             <h2 className={styles.brand}>BOHEMIAN TRADERS</h2>
-            <p className={styles.price}>$US {productData.prices}</p>
+            <p className={styles.price}>$US {data.product.price}</p>
             <div className={styles.klarnaContainer}>
               <p>Or pay 4 interest-free payments with</p>
               <a>
@@ -201,7 +227,7 @@ const ProductPage = () => {
                   key={size}
                   className={`${styles.size} ${
                     selectedSize === size && styles.select
-                  } ${!productData.sizes.includes(size) && styles.unavailable}`}
+                  } ${!sizeFound(size) && styles.unavailable}`}
                   onClick={() => {
                     sizeHandler(size);
                   }}
@@ -216,15 +242,15 @@ const ProductPage = () => {
                 selectedSize !== "" &&
                   dispatch(
                     addToCart({
-                      id: productData.id,
+                      id: id,
                       size: selectedSize,
-                      price: productData.prices,
-                      name: productData.name,
-                      photo: productData.photos[0],
-                      allSize: productData.sizes,
+                      price: data.product.price,
+                      name: name,
+                      photo: data.product.images[0],
+                      allSize: data.product.sizes,
                     })
                   );
-                  selectedSize !== "" && setShowModal(true);
+                selectedSize !== "" && setShowModal(true);
               }}
             >
               ADD TO CART
@@ -278,8 +304,8 @@ const ProductPage = () => {
               infoShow === "details" && styles.showInfoData
             }`}
           >
-            <p>{productData.productDetails}</p>
-            <p>{productData.code}</p>
+            <p>{data.product.productDetails}</p>
+            <p>{data.product.code}</p>
           </div>
         </li>
         <li className={`${infoShow === "features" ? styles.underLine : ""}`}>
@@ -302,7 +328,7 @@ const ProductPage = () => {
               infoShow === "features" && styles.showInfoData
             }`}
           >
-            <pre>{productData.productFeatures}</pre>
+            <pre>{data.product.productFeatures}</pre>
           </div>
         </li>
         <li className={`${infoShow === "sizing" ? styles.underLine : ""}`}>
@@ -328,7 +354,7 @@ const ProductPage = () => {
               - Lilly is a size AU8, 170cm tall and wears a size XS
               <br />- Fiona is a size AU18 and wears a size XL
             </p>
-            <img src={productData.sizeGuide.url} alt="size guide" />
+            <img src={data.product.sizeGuide.image.url} alt="size guide" />
             <Link to="/inclusive-size-range">
               Need help with your sizing? Click here.
             </Link>
@@ -341,8 +367,8 @@ const ProductPage = () => {
           infoShow === "details" && styles.showMedium
         }`}
       >
-        <p>{productData.productDetails}</p>
-        <p>{productData.code}</p>
+        <p>{data.product.productDetails}</p>
+        <p>{data.product.code}</p>
       </div>
 
       <div
@@ -350,7 +376,7 @@ const ProductPage = () => {
           infoShow === "features" && styles.showMedium
         }`}
       >
-        <pre>{productData.productFeatures}</pre>
+        <pre>{data.product.productFeatures}</pre>
       </div>
 
       <div
@@ -363,7 +389,7 @@ const ProductPage = () => {
           - Lilly is a size AU8, 170cm tall and wears a size XS
           <br />- Fiona is a size AU18 and wears a size XL
         </p>
-        <img src={productData.sizeGuide.url} alt="size guide" />
+        <img src={data.product.sizeGuide.image.url} alt="size guide" />
         <Link to="/inclusive-size-range">
           Need help with your sizing? Click here.
         </Link>
@@ -371,16 +397,16 @@ const ProductPage = () => {
 
       <p className={styles.code}>
         <span>SKU: </span>
-        {productData.code}
+        {data.product.code}
       </p>
       <h1 className={styles.moreHeader}>MORE FROM THIS COLLECTION</h1>
       <Products category="CAMPAIGN" number="6" />
       <AddToCardModal
         onClose={() => setShowModal(false)}
         show={showModal}
-        photo={productData.photos[0]}
-        name={productData.name}
-        price={productData.prices}
+        photo={data.product.images[0]}
+        name={name}
+        price={data.product.price}
         size={selectedSize}
       />
     </div>
