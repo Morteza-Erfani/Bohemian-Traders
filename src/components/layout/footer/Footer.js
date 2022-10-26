@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-// assets
+// Assets
 import logo from "../../../assets/logo-white.png";
 import instagram from "../../../assets/instagram.svg";
 import facebook from "../../../assets/icons8-facebook-f.svg";
@@ -10,16 +11,19 @@ import down from "../../../assets/chevron-down.svg";
 
 // Styles
 import styles from "./Footer.module.css";
-import { Link } from "react-router-dom";
 
 const Footer = () => {
+  // Set show or hide info section
   const [showInfo, setShowInfo] = useState(true);
+  // Set show or hide customer Care section
   const [showCustomCare, setShowCustomCare] = useState(true);
 
+  // Change show state of info section
   const showInfoHandler = () => {
     setShowInfo(!showInfo);
   };
 
+  // Change show state of customer care section
   const ShowCustomCareHandler = () => {
     setShowCustomCare(!showCustomCare);
   };
@@ -30,6 +34,7 @@ const Footer = () => {
         <div className={styles.innerContainer}>
           <div className={styles.footerCol}>
             <img src={logo} alt="logo" className={styles.logo} />
+            {/* social media icon and links */}
             <ul className={styles.socialUl}>
               <li>
                 <a>
@@ -64,7 +69,9 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
+
           </div>
+          {/* info */}
           <div className={styles.footerCol}>
             <div
               className={styles.downContainer}
@@ -73,6 +80,7 @@ const Footer = () => {
               <p>INFO</p>
               <img src={down} alt="down" className={styles.down} />
             </div>
+            {/* info section */}
             <div
               className={`${styles.links} ${
                 showInfo ? styles.show : styles.hide
@@ -95,6 +103,7 @@ const Footer = () => {
               </Link>
             </div>
           </div>
+          {/* customer care */}
           <div className={styles.footerCol}>
             <div
               className={styles.downContainer}
@@ -103,6 +112,7 @@ const Footer = () => {
               <p>CUSTOMER CARE</p>
               <img src={down} alt="down" className={styles.down} />
             </div>
+            {/* customer care section */}
             <div
               className={`${styles.links} ${
                 showCustomCare ? styles.show : styles.hide
@@ -136,6 +146,7 @@ const Footer = () => {
               <a>OUTLET</a>
             </div>
           </div>
+          {/* subscribe */}
           <div className={styles.footerCol}>
             <p className={styles.subPara}>
               SUBSCRIBE TO REVIEVE UPDATES AND SPECIAL OFFERS!
@@ -151,6 +162,7 @@ const Footer = () => {
             </form>
           </div>
         </div>
+        {/* address */}
         <p className={styles.contact}>
           CUSTOMERSERVICE@BOHEMIANTRADERS.COM | +61 2 4327 8640 | MON - FRI |
           9AM - 5PM AEST
