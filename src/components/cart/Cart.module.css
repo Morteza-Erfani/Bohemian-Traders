@@ -355,19 +355,6 @@ div p.location {
     text-align: left;
   }
 
-  .quantitySmall {
-    display: none;
-  }
-
-  .quantityMedium {
-    display: inline;
-  }
-
-  .quantityInnerContainer {
-    display: block;
-    align-items: center;
-  }
-
   .us {
     display: none;
   }
@@ -392,6 +379,23 @@ div p.location {
   .checkoutBtn {
     width: 80%;
     margin: 0 10%;
+  }
+}
+
+@media (min-width: 551px) and (max-width: 1160px) {
+  .quantitySmall {
+    display: none;
+  }
+
+  .quantityMedium {
+    display: inline;
+  }
+
+  .quantityInnerContainer {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
@@ -435,16 +439,17 @@ div p.location {
   }
 
   .productContainer:first-of-type .title {
-    display: block;
+    display: inline-block;
+    position: absolute;
+    top: -30px;
+    font-weight: 700;
+    color: #333;
+    width: auto;
   }
 
   .title {
     /* border-bottom: 1px solid #e5e5e5; */
-    position: absolute;
-    top: -30px;
     display: none;
-    font-weight: 700;
-    color: #333;
   }
 
   .quantitySemiColon {
@@ -484,5 +489,11 @@ div p.location {
 @media (min-width: 960px) {
   .container {
     padding: 0 70px;
+  }
+}
+
+@media (min-width: 1160px) {
+  #quantityTitle {
+    padding-left: 43px;
   }
 }

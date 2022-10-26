@@ -94,7 +94,7 @@ const Cart = () => {
               <div className={styles.titleContainer}>
                 <p className={styles.brandName}>Boheamian Traders</p>
                 <Link
-                to={'/'}
+                  to={"/"}
                   // Set link to product page
                   //
                   // to={`/product/${slug}`}
@@ -164,7 +164,7 @@ const Cart = () => {
             </div>
             {/* product quantity */}
             <div className={styles.thirdSection}>
-              <p className={styles.title}>
+              <p className={styles.title} id={styles.quantityTitle}>
                 Quantity<span className={styles.quantitySemiColon}>:</span>
               </p>
               <div className={styles.quantityContainer}>
@@ -272,7 +272,8 @@ const Cart = () => {
         <div className={styles.innerContainer}>
           <p className={styles.checkoutTitle}>GRAND TOTAL:</p>
           <p className={styles.grandTotal}>
-            $<span className={styles.us}>US</span> {(+totalPrice + +tax).toFixed(2)}
+            $<span className={styles.us}>US</span>{" "}
+            {(+totalPrice + +tax).toFixed(2)}
           </p>
         </div>
         {/* payment options */}
