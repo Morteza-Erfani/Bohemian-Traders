@@ -15,6 +15,8 @@ const ChangeSizeModal = ({
 }) => {
   const modalSelectedSize = useSelector((state) => state.cart.selectedSize);
 
+  console.log(allSize)
+
   if (!show) {
     return null;
   }
@@ -34,11 +36,11 @@ const ChangeSizeModal = ({
           <div className={styles.modalSizes}>
             {allSize.map((size) => (
               <div
-                key={size}
-                className={modalSelectedSize === size ? styles.selected : ""}
-                onClick={() => onChangeSize(size)}
+                key={size.name}
+                className={modalSelectedSize === size.name ? styles.selected : ""}
+                onClick={() => onChangeSize(size.name)}
               >
-                {size}
+                {size.name}
               </div>
             ))}
           </div>

@@ -1,5 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
+// Redux actions
+import {
+  addToCart,
+  changeSize,
+  decrease,
+  remove,
+  selectSize,
+} from "../../redux/cart/cartSlice";
 
 // Styles
 import styles from "./Cart.module.css";
@@ -8,16 +18,6 @@ import styles from "./Cart.module.css";
 import downArrow from "../../assets/chevron-down.svg";
 import upArrow from "../../assets/chevron-up.svg";
 import cross from "../../assets/x.svg";
-import {
-  addToCart,
-  changeSize,
-  decrease,
-  remove,
-  selectSize,
-} from "../../redux/cart/cartSlice";
-import { Link } from "react-router-dom";
-
-// Assets
 import zip from "../../assets/zip-button-wht.svg";
 import paypal from "../../assets/paypal.svg";
 import gPay from "../../assets/dark_gpay.svg";
@@ -26,67 +26,60 @@ import gPay from "../../assets/dark_gpay.svg";
 import ChangeSizeModal from "./changeSizeModal/ChangeSizeModal";
 
 const Cart = () => {
+  // Get data from redux store
   const cart = useSelector((state) => state.cart.cart);
   const count = useSelector((state) => state.cart.totalCount);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const selectedSize = useSelector((state) => state.cart.selectedSize);
+
   const tax = (totalPrice * 0.091).toFixed(2);
-
-  const [showChange, setShowChange] = useState(false);
-
-  const [selectedSizeForChange, setSelectedSizeForChange] = useState();
-
-  // console.log(totalPrice);
 
   const dispatch = useDispatch();
 
-  // const [extraSpace, setExtraSpace] = useState("");
+  // set state from showing Change Size Modal
+  const [showChange, setShowChange] = useState(false);
 
-  const ref = useRef(null);
+  // set new size in Change Size Modal
+  const [selectedSizeForChange, setSelectedSizeForChange] = useState();
 
+  // Set page Title
   useEffect(() => {
     document.title = "Bohemian Traders - Shopping Cart";
   }, []);
 
-  // const fillSpace = () => {
-  //   const usedSpace =
-  //     document.getElementById("footer").clientHeight +
-  //     document.getElementById("header").clientHeight;
-
-  //   if (window.innerHeight > usedSpace) {
-  //     setExtraSpace(
-  //       `${window.innerHeight - usedSpace - ref.current.clientHeight}px`
-  //     );
-  //   }
-  // };
-
+  // Disable scorlling backgronf when Modal is active
   if (showChange) {
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflow = "hidden";
   } else {
-    document.body.style.overflow = 'scroll'
+    document.body.style.overflow = "scroll";
   }
 
+  // When cart is empty this content will be shown
   if (cart.length === 0) {
     return (
       <>
-        <div className={styles.container} ref={ref}>
+        <div className={styles.container}>
+          {/* user location in site */}
           <p className={styles.location}>
             <Link to="/">HOME</Link> / YOUR CART
           </p>
           <h1 className={styles.header}>YOUR CART ({cart.length} ITEMS)</h1>
           <h3 className={styles.empty}>Your cart is empty</h3>
         </div>
-        {/* {fillSpace()} */}
       </>
     );
   }
 
   return (
     <div className={styles.container}>
+      {/* use location in site */}
       <p className={styles.location}>
         <Link to="/">HOME</Link> / YOUR CART
       </p>
+      {/* number of items in cart */}
       <h1 className={styles.header}>YOUR CART ({count} ITEMS)</h1>
+
+      {/* product info */}
       {cart.map((product) => (
         <div
           className={styles.productContainer}
@@ -100,28 +93,53 @@ const Cart = () => {
               </div>
               <div className={styles.titleContainer}>
                 <p className={styles.brandName}>Boheamian Traders</p>
-                <a>{product.name}</a>
+                <Link
+                to={'/'}
+                  // Set link to product page
+                  //
+                  // to={`/product/${slug}`}
+                  // onClick={() => {
+                  //   dispatch(
+                  //     setProductInfo({
+                  //       category: category,
+                  //       collection: collection,
+                  //       id: id,
+                  //     })
+                  //   );
+                  // }}
+                >
+                  {product.name}
+                </Link>
                 <p className={styles.size}>
                   Size: <span>{product.size}</span>
                 </p>
                 <button
                   className={styles.change}
                   onClick={() => {
+                    // show change size modal
                     setShowChange(true);
+                    // set selected size in modal
                     dispatch(selectSize({ size: product.size }));
+                    // set default size in modal
                     setSelectedSizeForChange(product.size);
                   }}
                 >
                   CHANGE
                 </button>
                 <ChangeSizeModal
+                  // give modal show modal status
                   show={showChange}
+                  // give modal close modal function
                   onClose={() => setShowChange(false)}
+                  // give modal all available size
                   allSize={product.allSize}
+                  // give modal product name
                   name={product.name}
+                  // give modal select size function to change size style
                   onChangeSize={(size) => {
                     dispatch(selectSize({ size: size }));
                   }}
+                  // give modal dispatch function for save changed size in redux store
                   onSave={() => {
                     dispatch(
                       changeSize({
@@ -137,12 +155,14 @@ const Cart = () => {
             </div>
           </div>
           <div className={styles.innerSection}>
+            {/* product price */}
             <div className={styles.secondSection}>
               <p className={styles.title}>Price</p>
               <p className={styles.price}>
                 $<span className={styles.us}>US</span> {product.price}
               </p>
             </div>
+            {/* product quantity */}
             <div className={styles.thirdSection}>
               <p className={styles.title}>
                 Quantity<span className={styles.quantitySemiColon}>:</span>
@@ -151,16 +171,19 @@ const Cart = () => {
                 <div className={styles.quantityInnerContainer}>
                   <button
                     className={styles.quantityBtn}
+                    // decrease or remove product
                     onClick={() => {
                       product.quantity !== 1
-                        ? dispatch(
+                        ? // decrease quantity if quantity is more than 1
+                          dispatch(
                             decrease({
                               id: product.id,
                               size: product.size,
                               price: product.price,
                             })
                           )
-                        : dispatch(
+                        : // remove item if quantity in equal to 1
+                          dispatch(
                             remove({
                               id: product.id,
                               size: product.size,
@@ -175,6 +198,7 @@ const Cart = () => {
                   <button
                     className={styles.quantityBtn}
                     onClick={() => {
+                      // increase product quantity
                       dispatch(
                         addToCart({
                           id: product.id,
@@ -204,6 +228,7 @@ const Cart = () => {
                   src={cross}
                   alt="delete"
                   onClick={() => {
+                    // remove product from cart
                     dispatch(
                       remove({
                         id: product.id,
@@ -218,11 +243,12 @@ const Cart = () => {
           </div>
         </div>
       ))}
+      {/* total cart info */}
       <div className={styles.checkoutContainer}>
         <div className={styles.innerContainer}>
           <p className={styles.checkoutTitle}>SUBTOTAL:</p>
           <p className={styles.price}>
-            $<span className={styles.us}>US</span> {totalPrice}
+            $<span className={styles.us}>US</span> {totalPrice.toFixed(2)}
           </p>
         </div>
         <div className={styles.innerContainer}>
@@ -246,9 +272,10 @@ const Cart = () => {
         <div className={styles.innerContainer}>
           <p className={styles.checkoutTitle}>GRAND TOTAL:</p>
           <p className={styles.grandTotal}>
-            $<span className={styles.us}>US</span> {+totalPrice + +tax}
+            $<span className={styles.us}>US</span> {(+totalPrice + +tax).toFixed(2)}
           </p>
         </div>
+        {/* payment options */}
         <div className={styles.zip}>
           <p>ZIP IT NOW, PAY LATER</p>
           <img src={zip} alt="zip" />

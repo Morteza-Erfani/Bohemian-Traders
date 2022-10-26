@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import styles from "./AbouUs.module.css";
 
 const AboutUs = () => {
+  // Set page title
   useEffect(() => {
     document.title = "About Us";
   }, []);
 
   return (
     <div className={styles.container}>
+      {/* User location in site */}
       <p className={styles.location}>
         <Link to="/">HOME</Link> / ABOUT US
       </p>
@@ -36,6 +38,9 @@ const AboutUs = () => {
         and accessories, with the least environmental and social harm possible.
       </p>
       <p>You can find BOHEMIAN TRADERS on the following social media:</p>
+
+      {/* Social media addresses */}
+
       <h3 className={styles.social}>INSTAGRAM:</h3>
       <a>instagram.com/bohemian.traders</a>
       <h3 className={styles.social}>FACEBOOK:</h3>

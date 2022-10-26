@@ -56,13 +56,6 @@ const productData = {
   // code: "BT-SS22-ACT12 BLACK",
 };
 
-let allSizes = [];
-
-if (productData.sizeType !== 1) {
-  allSizes = ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"];
-} else {
-  allSizes = [1, 2, 3];
-}
 
 const responsive = {
   superLargeDesktop: {
@@ -90,29 +83,29 @@ const ProductPage = () => {
   const selectedSize = useSelector((state) => state.cart.selectedSize);
   const cart = useSelector((state) => state.cart.cart);
   const [wishList, setWishList] = useState(false);
-  const [infoShow, setInfoShow] = useState("");
+  const [infoShow, setInfoShow] = useState("details");
   const [showModal, setShowModal] = useState(false);
   const category = useSelector((state) => state.productDetails.category);
   const collection = useSelector((state) => state.productDetails.collection);
   const id = useSelector((state) => state.productDetails.id);
-
+  
   const { data, loading } = useQuery(GET_PRODUCT_DETAILS, {
     variables: {
       id: id,
     },
   });
-
+  
   console.log(category);
   console.log(collection);
   console.log(id);
-
+  
   const name = slugToNormal(useParams().id);
-
+  
   useEffect(() => {
     dispatch(selectSize({ size: "" }));
     document.title = `${capital(name)} | Bohemian Traders`;
   }, []);
-
+  
   const slugHandler = (category, collection, title) => {
     dispatch(
       showDetails({
@@ -120,15 +113,25 @@ const ProductPage = () => {
         collection: collection,
         title: title,
       })
-    );
-  };
-
-  if (loading) {
-    return (
-      <section className="styles.container">
+      );
+    };
+    
+    if (loading) {
+      return (
+        <section className="styles.container">
         <img src={loader} alt="loader" className={styles.loader} />
       </section>
     );
+  }
+  
+  let allSizes = [];
+
+  console.log(data.product.sizeGuide.name === '1')
+  
+  if (data.product.sizeGuide.name !== '1') {
+    allSizes = ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"];
+  } else {
+    allSizes = ['0', '1', '2'];
   }
 
   const sizeFound = (size) => {
@@ -246,7 +249,7 @@ const ProductPage = () => {
                       size: selectedSize,
                       price: data.product.price,
                       name: name,
-                      photo: data.product.images[0],
+                      photo: data.product.images[0].url,
                       allSize: data.product.sizes,
                     })
                   );

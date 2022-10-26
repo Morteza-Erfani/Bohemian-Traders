@@ -78,7 +78,11 @@ export const cartSlice = createSlice({
         }
       }
       state.cart[fIndex].quantity -= 1;
-      state.totalCount -= 1;
+      if (state.totalCount > 1) {
+        state.totalCount -= 1;
+      } else {
+        state.totalCount = 0;
+      }
       state.totalPrice -= action.payload.price;
       localStorage.setItem("cart", JSON.stringify(state.cart));
       localStorage.setItem("totalPrice", JSON.stringify(state.totalPrice));
