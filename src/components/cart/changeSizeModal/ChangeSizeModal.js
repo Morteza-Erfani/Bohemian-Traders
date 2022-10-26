@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { changeSize, selectSize } from "../../../redux/cart/cartSlice";
+import React from "react";
+import { useSelector } from "react-redux";
 
 // Styles
 import styles from "./ChangeSizeModal.module.css";
@@ -13,10 +12,10 @@ const ChangeSizeModal = ({
   onChangeSize,
   onSave,
 }) => {
+  // get previous size
   const modalSelectedSize = useSelector((state) => state.cart.selectedSize);
 
-  console.log(allSize)
-
+  // hide modal when its deactivated
   if (!show) {
     return null;
   }
@@ -33,11 +32,15 @@ const ChangeSizeModal = ({
         </div>
         <div className={styles.modalBody}>
           <p>SIZE:</p>
+          {/* all available sizes */}
           <div className={styles.modalSizes}>
             {allSize.map((size) => (
               <div
                 key={size.name}
-                className={modalSelectedSize === size.name ? styles.selected : ""}
+                className={
+                  modalSelectedSize === size.name ? styles.selected : ""
+                }
+                // change selected size style
                 onClick={() => onChangeSize(size.name)}
               >
                 {size.name}
@@ -46,7 +49,9 @@ const ChangeSizeModal = ({
           </div>
           <button
             onClick={() => {
+              // change selected size
               onSave();
+              // close modal
               onClose();
             }}
           >
