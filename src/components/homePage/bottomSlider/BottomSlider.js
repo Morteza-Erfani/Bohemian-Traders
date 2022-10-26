@@ -2,6 +2,8 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
+// Redux actions
 import { showDetails } from "../../../redux/productsPage/productsPageSlice";
 
 // Carousel
@@ -17,9 +19,9 @@ import loader from "../../../assets/loading.svg";
 // Styles
 import styles from "./BottomSlider.module.css";
 
+// responsive data for carousel
 const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 1,
   },
@@ -39,16 +41,19 @@ const responsive = {
 };
 
 const BottomSlider = () => {
+  // Get photos from server
   const { loading, data } = useQuery(GET_BOTTOM_HERO_PHOTOS);
 
   const dispatch = useDispatch();
 
+  // Generate slug and title for store page that links to each photo
   const slugHandler = (category, collection, title) => {
     dispatch(
       showDetails({ category: category, collection: collection, title: title })
     );
   };
 
+  // show loader before getting data from server
   if (loading) {
     return (
       <section className="styles.container">
@@ -56,10 +61,10 @@ const BottomSlider = () => {
       </section>
     );
   }
-  // console.log(data.bottomPhotos[0].mobilePhoto);
 
   return (
     <div>
+      {/* photo slider or carousel */}
       <Carousel
         responsive={responsive}
         arrows={false}
@@ -78,12 +83,13 @@ const BottomSlider = () => {
           <div key={photo.id}>
             <Link
               onClick={() => {
+                // generate slug and title for linked store page
                 slugHandler("Women", "view-all", "women");
               }}
               to="/women/view-all"
               className={styles.innerContainer}
             >
-              {window.innerWidth < 800 ? (
+              {window.innerWidth < 800 ? ( // show photo for small screens
                 <img
                   src={photo.mobilePhoto.url}
                   alt="bottom Slider"
@@ -91,6 +97,7 @@ const BottomSlider = () => {
                   className={styles.photo}
                 />
               ) : (
+                // show photo for larger screens
                 <img
                   src={photo.laptopPhoto.url}
                   alt="bottom Slider"

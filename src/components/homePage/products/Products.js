@@ -8,7 +8,7 @@ import "react-multi-carousel/lib/styles.css";
 // Components
 import ProductCard from "../../shared/productCard/ProductCard";
 
-// API
+// APIs
 import { GET_CATEGORY_PRODUCTS } from "../../../graphql/queries";
 
 // Styles
@@ -17,11 +17,12 @@ import "./Products.css";
 // Functions
 import { slugMaker } from "../../../helpers/functions";
 
+// Loader
 import loader from "../../../assets/loading.svg";
 
+// responsive data for carousel
 const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 5,
   },
@@ -41,14 +42,14 @@ const responsive = {
 };
 
 const Products = ({ category, number }) => {
-  // console.log(category)
-
+  // Get data from server
   const { loading, data } = useQuery(GET_CATEGORY_PRODUCTS, {
     variables: {
       category: category,
     },
   });
 
+  // show loader before getting data from server
   if (loading) {
     return (
       <section className="styles.container">
@@ -57,12 +58,13 @@ const Products = ({ category, number }) => {
     );
   }
 
+  // split numbers of products that wants to show in carousel
   const categoryProducts = data.categories[0].products.slice(0, +number);
-  if (!loading) {
-    // console.log(categoryProducts);
-  }
+
+
   return (
     <div className="container">
+    {/* product carousel */}
       <Carousel arrows responsive={responsive} containerClass="innerContainer">
         {categoryProducts.map((product) => (
           <div key={product.id}>

@@ -13,7 +13,9 @@ const CreatedAccount = () => {
         <span className={styles.email}>'.......'</span>
       </p>
       <div className={styles.btnContainer}>
-        <a className={styles.continueBtn}>CONTINUE SHOPPING</a>
+        <a className={styles.continueBtn} href="/">
+          CONTINUE SHOPPING
+        </a>
       </div>
     </div>
   );

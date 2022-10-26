@@ -1,31 +1,37 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useQuery } from "@apollo/client";
+
+// Redux actions
 import { showDetails } from "../../../redux/productsPage/productsPageSlice";
 
-// Assets
-// import cat1 from "../../../assets/cta1-v3-allago.jpg";
-// import cat2 from "../../../assets/cta3-v3-allago.jpg";
-// import cat3 from "../../../assets/cta-bot3-v3-tonal-active.jpeg";
-
+// APIs
 import { GET_EXPLORE_DATA } from "../../../graphql/queries";
+
+// Loader
 import loader from "../../../assets/loading.svg";
 
 // Styles
 import styles from "./Explore.module.css";
-import { useQuery } from "@apollo/client";
+
+// Functions
 import { slugMaker } from "../../../helpers/functions";
 
 const Explore = () => {
+  // Get data from server
   const { loading, data } = useQuery(GET_EXPLORE_DATA);
+
   const dispatch = useDispatch();
 
+  // Generate slug and title for linked store page
   const slugHandler = (category, collection, title) => {
     dispatch(
       showDetails({ category: category, collection: collection, title: title })
     );
   };
 
+  // Show loader before getting data from server
   if (loading) {
     return (
       <section className="styles.container">
@@ -34,9 +40,13 @@ const Explore = () => {
     );
   }
 
+  // store landscape explore photo
   let wideExplore;
+
+  // store portrait explore photo
   let normalExplore = [];
 
+  // seperate landscape and portrait explore photo
   data.explores.map((explore) => {
     if (explore.wide) {
       wideExplore = explore;
@@ -54,6 +64,7 @@ const Explore = () => {
             <Link
               key={explore.title}
               onClick={() =>
+                // Generate slug and title for linked store page
                 slugHandler(
                   slugMaker(explore.category.name),
                   slugMaker(explore.collection.name),
@@ -70,29 +81,10 @@ const Explore = () => {
               </div>
             </Link>
           ))}
-          {/* <Link
-            onClick={() => slugHandler("women", "prints", "prints")}
-            to="/women/prints"
-          >
-            <div className={styles.firstRowCat}>
-              <img src={cat1} alt="shop prints" />
-              <p>SHOP PRINTS</p>
-            </div>
-          </Link>
-          <Link
-            onClick={() =>
-              slugHandler("women", "shop-beach-wear", "shop beachwear")
-            }
-            to="/women/shop-beach-wear"
-          >
-            <div className={styles.firstRowCat}>
-              <img src={cat2} alt="shop beachwearas" />
-              <p>SHOP BEACHWEAR</p>
-            </div>
-          </Link> */}
         </div>
         <Link
           onClick={() =>
+            // Generate slug and title for linked store page
             slugHandler(
               slugMaker(wideExplore.category.name),
               slugMaker(wideExplore.collection.name),

@@ -1,62 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { showDetails } from "../../../redux/productsPage/productsPageSlice";
 import { useDispatch } from "react-redux";
+import { useQuery } from "@apollo/client";
+
+// Redux actions
+import { showDetails } from "../../../redux/productsPage/productsPageSlice";
 
 // Styles
 import styles from "./Catalog.module.css";
 
-// Catalog Images
-// import catalog4 from "../../../assets/cta4-v3-allago.jpg";
-// import catalog3 from "../../../assets/cta-bot2-v3-allago-new-copy.jpeg";
-// import catalog2 from "../../../assets/cta1-v3-al-lagow4.jpeg";
-// import catalog1 from "../../../assets/cta2-v3-allago.jpeg";
-
+// APIs
 import { GET_CATALOGS_PHOTOS } from "../../../graphql/queries";
 
 import loader from "../../../assets/loading.svg";
 
 // Functions
 import { slugMaker } from "../../../helpers/functions";
-import { useQuery } from "@apollo/client";
-
-// const catalogs = [
-//   {
-//     url: catalog1,
-//     title: "SHOP WHATS NEW",
-//     category: "whats-new",
-//     collection: "new-arrivals",
-//   },
-//   {
-//     url: catalog2,
-//     title: "SHOP WOMEN",
-//     category: "women",
-//     collection: "view all",
-//   },
-//   {
-//     url: catalog3,
-//     title: "SHOP PRINTS",
-//     category: "women",
-//     collection: "prints",
-//   },
-//   {
-//     url: catalog4,
-//     title: "SHOP ATHLETIC",
-//     category: "athletic",
-//     collection: "view all",
-//   },
-// ];
 
 const Catalog = () => {
+  // get photos from server
   const { loading, data } = useQuery(GET_CATALOGS_PHOTOS);
+
   const dispatch = useDispatch();
 
+  // generate slug and title for linked store page
   const slugHandler = (category, collection, title) => {
     dispatch(
       showDetails({ category: category, collection: collection, title: title })
     );
   };
 
+  // show loader before getting data from server
   if (loading) {
     return (
       <section className="styles.container">
@@ -65,15 +39,12 @@ const Catalog = () => {
     );
   }
 
-  console.log(data);
-  console.log(loading);
-  console.log(data.catalogs[1].category.name);
-
   return (
     <div className={styles.container}>
       {data.catalogs.map((catalog, index) => (
         <Link
           onClick={() => {
+            // generate slug and title forn linked store page
             slugHandler(
               slugMaker(catalog.category.name),
               slugMaker(catalog.collection.name),
