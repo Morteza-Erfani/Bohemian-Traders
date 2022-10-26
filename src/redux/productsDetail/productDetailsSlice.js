@@ -4,6 +4,7 @@ const initialState = {
   category: "",
   collection: "",
   id: "",
+  slug: "",
 };
 
 export const productDetailsSlice = createSlice({
@@ -14,6 +15,7 @@ export const productDetailsSlice = createSlice({
       state.category = action.payload.category;
       state.collection = action.payload.collection;
       state.id = action.payload.id;
+      state.slug = action.payload.slug;
     },
   },
 });

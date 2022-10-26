@@ -98,6 +98,7 @@ const ProductCard = ({
                 category: category,
                 collection: collection,
                 id: id,
+                slug: slug,
               })
             );
           }}

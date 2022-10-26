@@ -24,6 +24,7 @@ import gPay from "../../assets/dark_gpay.svg";
 
 // Modals
 import ChangeSizeModal from "./changeSizeModal/ChangeSizeModal";
+import { setProductInfo } from "../../redux/productsDetail/productDetailsSlice";
 
 const Cart = () => {
   // Get data from redux store
@@ -94,19 +95,17 @@ const Cart = () => {
               <div className={styles.titleContainer}>
                 <p className={styles.brandName}>Boheamian Traders</p>
                 <Link
-                  to={"/"}
-                  // Set link to product page
-                  //
-                  // to={`/product/${slug}`}
-                  // onClick={() => {
-                  //   dispatch(
-                  //     setProductInfo({
-                  //       category: category,
-                  //       collection: collection,
-                  //       id: id,
-                  //     })
-                  //   );
-                  // }}
+                  to={`/product/${product.slug}`}
+                  onClick={() => {
+                    dispatch(
+                      setProductInfo({
+                        category: product.category,
+                        collection: product.collection,
+                        id: product.id,
+                        slug: product.slug
+                      })
+                    );
+                  }}
                 >
                   {product.name}
                 </Link>

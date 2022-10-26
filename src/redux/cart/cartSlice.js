@@ -39,6 +39,9 @@ export const cartSlice = createSlice({
             name: action.payload.name,
             photo: action.payload.photo,
             allSize: action.payload.allSize,
+            slug: action.payload.slug,
+            category: action.payload.category,
+            collection: action.payload.collection,
           });
           state.totalCount += 1;
           state.totalPrice += action.payload.price;
@@ -52,6 +55,9 @@ export const cartSlice = createSlice({
           name: action.payload.name,
           photo: action.payload.photo,
           allSize: action.payload.allSize,
+          slug: action.payload.slug,
+          category: action.payload.category,
+          collection: action.payload.collection,
         });
         state.totalCount += 1;
         state.totalPrice += action.payload.price;
