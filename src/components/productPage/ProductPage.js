@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, selectSize } from "../../redux/cart/cartSlice";
 import { Link, useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+
+// Redux actions
 import { showDetails } from "../../redux/productsPage/productsPageSlice";
-import AddToCardModal from "./addToCardModal/AddToCardModal";
+import { addToCart, selectSize } from "../../redux/cart/cartSlice";
 
 // Functions
 import { capital, slugMaker, slugToNormal } from "../../helpers/functions";
@@ -16,49 +18,25 @@ import loader from "../../assets/loading.svg";
 
 // Components
 import Products from "../homePage/products/Products";
+import AddToCardModal from "./addToCardModal/AddToCardModal";
 
 // Carousel
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 // Assets
-import pic1 from "../../assets/product/SS22-ACT12-BLACK_01__01552.jpg";
-import pic2 from "../../assets/product/SS22-ACT12-BLACK_02__22867.jpg";
-import pic3 from "../../assets/product/SS22-ACT12-BLACK_03__03773.jpg";
-import pic4 from "../../assets/product/SS22-ACT12-BLACK_04__82678.jpg";
-import pic5 from "../../assets/product/ETCH-SIZING-TEMPLATE_02__42182.jpg";
-import pic6 from "../../assets/product/SS22-ACT12-BLACK_05__62288.jpg";
 import klarna from "../../assets/klarna.svg";
 import star from "../../assets/star.svg";
 import arrowDown from "../../assets/down-chevron-svgrepo-com.svg";
 import creditCard from "../../assets/credit-card-svgrepo-com.svg";
 import shipping from "../../assets/shipping-svgrepo-com.svg";
-import sizePic from "../../assets/bt-ss22-act06-01.jpg";
-import { useQuery } from "@apollo/client";
+
+// APIs
 import { GET_PRODUCT_DETAILS } from "../../graphql/queries";
 
-const productData = {
-  // photos: [pic1, pic2, pic3, pic4, pic5, pic6],
-  // name: "swing jacket in black",
-  // prices: 117.83,
-  // id: 1,
-  // sizes: ["xxs", "xs", "s", "l", "xl", "2xl", "3xl", "4xl"],
-  // category: "women",
-  // collection: "prints",
-  // sizeType: "x-top",
-  // productDetails:
-  //   "A swing jacket designed for the everyday with micro mesh on the back yoke for breathability and flexible wear. A scooping back hem covered the bottom for a flattering fit and A-line silhouette means it skims the body. Pair yours with the sports bra and new 7/8th legging for the complete look.",
-  // productFeatures:
-  //   "- Walking jacket with A-line silhouette and swing back\n\n- Micro mesh on the back yoke\n\n- Zipper at center front closure\n\n- Side front zipper phone pockets\n\n- Low to Medium Impact Activities\n\n- Bohemian Traders Embroidered Logo\n\n- Fits true to size\n\n- 75% polyester / 25% spandex\n\n- Mid weight, stretchy fabric\n\n- Gentle hand wash in cold waterul",
-  // sizeGuide: {
-  //   url: sizePic,
-  // },
-  // code: "BT-SS22-ACT12 BLACK",
-};
-
 const responsive = {
+  // responsive info for carousel
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 2,
   },
@@ -80,32 +58,32 @@ const responsive = {
 const ProductPage = () => {
   const dispatch = useDispatch();
   const selectedSize = useSelector((state) => state.cart.selectedSize);
-  const cart = useSelector((state) => state.cart.cart);
-  const [wishList, setWishList] = useState(false);
-  const [infoShow, setInfoShow] = useState("details");
-  const [showModal, setShowModal] = useState(false);
   const category = useSelector((state) => state.productDetails.category);
   const collection = useSelector((state) => state.productDetails.collection);
   const slug = useSelector((state) => state.productDetails.slug);
   const id = useSelector((state) => state.productDetails.id);
-
+  // set show and hide for wish list
+  const [wishList, setWishList] = useState(false);
+  // Set which info section to show
+  const [infoShow, setInfoShow] = useState("details");
+  // Set show and hide for modal
+  const [showModal, setShowModal] = useState(false);
+  // Get data from server
   const { data, loading } = useQuery(GET_PRODUCT_DETAILS, {
     variables: {
       id: id,
     },
   });
-
-  console.log(category);
-  console.log(collection);
-  console.log(id);
-
+  // Get product name from slug and change remove hyphens
   const name = slugToNormal(useParams().id);
 
+  // Set page Title
   useEffect(() => {
     dispatch(selectSize({ size: "" }));
     document.title = `${capital(name)} | Bohemian Traders`;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  // Generate slug and title for linked store page
   const slugHandler = (category, collection, title) => {
     dispatch(
       showDetails({
@@ -115,7 +93,7 @@ const ProductPage = () => {
       })
     );
   };
-
+  // Show loader before getting data from server
   if (loading) {
     return (
       <section className="styles.container">
@@ -123,17 +101,15 @@ const ProductPage = () => {
       </section>
     );
   }
-
+  // define a variable for saving all possible size for product size type
   let allSizes = [];
-
-  // console.log(data.product.sizeGuide.name === "1");
-
+  // Set proper size types for product
   if (data.product.sizeGuide.name !== "1") {
     allSizes = ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"];
   } else {
     allSizes = ["0", "1", "2"];
   }
-
+  // check if product has a exact size return true else return false
   const sizeFound = (size) => {
     const isFound = data.product.sizes.some((element) => {
       if (element.name === size.toUpperCase()) {
@@ -144,7 +120,7 @@ const ProductPage = () => {
     });
     return isFound;
   };
-
+  // Set and remove selected size in/from store
   const sizeHandler = (size) => {
     if (sizeFound(size)) {
       selectedSize === size
@@ -152,7 +128,7 @@ const ProductPage = () => {
         : dispatch(selectSize({ size: size }));
     }
   };
-
+  // disable background scrolling when modal is shown
   if (showModal) {
     document.body.style.overflow = "hidden";
   } else {
@@ -161,8 +137,9 @@ const ProductPage = () => {
 
   return (
     <div className={styles.container}>
+      {/* User location in site */}
       <p className={styles.location}>
-        <Link to="/">HOME</Link> /{" "}
+        <Link to="/">HOME</Link> / {/* link to category */}
         <Link
           onClick={() => {
             slugHandler(slugMaker(category), "view-all", category);
@@ -172,6 +149,7 @@ const ProductPage = () => {
           {category.toUpperCase()}
         </Link>
         {" / "}
+        {/* Link to collection */}
         <Link
           onClick={() => {
             slugHandler(slugMaker(category), slugMaker(collection), collection);
@@ -183,6 +161,7 @@ const ProductPage = () => {
         {" / "} {name.toUpperCase()}
       </p>
       <div className={styles.upperSection}>
+        {/* product photos carousel */}
         <Carousel
           responsive={responsive}
           arrows={true}
@@ -208,11 +187,12 @@ const ProductPage = () => {
             <p className={styles.price}>$US {data.product.price}</p>
             <div className={styles.klarnaContainer}>
               <p>Or pay 4 interest-free payments with</p>
-              <a>
+              <a href="#">
                 <img src={klarna} alt="klarna" />
               </a>
             </div>
             <div className={styles.ratingContainer}>
+              {/* rating */}
               <div className={styles.starContainer}>
                 <img src={star} alt="star" />
                 <img src={star} alt="star" />
@@ -222,8 +202,12 @@ const ProductPage = () => {
               </div>
               <p>(NO REVIEWS YET)</p>
             </div>
-            <a className={styles.review}>WRITE A REVIEW</a>
+            {/* send review */}
+            <a href="#" className={styles.review}>
+              WRITE A REVIEW
+            </a>
             <p className={styles.sizeTitle}>SIZE:</p>
+            {/* all sizes */}
             <ul className={styles.sizeContainer}>
               {allSizes.map((size) => (
                 <li
@@ -239,6 +223,7 @@ const ProductPage = () => {
                 </li>
               ))}
             </ul>
+            {/* Add to cart */}
             <button
               className={styles.addToCart}
               onClick={() => {
@@ -261,6 +246,7 @@ const ProductPage = () => {
             >
               ADD TO CART
             </button>
+            {/* Wish list */}
             <div className={styles.wishListContainer}>
               <div
                 className={styles.wishListBtn}
@@ -291,20 +277,24 @@ const ProductPage = () => {
           </div>
         </section>
       </div>
+      {/* product info */}
       <ul className={styles.infoContainer}>
         <li className={`${infoShow === "details" ? styles.underLine : ""}`}>
           <div
             className={styles.infoHeaderContainer}
+            // show details section
             onClick={() =>
               infoShow === "details" ? setInfoShow("") : setInfoShow("details")
             }
           >
             <h4>PRODUCT DETAILS</h4>
+            {/* plus to minus animation for info section  */}
             <span
               className={`${infoShow === "details" ? "" : styles.rotate}`}
             ></span>
             <span></span>
           </div>
+          {/* details section */}
           <div
             className={`${styles.innerInfoContainer} ${
               infoShow === "details" && styles.showInfoData
@@ -314,9 +304,11 @@ const ProductPage = () => {
             <p>{data.product.code}</p>
           </div>
         </li>
+        {/* Product features */}
         <li className={`${infoShow === "features" ? styles.underLine : ""}`}>
           <div
             className={styles.infoHeaderContainer}
+            // Show features section
             onClick={() =>
               infoShow === "features"
                 ? setInfoShow("")
@@ -324,11 +316,13 @@ const ProductPage = () => {
             }
           >
             <h4>PRODUCT FEATURES</h4>
+            {/* plus to minus animation for info section  */}
             <span
               className={`${infoShow === "features" ? "" : styles.rotate}`}
             ></span>
             <span></span>
           </div>
+          {/* features section */}
           <div
             className={`${styles.innerInfoContainer} ${
               infoShow === "features" && styles.showInfoData
@@ -337,19 +331,23 @@ const ProductPage = () => {
             <pre>{data.product.productFeatures}</pre>
           </div>
         </li>
+        {/* product sizing */}
         <li className={`${infoShow === "sizing" ? styles.underLine : ""}`}>
           <div
             className={styles.infoHeaderContainer}
+            // Show sizing section
             onClick={() =>
               infoShow === "sizing" ? setInfoShow("") : setInfoShow("sizing")
             }
           >
             <h4>PRODUCT SIZING</h4>
+            {/* plus to minus animation for info section  */}
             <span
               className={`${infoShow === "sizing" ? "" : styles.rotate}`}
             ></span>
             <span></span>
           </div>
+          {/* sizing section */}
           <div
             className={`${styles.innerInfoContainer} ${
               infoShow === "sizing" && styles.showInfoData
@@ -367,7 +365,7 @@ const ProductPage = () => {
           </div>
         </li>
       </ul>
-
+      {/* details section for larger screens */}
       <div
         className={`${styles.mediumInfoContainer} ${
           infoShow === "details" && styles.showMedium
@@ -376,7 +374,7 @@ const ProductPage = () => {
         <p>{data.product.productDetails}</p>
         <p>{data.product.code}</p>
       </div>
-
+      {/* features section for larger screens */}
       <div
         className={`${styles.mediumInfoContainer} ${
           infoShow === "features" && styles.showMedium
@@ -384,7 +382,7 @@ const ProductPage = () => {
       >
         <pre>{data.product.productFeatures}</pre>
       </div>
-
+      {/* sizing section for larger screens */}
       <div
         className={`${styles.mediumInfoContainer} ${
           infoShow === "sizing" && styles.showMedium
@@ -400,13 +398,15 @@ const ProductPage = () => {
           Need help with your sizing? Click here.
         </Link>
       </div>
-
+      {/* product code */}
       <p className={styles.code}>
         <span>SKU: </span>
         {data.product.code}
       </p>
       <h1 className={styles.moreHeader}>MORE FROM THIS COLLECTION</h1>
-      <Products category="CAMPAIGN" number="6" />
+      {/* similar products carousel */}
+      <Products category={category} number="6" />
+      {/* Add to card modal */}
       <AddToCardModal
         onClose={() => setShowModal(false)}
         show={showModal}
