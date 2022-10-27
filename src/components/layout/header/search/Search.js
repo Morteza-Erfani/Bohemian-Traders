@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
 
 // Styles
 import styles from "./Search.module.css";
@@ -11,16 +12,18 @@ import Store from "../../../store/Store";
 
 // APIs
 import { GET_ALL_PRODUCTS } from "../../../../graphql/queries";
-import { useQuery } from "@apollo/client";
 
 // Loader
 import loader from "../../../../assets/loading.svg";
 
 const Search = ({ show, onClose }) => {
+  // Set search text
   const [searchText, setSearchText] = useState("");
 
+  // Get data from server
   const { loading, data } = useQuery(GET_ALL_PRODUCTS);
 
+  // set search default to empty
   useEffect(() => {
     setSearchText("");
   }, []);
@@ -34,10 +37,12 @@ const Search = ({ show, onClose }) => {
     );
   }
 
+  // filter data that includes searched text
   const searchedProducts = data.products.filter((product) =>
     product.name.toLowerCase().includes(searchText.toLowerCase())
   );
 
+  // hide modal when its deactive
   if (!show) {
     return null;
   }
@@ -48,6 +53,7 @@ const Search = ({ show, onClose }) => {
       onClick={onClose}
     >
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+        {/* seacrh box */}
         <div
           className={`${styles.searchBox} ${
             searchText && styles.searchBoxFull
@@ -63,6 +69,7 @@ const Search = ({ show, onClose }) => {
           <img src={searchIcon} alt="search" />
           <p onClick={onClose}>×</p>
         </div>
+        {/* search result section */}
         <div
           className={`${styles.searchResult} ${
             searchText && styles.searchResultFull

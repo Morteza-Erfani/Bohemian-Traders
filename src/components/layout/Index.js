@@ -1,7 +1,8 @@
 import React from "react";
+
+// Components
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
-// import SupportEngine from "../SupportChat/SupportEngine";
 
 // Styles
 import styles from "./Index.module.css";
@@ -14,11 +15,11 @@ const Layout = ({ children }) => {
     <div className={styles.layoutContainer}>
       <Header />
       {children}
+      {/* fixed chat icon */}
       <div className={styles.chatIcon}>
         <img src={chatIcon} alt="chat" />
       </div>
       <Footer />
-      {/* <SupportEngine/> */}
     </div>
   );
 };
