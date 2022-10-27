@@ -45,6 +45,10 @@ div p.location {
   align-items: center;
 }
 
+.methods a {
+  cursor: pointer;
+}
+
 .methods div {
   width: 33%;
 }
@@ -74,6 +78,10 @@ div p.location {
 @media (min-width: 800px) {
   .container {
     padding-bottom: 150px;
+  }
+
+  .klarna {
+    padding: 0;
   }
 }
 

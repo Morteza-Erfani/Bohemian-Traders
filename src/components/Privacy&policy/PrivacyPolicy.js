@@ -5,12 +5,15 @@ import { Link } from "react-router-dom";
 import styles from "./PrivacyPolicy.module.css";
 
 const PrivacyPolicy = () => {
+
+  // Set page Title
   useEffect(() => {
     document.title = "Terms & Privacy Policy";
   }, []);
 
   return (
     <div className={styles.container}>
+    {/* user location in site */}
       <p className={styles.location}>
         <Link to="/">HOME</Link> / TERMS & PRIVACY POLICY
       </p>
