@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+// Redux actions
+import { restoreCart } from "../../../redux/cart/cartSlice";
 
 // Logo
 import logo from "../../../assets/logo.gif";
@@ -15,34 +19,35 @@ import Search from "./search/Search";
 
 // Styles
 import styles from "./Header.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { restoreCart } from "../../../redux/cart/cartSlice";
 
 const Header = () => {
+  // set show and hide for humberger menu
   const [humShow, setHumShow] = useState(false);
+
   const count = useSelector((state) => state.cart.totalCount);
 
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.cart);
 
+  // set show and hide for search modal
   const [showSearch, setShowSearch] = useState(false);
 
-  // useEffect(() => {
-  //   dispatch(
-  //     restoreCart({
-  //       prevCart: JSON.parse(localStorage.getItem("cart")),
-  //       totalPrice: JSON.parse(localStorage.getItem("totaPrice")),
-  //       totalCount: JSON.parse(localStorage.getItem("totaCount")),
-  //     })
-  //   );
-  //   console.log(JSON.parse(localStorage.getItem("cart")));
-  //   console.log(cart);
-  // }, []);
+  // get previous cart data from local storage
+  useEffect(() => {
+    dispatch(
+      restoreCart({
+        prevCart: JSON.parse(localStorage.getItem("cart")),
+        totalPrice: JSON.parse(localStorage.getItem("totaPrice")),
+        totalCount: JSON.parse(localStorage.getItem("totaCount")),
+      })
+    );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
+  // disable scrolling when search modal is activated
   if (showSearch) {
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflow = "hidden";
   } else {
-    document.body.style.overflow = 'scroll'
+    document.body.style.overflow = "scroll";
   }
 
   return (
@@ -69,12 +74,14 @@ const Header = () => {
             ></div>
           </div>
 
+          {/* humberger menu for small screens */}
           {humShow && (
             <div className={styles.humMenu}>
               <HumMenu onClose={() => setHumShow(false)} />
             </div>
           )}
         </div>
+        {/* navbar for larger screens */}
         <div className={styles.navContainer}>
           <HumMenu onClose={() => null} />
         </div>
@@ -86,14 +93,12 @@ const Header = () => {
         </div>
         {/* header buttons */}
         <div className={styles.mobileRight}>
-          <a>
-            <img
-              className={styles.button}
-              src={searchIcon}
-              alt="search"
-              onClick={() => setShowSearch(true)}
-            />
-          </a>
+          <img
+            className={styles.button}
+            src={searchIcon}
+            alt="search"
+            onClick={() => setShowSearch(true)}
+          />
           <Link to="./signin">
             <img className={styles.button} src={profileIcon} alt="sign in" />
           </Link>
@@ -102,6 +107,7 @@ const Header = () => {
             {count > 0 && <span className={styles.cartNumber}>{count}</span>}
           </Link>
         </div>
+        {/* search modal */}
         <Search show={showSearch} onClose={() => setShowSearch(false)} />
       </div>
     </header>
