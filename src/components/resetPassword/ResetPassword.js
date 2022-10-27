@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 // Styles
 import styles from "./ResetPassword.module.css";
@@ -8,18 +9,19 @@ import { validateEmail } from "../../helpers/functions";
 
 // Assets
 import redCross from "../../assets/redCross.svg";
-import { Link } from "react-router-dom";
 
 const ResetPassword = () => {
+  // Set email validation
   const [isValid, setIsValid] = useState(true);
+  // Set email
   const [email, setEmail] = useState("");
-
+  // Set page Title
   useEffect(() => {
     document.title = "Bohemian Traders - Forget Password";
   }, []);
-
+  // Check if value is not empty return valid class name
   const isEmpty = (value) => (value !== "" ? styles.green : "");
-
+  // Send data to server
   const clickHandler = (event) => {
     if (email && isValid) {
       // codes to send data to backend
@@ -30,6 +32,7 @@ const ResetPassword = () => {
 
   return (
     <div className={styles.container}>
+    {/* User location in site */}
       <p className={styles.location}>
         <Link to="/">HOME</Link> / FORGET PASSWORD
       </p>
@@ -49,11 +52,12 @@ const ResetPassword = () => {
             onChange={(e) => {
               setEmail(e.target.value);
               setIsValid(validateEmail(email));
-              // console.log(email);
             }}
+            // validate email
             onBlur={() => setIsValid(validateEmail(email))}
             className={isValid ? isEmpty(email) : styles.invalid}
           />
+          {/* invalid email error */}
           <p className={isValid ? "" : styles.show}>
             <img src={redCross} alt="cross" />
             Please use a valid email address, such as user@example.com.
