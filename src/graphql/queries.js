@@ -185,6 +185,33 @@ const GET_EXPLORE_DATA = gql`
   }
 `;
 
+const GET_ALL_PRODUCTS = gql`
+  query {
+    products {
+      id
+      name
+      price
+      productImage {
+        url
+      }
+      modelImage {
+        url
+      }
+      sideImage {
+        url
+      }
+      sizeGuide {
+        name
+      }
+      sizes {
+        ... on Size {
+          name
+        }
+      }
+    }
+  }
+`;
+
 export {
   GET_CATEGORIES_NAME,
   GET_HERO_PHOTOS,
@@ -195,4 +222,5 @@ export {
   GET_QUICK_VIEW_PRODUCT,
   GET_STORE_PRODUCTS,
   GET_PRODUCT_DETAILS,
+  GET_ALL_PRODUCTS,
 };

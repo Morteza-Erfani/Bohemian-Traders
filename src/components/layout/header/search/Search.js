@@ -58,6 +58,7 @@ const Search = ({ show, onClose }) => {
             placeholder="SEARCH"
             inputMode="text"
             onChange={(e) => setSearchText(e.target.value)}
+            autoFocus
           />
           <img src={searchIcon} alt="search" />
           <p onClick={onClose}>×</p>

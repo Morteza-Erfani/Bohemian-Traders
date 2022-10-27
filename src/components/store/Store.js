@@ -76,7 +76,16 @@ const Store = ({ collection, category, searchProducts }) => {
     );
   }
 
-  const products = data.products;
+  let products;
+  if (searchProducts === undefined) {
+    products = data.products;
+  } else if (searchProducts.length === 0) {
+    return null
+  } else {
+    products = searchProducts;
+  }
+
+  console.log(searchProducts === undefined);
 
   console.log(category.toUpperCase());
   console.log(collection.toUpperCase());
