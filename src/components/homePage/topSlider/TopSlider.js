@@ -19,6 +19,9 @@ import "react-multi-carousel/lib/styles.css";
 // Redux actions
 import { showDetails } from "../../../redux/productsPage/productsPageSlice";
 
+// Functions
+import { slugMaker } from "../../../helpers/functions";
+
 // responsive data for carousel
 const responsive = {
   superLargeDesktop: {
@@ -84,9 +87,13 @@ const TopSlider = () => {
             <Link
               // generate slug and title for linked store page
               onClick={() =>
-                slugHandler("whats-new", "new-arrivals", "new arrivals")
+                slugHandler(
+                  slugMaker("WHAT'S NEW"),
+                  slugMaker("NEW ARRIVALS"),
+                  "new arrivals"
+                )
               }
-              to="/whats-new/new-arrivals"
+              to="/what's-new/new-arrivals"
             >
               {window.innerWidth < 800 ? ( // show photo for small screens
                 <img
