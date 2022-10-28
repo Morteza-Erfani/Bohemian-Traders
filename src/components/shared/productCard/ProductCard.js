@@ -10,8 +10,11 @@ import { capital } from "../../../helpers/functions";
 
 // Components
 import QuickViewModal from "./quickViewModal/QuickViewModal";
+
+// Redux actions
 import { setProductInfo } from "../../../redux/productsDetail/productDetailsSlice";
 
+// All products sizes
 const allSizes = {
   x: ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
   1: ["0", "1", "2"],
@@ -25,6 +28,7 @@ const ProductCard = ({
   category,
   collection,
 }) => {
+  // Destructure product data from 'data'
   const {
     productImage,
     modelImage,
@@ -37,33 +41,29 @@ const ProductCard = ({
   } = data;
 
   const view = useSelector((state) => state.productsPage.view);
+  // Set product image
   const [image, setImage] = useState(productImage.url);
 
   const dispatch = useDispatch();
-
+  // Set show or hide for modal
   const [showQuickView, setShowQuickView] = useState(false);
 
-  // useEffect(() => {
-  //   sizes.map((size) => allSize.push(size));
-  // }, []);
-
+  // Set 'product view' as defult view type
   useEffect(() => {
     view === "product" ? setImage(productImage.url) : setImage(modelImage.url);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [view]);
-
-  // console.log(view);
-
+  // Change product image
   const changeImage = (image) => {
     setImage(image.url);
   };
-
+  // Disable background scrolling when modal is shown
   if (showQuickView) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "scroll";
   }
-
+  // Check if a product have a size return 'true' else return 'false'
   const sizeFound = (size) => {
     const isFound = sizes.some((element) => {
       if (element.name === size.toUpperCase()) {
@@ -79,11 +79,13 @@ const ProductCard = ({
     <div className={styles.container}>
       <div
         className={styles.imageContainer}
+        // Change product image
         onMouseOver={
           view === "model"
             ? () => changeImage(sideImage)
             : () => changeImage(modelImage)
         }
+        // Change product image
         onMouseLeave={
           view === "model"
             ? () => changeImage(modelImage)
@@ -93,6 +95,7 @@ const ProductCard = ({
         <Link
           to={`/product/${slug}`}
           onClick={() => {
+            // Set product data for show in product page
             dispatch(
               setProductInfo({
                 category: category,
@@ -106,24 +109,29 @@ const ProductCard = ({
           <img src={image} alt={name} className={styles.image} />
         </Link>
         {quickView && (
+          // Show quick view button and show modal on click
           <p className={styles.button} onClick={() => setShowQuickView(true)}>
             QUICK VIEW
           </p>
         )}
+        {/* showing sizes on product image if quick view is 'true' */}
         {quickView && (
           <div
             className={styles.size}
             onMouseOver={
+              // Change product image
               view === "model"
                 ? () => changeImage(sideImage)
                 : () => changeImage(modelImage)
             }
             onMouseLeave={
+              // Change product image
               view === "model"
                 ? () => changeImage(modelImage)
                 : () => changeImage(productImage)
             }
           >
+            {/* Check size type to show proper sizes */}
             {sizeGuide.name === "x-top" ||
             sizeGuide.name === "x-bottom" ||
             sizeGuide.name === "x-skirt"
@@ -153,6 +161,7 @@ const ProductCard = ({
         )}
       </div>
       <div className={styles.detail}>
+        {/* Set product data for product page */}
         <Link
           to={`/product/${slug}`}
           onClick={() => {
@@ -172,6 +181,7 @@ const ProductCard = ({
         <h2 className={styles.brand}>BOHEMIAN TRADERS</h2>
         <p className={styles.price}>$ {price}</p>
       </div>
+      {/* Modal */}
       <QuickViewModal
         onClose={() => setShowQuickView(false)}
         show={showQuickView}
