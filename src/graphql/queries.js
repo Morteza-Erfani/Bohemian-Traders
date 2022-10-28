@@ -51,6 +51,16 @@ const GET_QUICK_VIEW_PRODUCT = gql`
 
 const GET_STORE_PRODUCTS = gql`
   query storeProducts($category: String!, $collection: String!) {
+    categories(where: { name: $category }) {
+      header {
+        url
+      }
+    }
+    collections(where: { name: $collection }) {
+      header {
+        url
+      }
+    }
     products(
       where: {
         categories_some: { name: $category }

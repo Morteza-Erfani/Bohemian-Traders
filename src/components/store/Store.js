@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+
+// Redux actions
 import {
   setProducts,
   showDetails,
   viewType,
 } from "../../redux/productsPage/productsPageSlice";
-import { Link } from "react-router-dom";
 
 // Styles
 import styles from "./Store.module.css";
 
 // Assets
-import header from "../../assets/athleticblue__01897.original.jpg";
 import leftArrow from "../../assets/chevron-left.svg";
 import rightArrow from "../../assets/chevron-right.svg";
 
@@ -19,31 +21,16 @@ import rightArrow from "../../assets/chevron-right.svg";
 import FilterSort from "./filterSort/FilterSort";
 import ProductCard from "../shared/productCard/ProductCard";
 
-// Product
-import pImage from "../../assets/product/ETCH-SIZING-TEMPLATE_02__42182.jpg";
-import mImage from "../../assets/product/SS22-ACT12-BLACK_01__01552.jpg";
-import sImage from "../../assets/product/SS22-ACT12-BLACK_02__22867.jpg";
-
 // Functions
 import { slugMaker, slugToNormal } from "../../helpers/functions";
-import { useQuery } from "@apollo/client";
+
+// APIs
 import { GET_STORE_PRODUCTS } from "../../graphql/queries";
 
+// Loader
 import loader from "../../assets/loading.svg";
 
-const hi = [{ name: "x" }, { name: "s" }];
-const isFound = hi.some((element) => {
-  if (element.name === "x") {
-    return true;
-  } else {
-    return false;
-  }
-});
-
-console.log(isFound);
-
 const Store = ({ collection, category, searchProducts }) => {
-  const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
   const view = useSelector((state) => state.productsPage.view);
   const title = useSelector((state) => state.productsPage.title);
@@ -52,13 +39,18 @@ const Store = ({ collection, category, searchProducts }) => {
     (state) => state.productsPage.filteredProducts
   );
 
+  // Set page number
+  const [pageNumber, setPageNumber] = useState(1);
+
+  // Get data from server
   const { data, loading } = useQuery(GET_STORE_PRODUCTS, {
     variables: {
-      category: category.toUpperCase(),
-      collection: collection.toUpperCase(),
+      category: slugToNormal(category.toUpperCase()),
+      collection: slugToNormal(collection.toUpperCase()),
     },
   });
 
+  // Set default view type to 'product' and set page title
   useEffect(() => {
     dispatch(viewType({ view: "product" }));
     // dispatch(setProducts({ products: products }));
@@ -67,7 +59,7 @@ const Store = ({ collection, category, searchProducts }) => {
     )} - page ${pageNumber} - Bohemian Traders`;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  // Show loader before getting data from server
   if (loading) {
     return (
       <section className="styles.container">
@@ -75,50 +67,47 @@ const Store = ({ collection, category, searchProducts }) => {
       </section>
     );
   }
-
+  // define a variable for products to show in page
   let products;
+  // if store is shown in modal its set product to searched products
   if (searchProducts === undefined) {
     products = data.products;
   } else if (searchProducts.length === 0) {
-    return null
+    return null;
   } else {
     products = searchProducts;
   }
-
-  console.log(searchProducts === undefined);
-
-  console.log(category.toUpperCase());
-  console.log(collection.toUpperCase());
-  console.log(data.products);
-
+  // Set product to show in page
   dispatch(setProducts({ products: products }));
-
+  // define a variable for number of pages
   let pages;
   if (filteredProducts.length === 0) {
     pages = Math.ceil(products.length / 10);
   } else {
     pages = Math.ceil(filteredProducts.length / 10);
   }
-
+  // define an array for page numbers
   const numbers = [];
-
+  // define an array forn products that show in each page
   const productsInPage = [];
-
+  // Split product for 10 products in each page
   for (let i = 1; i <= pages; i++) {
-    const startI = (i - 1) * 10;
-    const endI = i * 10;
+    const startIndex = (i - 1) * 10; // find index of first product in page
+    const endIndex = i * 10; // find index of last product in page
+    // check which products to show between 'all product' and 'searched products' and 'filtered products'
     if (filteredProducts.length === 0) {
       if (!searchProducts) {
-        productsInPage.push(allProducts.slice(startI, endI));
+        productsInPage.push(allProducts.slice(startIndex, endIndex));
       } else {
-        productsInPage.push(searchProducts.slice(startI, endI));
+        productsInPage.push(searchProducts.slice(startIndex, endIndex));
       }
     } else {
-      productsInPage.push(filteredProducts.slice(startI, endI));
+      productsInPage.push(filteredProducts.slice(startIndex, endIndex));
     }
+    // add page number to page numbers array
     numbers.push(i);
   }
-
+  // Generate slug and title for linked product page
   const slugHandler = (category, collection, title) => {
     dispatch(
       showDetails({
@@ -128,18 +117,19 @@ const Store = ({ collection, category, searchProducts }) => {
       })
     );
   };
-  // console.log(productsInPage);
-  // console.log(numbers);
+  console.log(data);
 
   return (
     <div className={styles.container}>
-      <p className={styles.location}>
+      {/* User location in site */}
+      <p className={styles.location} id="top">
         <Link to="/">HOME</Link> /{" "}
         {collection === "view-all" ? (
           category.toUpperCase()
         ) : (
           <Link
             onClick={() => {
+              // link to category
               slugHandler(slugMaker(category), "view-all", category);
             }}
             to={`/${slugMaker(category)}/view-all`}
@@ -147,21 +137,39 @@ const Store = ({ collection, category, searchProducts }) => {
             {category.toUpperCase()}
           </Link>
         )}
+        {/* link to collection */}
         {collection !== "view-all" &&
           ` / ${slugToNormal(collection).toUpperCase()}`}
       </p>
-      {header && <img className={styles.headPhoto} src={header} alt="header" />}
+      {data.collections[0].header !== null ? ( // If collection has header
+        <img
+          className={styles.headPhoto}
+          src={data.collections[0].header.url}
+          alt="header"
+        />
+      ) : // If collections dosent have header
+      data.categories[0].header !== null ? ( // If category has header
+        <img
+          className={styles.headPhoto}
+          src={data.categories[0].header.url}
+          alt="header"
+        />
+      ) : // If category dosent have header
+      null}
       <div className={styles.headerContainer}>
         <h1 className={styles.header}>{slugToNormal(title)}</h1>
+        {/* show filter and sort section for small screens */}
         {window.innerWidth < 800 && <FilterSort />}
         <div className={styles.view}>
           <p
+            // Change view type to model
             onClick={() => dispatch(viewType({ view: "model" }))}
             className={view === "model" ? styles.underline : ""}
           >
             MODEL VIEW
           </p>
           <p
+            // Change view type to product
             onClick={() => dispatch(viewType({ view: "product" }))}
             className={view === "product" ? styles.underline : ""}
           >
@@ -170,9 +178,11 @@ const Store = ({ collection, category, searchProducts }) => {
         </div>
       </div>
       <div className={styles.contentContainer}>
+        {/* show filter and sort section for large screens */}
         {window.innerWidth >= 800 && <FilterSort />}
         <div className={styles.productPage}>
           <div className={styles.productsContainer}>
+            {/* shoe product card for each product */}
             {productsInPage[pageNumber - 1].map((product) => (
               <div key={product.id} className={styles.productContainer}>
                 <ProductCard
@@ -188,6 +198,7 @@ const Store = ({ collection, category, searchProducts }) => {
           </div>
           <div className={styles.pageNumbersContainer}>
             <a
+              // Scroll to top
               href="#top"
               className={styles.previous}
               onClick={() => {
@@ -200,6 +211,7 @@ const Store = ({ collection, category, searchProducts }) => {
             {numbers.map((number) => (
               <a
                 key={number}
+                // Scroll to top
                 href="#top"
                 className={`${styles.number} ${
                   pageNumber === number && styles.active
@@ -212,6 +224,7 @@ const Store = ({ collection, category, searchProducts }) => {
               </a>
             ))}
             <a
+              // Scroll to top
               href="#top"
               className={styles.next}
               onClick={() => {
