@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   category: "",
   collection: "",
+  test: undefined,
   title: "",
   products: [],
   filteredProducts: [],
@@ -67,22 +68,48 @@ export const productsPageSlice = createSlice({
       state.view = action.payload.view;
     },
     runSizeFilter: (state) => {
-      state.filteredProducts = [];
-      if (state.filters.sizes.length !== 0) {
-        let filterIndex = new Set();
-        state.filters.sizes.map((filterSize) => {
-          for (const [index, product] of state.products.entries()) {
-            product.sizes.map((size) => {
-              if (filterSize === size) {
-                filterIndex.add(index);
-              }
-            });
-          }
-        });
-        filterIndex.forEach((index) => {
-          state.filteredProducts.push(state.products[index]);
+      const sizeFiltered = [];
+      if (state.filteredProducts.length === 0) {
+        if (state.filters.sizes.length !== 0) {
+          let filterIndex = new Set();
+          state.filters.sizes.map((filterSize) => {
+            for (let [index, product] of state.products.entries()) {
+              product.sizes.map((size) => {
+                if (filterSize.toUpperCase() === size.name) {
+                  filterIndex.add(index);
+                }
+              });
+            }
+          });
+          filterIndex.forEach((index) => {
+            state.filteredProducts.push(state.products[index]);
+            filteredProductsBeforeSort = state.filteredProducts;
+          });
+        } else {
+          state.filteredProducts = [];
+          filteredProductsBeforeSort = state.products;
+        }
+      } else {
+        if (state.filters.sizes.length !== 0) {
+          let filterIndex = new Set();
+          state.filters.sizes.map((filterSize) => {
+            for (let [index, product] of state.filteredProducts.entries()) {
+              product.sizes.map((size) => {
+                if (filterSize.toUpperCase() === size.name) {
+                  filterIndex.add(index);
+                }
+              });
+            }
+          });
+          filterIndex.forEach((index) => {
+            sizeFiltered.push(state.filteredProducts[index]);
+          });
+          state.filteredProducts = sizeFiltered;
           filteredProductsBeforeSort = state.filteredProducts;
-        });
+        } else {
+          state.filteredProducts = [];
+          filteredProductsBeforeSort = state.products;
+        }
       }
     },
     runPriceFilter: (state) => {
@@ -90,8 +117,8 @@ export const productsPageSlice = createSlice({
       if (state.filteredProducts.length === 0) {
         state.products.map((product) => {
           if (
-            product.prices > state.filters.price.min &&
-            product.prices < state.filters.price.max
+            product.price > state.filters.price.min &&
+            product.price < state.filters.price.max
           ) {
             state.filteredProducts.push(product);
           }
@@ -100,8 +127,8 @@ export const productsPageSlice = createSlice({
       } else {
         state.filteredProducts.map((product) => {
           if (
-            product.prices > state.filters.price.min &&
-            product.prices < state.filters.price.max
+            product.price > state.filters.price.min &&
+            product.price < state.filters.price.max
           ) {
             priceFiltered.push(product);
           }
@@ -116,11 +143,21 @@ export const productsPageSlice = createSlice({
         state.filteredProducts = filteredProductsBeforeSort;
       } else {
         if (state.sortOption === "PRICE: ASCENDING") {
-          state.products.sort((a, b) => a.prices - b.prices);
-          state.filteredProducts.sort((a, b) => a.prices - b.prices);
+          if (state.filteredProducts.length === 0) {
+            state.filteredProducts = state.products.sort(
+              (a, b) => a.price - b.price
+            );
+          } else {
+            state.filteredProducts.sort((a, b) => a.price - b.price);
+          }
         } else if (state.sortOption === "PRICE: DESCENDING") {
-          state.products.sort((a, b) => b.prices - a.prices);
-          state.filteredProducts.sort((a, b) => b.prices - a.prices);
+          if (state.filteredProducts.length === 0) {
+            state.filteredProducts = state.products.sort(
+              (a, b) => b.price - a.price
+            );
+          } else {
+            state.filteredProducts.sort((a, b) => b.price - a.price);
+          }
         }
       }
     },

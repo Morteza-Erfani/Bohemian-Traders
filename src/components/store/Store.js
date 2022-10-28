@@ -53,7 +53,6 @@ const Store = ({ collection, category, searchProducts }) => {
   // Set default view type to 'product' and set page title
   useEffect(() => {
     dispatch(viewType({ view: "product" }));
-    // dispatch(setProducts({ products: products }));
     document.title = `${slugToNormal(category)} - ${slugToNormal(
       collection
     )} - page ${pageNumber} - Bohemian Traders`;
@@ -67,18 +66,22 @@ const Store = ({ collection, category, searchProducts }) => {
       </section>
     );
   }
+  // Set products to redux store
+  dispatch(setProducts({ products: data.products }));
   // define a variable for products to show in page
   let products;
-  // if store is shown in modal its set product to searched products
-  if (searchProducts === undefined) {
-    products = data.products;
-  } else if (searchProducts.length === 0) {
-    return null;
+  // Check which porudct must be shown in store => all products or filter and sort products or searched products
+  if (filteredProducts.length > 0) {
+    products = filteredProducts; // If filter or sort products
+  } else if (searchProducts !== undefined) {
+    if (searchProducts.length === 0) {
+      return null; // If search is active but search text in ''
+    } else {
+      products = searchProducts; // If search is active
+    }
   } else {
-    products = searchProducts;
+    products = allProducts; // If no filter and sort and no search is active
   }
-  // Set product to show in page
-  dispatch(setProducts({ products: products }));
   // define a variable for number of pages
   let pages;
   if (filteredProducts.length === 0) {
@@ -95,15 +98,7 @@ const Store = ({ collection, category, searchProducts }) => {
     const startIndex = (i - 1) * 10; // find index of first product in page
     const endIndex = i * 10; // find index of last product in page
     // check which products to show between 'all product' and 'searched products' and 'filtered products'
-    if (filteredProducts.length === 0) {
-      if (!searchProducts) {
-        productsInPage.push(allProducts.slice(startIndex, endIndex));
-      } else {
-        productsInPage.push(searchProducts.slice(startIndex, endIndex));
-      }
-    } else {
-      productsInPage.push(filteredProducts.slice(startIndex, endIndex));
-    }
+    productsInPage.push(products.slice(startIndex, endIndex));
     // add page number to page numbers array
     numbers.push(i);
   }
@@ -117,7 +112,6 @@ const Store = ({ collection, category, searchProducts }) => {
       })
     );
   };
-  console.log(data);
 
   return (
     <div className={styles.container}>

@@ -45,7 +45,7 @@ const Products = ({ category, number }) => {
   // Get data from server
   const { loading, data } = useQuery(GET_CATEGORY_PRODUCTS, {
     variables: {
-      category: category,
+      category: category.toUpperCase(),
     },
   });
 
@@ -57,6 +57,8 @@ const Products = ({ category, number }) => {
       </section>
     );
   }
+
+  console.log(category)
 
   // split numbers of products that wants to show in carousel
   const categoryProducts = data.categories[0].products.slice(0, +number);
