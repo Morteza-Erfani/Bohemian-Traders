@@ -1,30 +1,30 @@
-import React from "react";
-import Carousel from "react-multi-carousel";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useQuery } from "@apollo/client";
+
+// Carousel
+import Carousel from "react-multi-carousel";
+
+// Redux actions
 import { addToCart, selectSize } from "../../../../redux/cart/cartSlice";
 
 // Styles
 import styles from "./QuickViewModal.module.css";
 
 // Assets
-import pic1 from "../../../../assets/product/SS22-ACT12-BLACK_01__01552.jpg";
-import pic2 from "../../../../assets/product/SS22-ACT12-BLACK_02__22867.jpg";
-import pic3 from "../../../../assets/product/SS22-ACT12-BLACK_03__03773.jpg";
-import pic4 from "../../../../assets/product/SS22-ACT12-BLACK_04__82678.jpg";
-import pic5 from "../../../../assets/product/ETCH-SIZING-TEMPLATE_02__42182.jpg";
-import pic6 from "../../../../assets/product/SS22-ACT12-BLACK_05__62288.jpg";
 import star from "../../../../assets/star.svg";
 import creditCard from "../../../../assets/credit-card-svgrepo-com.svg";
 import shipping from "../../../../assets/shipping-svgrepo-com.svg";
 
+// Loader
 import loader from "../../../../assets/loading.svg";
 
+// APIs
 import { GET_QUICK_VIEW_PRODUCT } from "../../../../graphql/queries";
-import { useQuery } from "@apollo/client";
 
+// Responsive info for carousel
 const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 2,
   },
@@ -43,32 +43,52 @@ const responsive = {
   },
 };
 
-const productData = {
-  photos: [pic1, pic2, pic3, pic4, pic5, pic6],
-  name: "swing jacket in black",
-  prices: 117.83,
-  id: 1,
-  sizes: ["xxs", "xs", "s", "l", "xl", "2xl", "3xl", "4xl"],
-  // category: "women",
-  // collection: "prints",
-  sizeType: "x-top",
-};
-
-let allSizes = [];
-
-// if (productData.sizeType === "x-top") {
-//   allSizes = ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"];
-// } else {
-//   allSizes = [1, 2, 3];
-// }
-
-const QuickViewModal = ({ show, onClose, id }) => {
-  const { loading, data } = useQuery(GET_QUICK_VIEW_PRODUCT);
+const QuickViewModal = ({ show, onClose, id, category, collection, slug }) => {
   const dispatch = useDispatch();
   const selectedSize = useSelector((state) => state.cart.selectedSize);
+  // Get data from server
+  const { loading, data } = useQuery(GET_QUICK_VIEW_PRODUCT, {
+    variables: {
+      id: id,
+    },
+  });
 
+  // Set page Title and remove previus selected size
+  useEffect(() => {
+    dispatch(selectSize({ size: "" }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Show loader before getting data from server
+  if (loading) {
+    return (
+      <section className="styles.container">
+        <img src={loader} alt="loader" className={styles.loader} />
+      </section>
+    );
+  }
+  // define a variable for saving all possible size for product size type
+  let allSizes = [];
+  // Set proper size types for product
+  if (data.product.sizeGuide.name !== "1") {
+    allSizes = ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"];
+  } else {
+    allSizes = ["0", "1", "2"];
+  }
+  // check if product has a exact size return true else return false
+  const sizeFound = (size) => {
+    const isFound = data.product.sizes.some((element) => {
+      if (element.name === size.toUpperCase()) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return isFound;
+  };
+  // Set and remove selected size in/from store
   const sizeHandler = (size) => {
-    if (productData.sizes.includes(size)) {
+    if (sizeFound(size)) {
       selectedSize === size
         ? dispatch(selectSize({ size: "" }))
         : dispatch(selectSize({ size: size }));
@@ -79,20 +99,6 @@ const QuickViewModal = ({ show, onClose, id }) => {
     return null;
   }
 
-  if (loading) {
-    return (
-      <section className="styles.container">
-        <img src={loader} alt="loader" className={styles.loader} />
-      </section>
-    );
-  }
-
-  if (data.product.sizeGuide !== 1) {
-    allSizes = ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"];
-  } else {
-    allSizes = [1, 2, 3];
-  }
-
   return (
     <div className={styles.container} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
@@ -101,6 +107,7 @@ const QuickViewModal = ({ show, onClose, id }) => {
         </div>
         <div className={styles.modalBody}>
           <div className={styles.upperSection}>
+            {/* product photos carousel */}
             <Carousel
               responsive={responsive}
               arrows={true}
@@ -115,7 +122,7 @@ const QuickViewModal = ({ show, onClose, id }) => {
             >
               {data.product.images.map((photo) => (
                 <div key={photo}>
-                  <img src={photo} alt="product" />
+                  <img src={photo.url} alt="product" />
                 </div>
               ))}
             </Carousel>
@@ -125,6 +132,7 @@ const QuickViewModal = ({ show, onClose, id }) => {
                 <h2 className={styles.brand}>BOHEMIAN TRADERS</h2>
                 <p className={styles.price}>$US {data.product.price}</p>
                 <div className={styles.ratingContainer}>
+                  {/* rating */}
                   <div className={styles.starContainer}>
                     <img src={star} alt="star" />
                     <img src={star} alt="star" />
@@ -134,18 +142,19 @@ const QuickViewModal = ({ show, onClose, id }) => {
                   </div>
                   <p>(NO REVIEWS YET)</p>
                 </div>
-                <a className={styles.review}>WRITE A REVIEW</a>
+                {/* send review */}
+                <a href="#" className={styles.review}>
+                  WRITE A REVIEW
+                </a>
                 <p className={styles.sizeTitle}>SIZE:</p>
+                {/* all sizes */}
                 <ul className={styles.sizeContainer}>
                   {allSizes.map((size) => (
                     <li
                       key={size}
                       className={`${styles.size} ${
                         selectedSize === size && styles.select
-                      } ${
-                        !data.product.sizes.includes({ name: size }) &&
-                        styles.unavailable
-                      }`}
+                      } ${!sizeFound(size) && styles.unavailable}`}
                       onClick={() => {
                         sizeHandler(size);
                       }}
@@ -154,18 +163,22 @@ const QuickViewModal = ({ show, onClose, id }) => {
                     </li>
                   ))}
                 </ul>
+                {/* Add to cart */}
                 <button
                   className={styles.addToCart}
                   onClick={() => {
                     selectedSize !== "" &&
                       dispatch(
                         addToCart({
-                          id: data.product.id,
+                          id: id,
                           size: selectedSize,
                           price: data.product.price,
                           name: data.product.name,
-                          photo: data.product.images[0],
+                          photo: data.product.images[0].url,
                           allSize: data.product.sizes,
+                          category: category,
+                          collection: collection,
+                          slug: slug,
                         })
                       );
                   }}

@@ -186,6 +186,9 @@ const ProductCard = ({
         onClose={() => setShowQuickView(false)}
         show={showQuickView}
         id={id}
+        category={category}
+        collection={collection}
+        slug={slug}
       />
     </div>
   );

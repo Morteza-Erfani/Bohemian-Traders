@@ -77,7 +77,7 @@ const ProductPage = () => {
   // Get product name from slug and change remove hyphens
   const name = slugToNormal(useParams().id);
 
-  // Set page Title
+  // Set page Title and remove previus selected size
   useEffect(() => {
     dispatch(selectSize({ size: "" }));
     document.title = `${capital(name)} | Bohemian Traders`;
