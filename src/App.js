@@ -1,6 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+
+// Redux actions
 import { restoreCart } from "./redux/cart/cartSlice";
 
 // Layout
@@ -11,7 +13,6 @@ import HomePage from "./components/homePage/HomePage";
 import SignIn from "./components/signIn/SignIn";
 import ResetPassword from "./components/resetPassword/ResetPassword";
 import Store from "./components/store/Store";
-import Test from "./Test";
 import AboutUs from "./components/aboutUs/AboutUs";
 import ContactUs from "./components/contactUs/ContactUs";
 import WorkWithUs from "./components/workWithUs/WorkWithUs";
@@ -30,8 +31,7 @@ function App() {
   const collection = useSelector((state) => state.productsPage.collection);
 
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.cart);
-
+  // Restore previous cart rfrom local storage
   useEffect(() => {
     dispatch(
       restoreCart({
@@ -40,22 +40,16 @@ function App() {
         totalCount: JSON.parse(localStorage.getItem("totalCount")),
       })
     );
-    // console.log(JSON.parse(localStorage.getItem("cart")));
-    // console.log(cart);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  console.log(category);
-  console.log(collection);
 
   return (
     <Layout>
       <ScrollToTop />
       <Routes>
-        <Route path="/test" element={<Test />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/reset" element={<ResetPassword />} />
-        {/* <Route path="/store" element={<Store />} /> */}
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/account-created" element={<CreatedAccount />} />

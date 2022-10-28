@@ -11,9 +11,7 @@ import "./Styles/fonts.css";
 
 // Components
 import App from "./App";
-
-console.log(process.env.REACT_APP_API_ADDRESS);
-
+// Setup apollo client
 const client = new ApolloClient({
   uri: process.env.REACT_APP_API_ADDRESS,
   cache: new InMemoryCache(),
