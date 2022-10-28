@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import styles from "./WorkWithUs.module.css";
 
 const WorkWithUs = () => {
+  // Set page title
   useEffect(() => {
     document.title = "Work With Us";
   }, []);
 
   return (
     <div className={styles.container}>
+      {/* User location in site */}
       <p className={styles.location}>
         <Link to="/">HOME</Link> / WORK WITH US
       </p>
@@ -27,7 +29,7 @@ const WorkWithUs = () => {
         drop us your CV via email! We’d love to meet.
       </div>
       <div className={styles.email}>
-        <a>admin@bohemiantraders.com</a>
+        <a href="mailto:admin@bohemiantraders.com">admin@bohemiantraders.com</a>
       </div>
     </div>
   );

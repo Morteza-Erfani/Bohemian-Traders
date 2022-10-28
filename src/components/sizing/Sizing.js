@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // Styles
 import styles from "./sizing.module.css";
@@ -7,15 +8,16 @@ import styles from "./sizing.module.css";
 import firstPic from "../../assets/size-guide-working-2a.jpg";
 import secondPic from "../../assets/top_CROP2.png";
 import thirdPic from "../../assets/bot_CROP3.png";
-import { Link } from "react-router-dom";
 
 const Sizing = () => {
+  // Set page title
   useEffect(() => {
     document.title = "Inclusive Size Range";
   }, []);
 
   return (
     <div className={styles.container}>
+      {/* User location in site */}
       <p className={styles.location}>
         <Link to="/">HOME</Link> / INCLUSIVE SIZE RANGE
       </p>
@@ -38,8 +40,13 @@ const Sizing = () => {
         </p>
         <p>
           The easiest avenues for assistance would be to either email our
-          customer service team at <a>customerservice@bohemiantraders.com</a>,
-          or give us a call on <a>+61 2 4327 8640</a> (Mon-Fri 9am - 5pm AEDT).
+          customer service team at{" "}
+          <a href="mailto:customerservice@bohemiantraders.com">
+            customerservice@bohemiantraders.com
+          </a>
+          , or give us a call on{" "}
+          <a href="tel:+61 2 4327 8640">+61 2 4327 8640</a> (Mon-Fri 9am - 5pm
+          AEDT).
         </p>
         <p>
           On the web listing for each of our garments, there is a size guide
