@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+// Redux actions
 import {
   addSize,
   filterReset,
@@ -46,7 +48,9 @@ const allSorts = [
 ];
 
 const FilterSort = () => {
+  // Set field name to open
   const [openField, setOpenField] = useState("");
+  // Set filter name to open
   const [openFilter, setOpenFilter] = useState("");
 
   const dispatch = useDispatch();
@@ -59,25 +63,29 @@ const FilterSort = () => {
   const maxPrice = filters.price.max;
   const inStock = filters.other.inStock;
 
+  // Reset filter on page mount
   useEffect(() => {
     dispatch(filterReset());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sizeHandler = (size) => {
+    // remove size if its already selected
     if (allSelectedSizes.includes(size)) {
       dispatch(removeSize({ size: size }));
       dispatch(runSizeFilter());
-    } else {
+    }
+    // add size
+    else {
       dispatch(addSize({ size: size }));
       dispatch(runSizeFilter());
     }
   };
-
+  // Check if a size is selected return checked style
   const check = (size) => {
     return allSelectedSizes.includes(size) ? styles.checked : "";
   };
-
+  // clear all selected sizes
   const clearSize = () => {
     dispatch(resetSize());
   };
@@ -88,6 +96,7 @@ const FilterSort = () => {
         <div className={styles.filterHeaderContainer}>
           <div
             className={styles.filterHeader}
+            // Open refine field
             onClick={() => {
               openFilter === "refine"
                 ? setOpenFilter("")
@@ -100,6 +109,7 @@ const FilterSort = () => {
           </div>
           <div
             className={`${styles.filterHeader} ${styles.sortHeader}`}
+            // Open sort filter
             onClick={() => {
               openFilter === "sort" ? setOpenFilter("") : setOpenFilter("sort");
               setOpenField("");
@@ -117,6 +127,7 @@ const FilterSort = () => {
           <div className={styles.refineItem}>
             <div
               className={styles.refineHeader}
+              // Open size filter
               onClick={() => {
                 openField === "size" ? setOpenField("") : setOpenField("size");
               }}
@@ -156,6 +167,7 @@ const FilterSort = () => {
                 <div
                   key={size}
                   className={styles.checkboxContainer}
+                  // Selecte or unselecte size
                   onClick={() => {
                     sizeHandler(size);
                   }}
@@ -182,6 +194,7 @@ const FilterSort = () => {
           <div className={styles.refineItem}>
             <div
               className={styles.refineHeader}
+              // Open price filter
               onClick={() => {
                 openField === "price"
                   ? setOpenField("")
@@ -217,6 +230,7 @@ const FilterSort = () => {
                   inputMode="numeric"
                   placeholder="Min."
                   min="0"
+                  // Set min price filter
                   onChange={(e) =>
                     dispatch(setMinPrice({ minPrice: e.target.value }))
                   }
@@ -226,6 +240,7 @@ const FilterSort = () => {
                   inputMode="numeric"
                   placeholder="Max."
                   min="0"
+                  // Set max price filter
                   onChange={(e) =>
                     dispatch(setMaxPrice({ maxPrice: e.target.value }))
                   }
@@ -233,6 +248,7 @@ const FilterSort = () => {
               </div>
               <p
                 className={styles.update}
+                // filter product by price
                 onClick={() => {
                   dispatch(runPriceFilter());
                 }}
@@ -254,6 +270,7 @@ const FilterSort = () => {
           <div className={styles.refineItem}>
             <div
               className={styles.refineHeader}
+              // Open other filter
               onClick={() => {
                 openField === "other"
                   ? setOpenField("")
@@ -285,6 +302,7 @@ const FilterSort = () => {
             >
               <div
                 className={styles.otherCheckboxContainer}
+                // filter just in stock products
                 onClick={() => {
                   dispatch(justInStock({ inStock: !inStock }));
                 }}
@@ -319,6 +337,7 @@ const FilterSort = () => {
             <div
               key={option}
               className={styles.checkboxContainer}
+              // Sert sort type
               onClick={() => {
                 selectedSort === option
                   ? dispatch(setSortOption({ sortOption: "" }))
