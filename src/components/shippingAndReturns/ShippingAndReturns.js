@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import styles from "./ShippingAndReturns.module.css";
 
 const ShippingAndReturns = () => {
+  // Set page Title
   useEffect(() => {
     document.title = "Shipping & Returns";
   }, []);
 
   return (
     <div className={styles.container}>
+    {/* User location in site */}
       <p className={styles.location}>
         <Link to="/">HOME</Link> / SHIPPING & RETURNS
       </p>

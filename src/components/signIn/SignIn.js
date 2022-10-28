@@ -12,17 +12,20 @@ import exclamation from "../../assets/circle-exclamation.svg";
 import { validateEmail } from "../../helpers/functions";
 
 const SignIn = () => {
+  // Set email validation result
   const [isValid, setIsValid] = useState(true);
+  // Set user email
   const [email, setEmail] = useState("");
+  // Set use password
   const [pass, setPass] = useState("0");
-
+  // Set page Title
   useEffect(() => {
     document.title = "Bohemian Tarders - Sign in";
   }, []);
-
+  // Check if value is not empty return valid style
   const isEmpty = (value) =>
     value !== "" && value !== "0" ? styles.green : "";
-
+  // Send data to server
   const clickHandler = (event) => {
     event.preventDefault();
     if (pass && email && isValid) {
@@ -32,6 +35,7 @@ const SignIn = () => {
 
   return (
     <div className={styles.container}>
+      {/* User location in site */}
       <p className={styles.location}>
         <Link to="/">HOME</Link> / LOGIN
       </p>
@@ -60,10 +64,12 @@ const SignIn = () => {
               name="email"
               inputMode="email"
               onChange={(e) => {
+                // Set email
                 setEmail(e.target.value);
+                // Validate email
                 setIsValid(validateEmail(email));
-                // console.log(email);
               }}
+              // Validate email
               onBlur={() => setIsValid(validateEmail(email))}
               className={isValid ? isEmpty(email) : styles.invalid}
             />
@@ -80,9 +86,11 @@ const SignIn = () => {
               type="password"
               inputMode="text"
               onChange={(e) => {
+                // Set password
                 setPass(e.target.value);
               }}
               className={pass ? isEmpty(pass) : styles.invalid}
+              // Set password
               onBlur={(e) => setPass(e.target.value)}
             />
             <p className={pass ? "" : styles.show}>
@@ -91,6 +99,7 @@ const SignIn = () => {
             </p>
           </div>
           <div className={styles.buttons}>
+            {/* On click send data to server */}
             <button type="submit" onClick={(e) => clickHandler(e)}>
               SIGN IN
             </button>
