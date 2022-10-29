@@ -47,7 +47,7 @@ const AddToCardModal = ({ show, onClose, photo, name, price, size }) => {
             </Link>
           </div>
           <div className={styles.productContainer}>
-            <img src={photo} className={styles.photo} alt="model" />
+            <img src={photo.url} className={styles.photo} alt="model" />
             <div>
               <h4>{name}</h4>
               <p className={styles.brand}>BOHEMIAN TRADERS</p>
