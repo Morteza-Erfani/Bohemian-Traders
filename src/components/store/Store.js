@@ -135,17 +135,18 @@ const Store = ({ collection, category, searchProducts }) => {
         {collection !== "view-all" &&
           ` / ${slugToNormal(collection).toUpperCase()}`}
       </p>
-      {data.collections[0].header !== null ? ( // If collection has header
+      {searchProducts !== undefined ? null : products.collections[0].header !== // If search product is active => dont show header
+        null ? ( // If collection has header
         <img
           className={styles.headPhoto}
-          src={data.collections[0].header.url}
+          src={products.collections[0].header.url}
           alt="header"
         />
       ) : // If collections dosent have header
-      data.categories[0].header !== null ? ( // If category has header
+      products.categories[0].header !== null ? ( // If category has header
         <img
           className={styles.headPhoto}
-          src={data.categories[0].header.url}
+          src={products.categories[0].header.url}
           alt="header"
         />
       ) : // If category dosent have header
