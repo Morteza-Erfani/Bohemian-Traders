@@ -113,6 +113,10 @@ const Store = ({ collection, category, searchProducts }) => {
     );
   };
 
+  console.log(searchProducts)
+  console.log(products)
+  console.log(data.collections)
+
   return (
     <div className={styles.container}>
       {/* User location in site */}
@@ -135,18 +139,18 @@ const Store = ({ collection, category, searchProducts }) => {
         {collection !== "view-all" &&
           ` / ${slugToNormal(collection).toUpperCase()}`}
       </p>
-      {searchProducts !== undefined ? null : products.collections[0].header !== // If search product is active => dont show header
+      {searchProducts !== undefined ? null : data.collections[0].header !== // If search product is active => dont show header
         null ? ( // If collection has header
         <img
           className={styles.headPhoto}
-          src={products.collections[0].header.url}
+          src={data.collections[0].header.url}
           alt="header"
         />
       ) : // If collections dosent have header
-      products.categories[0].header !== null ? ( // If category has header
+      data.categories[0].header !== null ? ( // If category has header
         <img
           className={styles.headPhoto}
-          src={products.categories[0].header.url}
+          src={data.categories[0].header.url}
           alt="header"
         />
       ) : // If category dosent have header
