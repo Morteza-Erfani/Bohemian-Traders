@@ -15,7 +15,7 @@ import { GET_CATEGORY_PRODUCTS } from "../../../graphql/queries";
 import "./Products.css";
 
 // Functions
-import { slugMaker } from "../../../helpers/functions";
+import { slugMaker, slugToNormal } from "../../../helpers/functions";
 
 // Loader
 import loader from "../../../assets/loading.svg";
@@ -45,7 +45,7 @@ const Products = ({ category, number }) => {
   // Get data from server
   const { loading, data } = useQuery(GET_CATEGORY_PRODUCTS, {
     variables: {
-      category: category.toUpperCase(),
+      category: slugToNormal(category.toUpperCase()),
     },
   });
 
@@ -58,15 +58,12 @@ const Products = ({ category, number }) => {
     );
   }
 
-  console.log(category)
-
   // split numbers of products that wants to show in carousel
   const categoryProducts = data.categories[0].products.slice(0, +number);
 
-
   return (
     <div className="container">
-    {/* product carousel */}
+      {/* product carousel */}
       <Carousel arrows responsive={responsive} containerClass="innerContainer">
         {categoryProducts.map((product) => (
           <div key={product.id}>
