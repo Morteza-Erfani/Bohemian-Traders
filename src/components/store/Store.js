@@ -113,10 +113,6 @@ const Store = ({ collection, category, searchProducts }) => {
     );
   };
 
-  console.log(searchProducts)
-  console.log(products)
-  console.log(data.collections)
-
   return (
     <div className={styles.container}>
       {/* User location in site */}
@@ -201,7 +197,8 @@ const Store = ({ collection, category, searchProducts }) => {
               href="#top"
               className={styles.previous}
               onClick={() => {
-                setPageNumber((prevPageNumber) => prevPageNumber - 1);
+                pageNumber > 1 &&
+                  setPageNumber((prevPageNumber) => prevPageNumber - 1);
               }}
             >
               <img src={leftArrow} alt="previous" />
@@ -227,7 +224,8 @@ const Store = ({ collection, category, searchProducts }) => {
               href="#top"
               className={styles.next}
               onClick={() => {
-                setPageNumber((prevPageNumber) => prevPageNumber + 1);
+                pageNumber < numbers[numbers.length - 1] &&
+                  setPageNumber((prevPageNumber) => prevPageNumber + 1);
               }}
             >
               <p>NEXT</p>
