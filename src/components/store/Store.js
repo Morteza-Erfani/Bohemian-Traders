@@ -119,7 +119,7 @@ const Store = ({ collection, category, searchProducts }) => {
       <p className={styles.location} id="top">
         <Link to="/">HOME</Link> /{" "}
         {collection === "view-all" ? (
-          category.toUpperCase()
+          slugToNormal(category).toUpperCase()
         ) : (
           <Link
             onClick={() => {
@@ -128,7 +128,7 @@ const Store = ({ collection, category, searchProducts }) => {
             }}
             to={`/${slugMaker(category)}/view-all`}
           >
-            {category.toUpperCase()}
+            {slugToNormal(category).toUpperCase()}
           </Link>
         )}
         {/* link to collection */}
