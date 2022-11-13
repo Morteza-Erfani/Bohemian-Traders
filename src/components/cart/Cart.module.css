@@ -106,6 +106,7 @@ div p.location {
   letter-spacing: 1.25px;
   padding: 2.5px 5px;
   font-family: "Work Sans", sans-serif;
+  cursor: pointer;
 }
 
 .secondSection {
@@ -165,6 +166,7 @@ div p.location {
   background-color: transparent;
   color: #666;
   align-items: center;
+  cursor: pointer;
 }
 
 .quantityBtn img {
@@ -212,6 +214,7 @@ div p.location {
   background-color: #e5e5e5;
   border-radius: 100%;
   margin-right: 15px;
+  cursor: pointer;
 }
 
 .checkoutContainer {
@@ -291,6 +294,7 @@ div p.location {
   border: none;
   line-height: 14px;
   font-family: Lato, Arial, Helvetica, sans-serif;
+  cursor: pointer;
 }
 
 .use {
