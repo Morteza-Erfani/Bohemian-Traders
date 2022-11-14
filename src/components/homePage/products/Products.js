@@ -43,14 +43,14 @@ const responsive = {
 
 const Products = ({ category, number }) => {
   // Get data from server
-  const { loading, data } = useQuery(GET_CATEGORY_PRODUCTS, {
+  const { loading, data, error } = useQuery(GET_CATEGORY_PRODUCTS, {
     variables: {
       category: slugToNormal(category.toUpperCase()),
     },
   });
 
   // show loader before getting data from server
-  if (loading) {
+  if (loading || error) {
     return (
       <section className="styles.container">
         <img src={loader} alt="loader" className={"loader"} />

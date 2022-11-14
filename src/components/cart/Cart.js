@@ -10,6 +10,7 @@ import {
   remove,
   selectSize,
 } from "../../redux/cart/cartSlice";
+import { setProductInfo } from "../../redux/productsDetail/productDetailsSlice";
 
 // Styles
 import styles from "./Cart.module.css";
@@ -24,7 +25,6 @@ import gPay from "../../assets/dark_gpay.svg";
 
 // Modals
 import ChangeSizeModal from "./changeSizeModal/ChangeSizeModal";
-import { setProductInfo } from "../../redux/productsDetail/productDetailsSlice";
 
 const Cart = () => {
   // Get data from redux store

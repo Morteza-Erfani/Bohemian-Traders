@@ -43,7 +43,7 @@ const Store = ({ collection, category, searchProducts }) => {
   const [pageNumber, setPageNumber] = useState(1);
 
   // Get data from server
-  const { data, loading } = useQuery(GET_STORE_PRODUCTS, {
+  const { data, loading, error } = useQuery(GET_STORE_PRODUCTS, {
     variables: {
       category: slugToNormal(category.toUpperCase()),
       collection: slugToNormal(collection.toUpperCase()),
@@ -59,7 +59,7 @@ const Store = ({ collection, category, searchProducts }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // Show loader before getting data from server
-  if (loading) {
+  if (loading || error) {
     return (
       <section className="styles.container">
         <img src={loader} alt="loader" className={styles.loader} />

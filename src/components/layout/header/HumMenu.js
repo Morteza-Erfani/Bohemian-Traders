@@ -19,7 +19,7 @@ import { showDetails } from "../../../redux/productsPage/productsPageSlice";
 import loader from "../../../assets/loading.svg";
 
 const HumMenu = ({ onClose }) => {
-  const { loading, data } = useQuery(GET_CATEGORIES_NAME);
+  const { loading, data, error } = useQuery(GET_CATEGORIES_NAME);
 
   const dispatch = useDispatch();
 
@@ -43,7 +43,7 @@ const HumMenu = ({ onClose }) => {
   };
 
   // Show loader before getting data from server
-  if (loading) {
+  if (loading || error) {
     return (
       <section className="styles.container">
         <img src={loader} alt="loader" className={styles.loader} />

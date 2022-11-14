@@ -47,7 +47,7 @@ const QuickViewModal = ({ show, onClose, id, category, collection, slug }) => {
   const dispatch = useDispatch();
   const selectedSize = useSelector((state) => state.cart.selectedSize);
   // Get data from server
-  const { loading, data } = useQuery(GET_QUICK_VIEW_PRODUCT, {
+  const { loading, data, error } = useQuery(GET_QUICK_VIEW_PRODUCT, {
     variables: {
       id: id,
     },
@@ -60,7 +60,7 @@ const QuickViewModal = ({ show, onClose, id, category, collection, slug }) => {
   }, []);
 
   // Show loader before getting data from server
-  if (loading) {
+  if (loading || error) {
     return (
       <section className="styles.container">
         <img src={loader} alt="loader" className={styles.loader} />

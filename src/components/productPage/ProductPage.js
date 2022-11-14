@@ -69,7 +69,7 @@ const ProductPage = () => {
   // Set show and hide for modal
   const [showModal, setShowModal] = useState(false);
   // Get data from server
-  const { data, loading } = useQuery(GET_PRODUCT_DETAILS, {
+  const { data, loading, error } = useQuery(GET_PRODUCT_DETAILS, {
     variables: {
       id: id,
     },
@@ -94,7 +94,7 @@ const ProductPage = () => {
     );
   };
   // Show loader before getting data from server
-  if (loading) {
+  if (loading || error) {
     return (
       <section className="styles.container">
         <img src={loader} alt="loader" className={styles.loader} />

@@ -42,7 +42,7 @@ const responsive = {
 
 const BottomSlider = () => {
   // Get photos from server
-  const { loading, data } = useQuery(GET_BOTTOM_HERO_PHOTOS);
+  const { loading, data, error } = useQuery(GET_BOTTOM_HERO_PHOTOS);
 
   const dispatch = useDispatch();
 
@@ -54,7 +54,7 @@ const BottomSlider = () => {
   };
 
   // show loader before getting data from server
-  if (loading) {
+  if (loading || error) {
     return (
       <section className="styles.container">
         <img src={loader} alt="loader" className="loader" />

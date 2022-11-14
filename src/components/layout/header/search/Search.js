@@ -21,7 +21,7 @@ const Search = ({ show, onClose }) => {
   const [searchText, setSearchText] = useState("");
 
   // Get data from server
-  const { loading, data } = useQuery(GET_ALL_PRODUCTS);
+  const { loading, data, error } = useQuery(GET_ALL_PRODUCTS);
 
   // set search default to empty
   useEffect(() => {
@@ -29,7 +29,7 @@ const Search = ({ show, onClose }) => {
   }, []);
 
   // Show loader before getting data from server
-  if (loading) {
+  if (loading || error) {
     return (
       <section className="styles.container">
         <img src={loader} alt="loader" className={styles.loader} />

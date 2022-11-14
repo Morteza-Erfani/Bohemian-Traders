@@ -19,7 +19,7 @@ import { slugMaker } from "../../../helpers/functions";
 
 const Catalog = () => {
   // get photos from server
-  const { loading, data } = useQuery(GET_CATALOGS_PHOTOS);
+  const { loading, data, error } = useQuery(GET_CATALOGS_PHOTOS);
 
   const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ const Catalog = () => {
   };
 
   // show loader before getting data from server
-  if (loading) {
+  if (loading || error) {
     return (
       <section className="styles.container">
         <img src={loader} alt="loader" className={styles.loader} />

@@ -20,7 +20,7 @@ import { slugMaker } from "../../../helpers/functions";
 
 const Explore = () => {
   // Get data from server
-  const { loading, data } = useQuery(GET_EXPLORE_DATA);
+  const { loading, data, error } = useQuery(GET_EXPLORE_DATA);
 
   const dispatch = useDispatch();
 
@@ -32,7 +32,7 @@ const Explore = () => {
   };
 
   // Show loader before getting data from server
-  if (loading) {
+  if (loading || error) {
     return (
       <section className="styles.container">
         <img src={loader} alt="loader" className={styles.loader} />
