@@ -55,7 +55,7 @@ const responsive = {
   },
 };
 
-const ProductPage = () => {
+const ProductPage = (relatedCategory) => {
   const dispatch = useDispatch();
   let selectedSize = useSelector((state) => state.cart.selectedSize);
   let category = useSelector((state) => state.productDetails.category);
@@ -98,8 +98,8 @@ const ProductPage = () => {
     },
   });
 
-  console.log(id);
-  console.log(data);
+  console.log(category);
+  console.log(relatedCategory)
   // Get product name from slug and change remove hyphens
   const name = slugToNormal(useParams().id);
 
@@ -431,7 +431,7 @@ const ProductPage = () => {
       </p>
       <h1 className={styles.moreHeader}>MORE FROM THIS COLLECTION</h1>
       {/* similar products carousel */}
-      <Products category={category} number="6" />
+      <Products category={category} number="6" collection={collection} />
       {/* Add to card modal */}
       <AddToCardModal
         onClose={() => setShowModal(false)}

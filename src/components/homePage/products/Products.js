@@ -41,7 +41,7 @@ const responsive = {
   },
 };
 
-const Products = ({ category, number }) => {
+const Products = ({ category, number, collection }) => {
   // Get data from server
   const { loading, data, error } = useQuery(GET_CATEGORY_PRODUCTS, {
     variables: {
@@ -68,6 +68,8 @@ const Products = ({ category, number }) => {
         {categoryProducts.map((product) => (
           <div key={product.id}>
             <ProductCard
+              collection={collection}
+              category={category}
               data={product}
               titleType="capital"
               slug={slugMaker(product.name)}
