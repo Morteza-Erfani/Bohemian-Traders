@@ -57,23 +57,49 @@ const responsive = {
 
 const ProductPage = () => {
   const dispatch = useDispatch();
-  const selectedSize = useSelector((state) => state.cart.selectedSize);
-  const category = useSelector((state) => state.productDetails.category);
-  const collection = useSelector((state) => state.productDetails.collection);
-  const slug = useSelector((state) => state.productDetails.slug);
-  const id = useSelector((state) => state.productDetails.id);
+  let selectedSize = useSelector((state) => state.cart.selectedSize);
+  let category = useSelector((state) => state.productDetails.category);
+  let collection = useSelector((state) => state.productDetails.collection);
+  let slug = useSelector((state) => state.productDetails.slug);
+  let id = useSelector((state) => state.productDetails.id);
   // set show and hide for wish list
   const [wishList, setWishList] = useState(false);
   // Set which info section to show
   const [infoShow, setInfoShow] = useState("details");
   // Set show and hide for modal
   const [showModal, setShowModal] = useState(false);
+
+  window.addEventListener("beforeunload", () => {
+    sessionStorage.setItem(
+      "data",
+      JSON.stringify({
+        selectedSize: selectedSize,
+        category: category,
+        collection: collection,
+        slug: slug,
+        id: id,
+      })
+    );
+  });
+
+  if (!id) {
+    const currentData = JSON.parse(sessionStorage.getItem("data"));
+    selectedSize = currentData.selectedSize;
+    category = currentData.category;
+    collection = currentData.collection;
+    slug = currentData.slug;
+    id = currentData.id;
+  }
+
   // Get data from server
   const { data, loading, error } = useQuery(GET_PRODUCT_DETAILS, {
     variables: {
       id: id,
     },
   });
+
+  console.log(id);
+  console.log(data);
   // Get product name from slug and change remove hyphens
   const name = slugToNormal(useParams().id);
 
