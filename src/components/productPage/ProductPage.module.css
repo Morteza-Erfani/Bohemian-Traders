@@ -373,6 +373,85 @@ div.mediumInfoContainer pre {
   letter-spacing: 1.25px;
 }
 
+.reviews {
+  background-color: #f5f2f2;
+  padding: 30px 10.5px;
+}
+
+.reviewsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.reviewsHeader h1 {
+  font-size: 32px;
+  font-weight: 300;
+  color: #272727;
+  line-height: 36px;
+}
+
+.reviewsHeader p {
+  background: linear-gradient(
+    90deg,
+    #000 0%,
+    #000 49.9%,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  background-repeat: repeat-x;
+  background-size: 200% 1.375px;
+  background-position: 0 100%;
+  padding: 5px 0;
+  transition: 0.975s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 1.25px;
+  font-weight: 500;
+  font-family: "Work Sans", sans-serif;
+}
+
+.reviewsHeader p:hover {
+  animation: none;
+  background-position: -200% 100%;
+}
+
+.reviewsStarContainer {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.reviewsStarContainer img {
+  width: 16px;
+}
+
+.reviewData h5 {
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #272525;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.reviewDate {
+  color: #757575;
+  margin-bottom: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.reviewContent {
+  margin-bottom: 14px;
+  letter-spacing: 0.3px;
+  color: #272525;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
 .moreHeader {
   margin: 20px 0;
   font-size: 32px;
@@ -444,10 +523,9 @@ div.mediumInfoContainer pre {
     align-items: flex-start;
   }
 
-  
-.carouselContainer button {
-  margin-top: 0;
-}
+  .carouselContainer button {
+    margin-top: 0;
+  }
 }
 
 @media (min-width: 990px) {

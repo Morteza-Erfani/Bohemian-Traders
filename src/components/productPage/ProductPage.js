@@ -99,7 +99,7 @@ const ProductPage = (relatedCategory) => {
   });
 
   console.log(category);
-  console.log(relatedCategory)
+  console.log(relatedCategory);
   // Get product name from slug and change remove hyphens
   const name = slugToNormal(useParams().id);
 
@@ -429,6 +429,26 @@ const ProductPage = (relatedCategory) => {
         <span>SKU: </span>
         {data.product.code}
       </p>
+      <div className={styles.reviews}>
+        <div className={styles.reviewsHeader}>
+          <h1>REVIEWS</h1>
+          <p>WRITE A REVIEW</p>
+        </div>
+        <div className={styles.reviewsStarContainer}>
+          <img src={star} alt="star" />
+          <img src={star} alt="star" />
+          <img src={star} alt="star" />
+          <img src={star} alt="star" />
+          <img src={star} alt="star" />
+        </div>
+        <div className={styles.reviewData}>
+          <h5>comfortable style</h5>
+          <p className={styles.reviewDate}>Posted by Claire on 29th Aug 2022</p>
+          <p className={styles.reviewContent}>
+            perfect all season denim jacket....
+          </p>
+        </div>
+      </div>
       <h1 className={styles.moreHeader}>MORE FROM THIS COLLECTION</h1>
       {/* similar products carousel */}
       <Products category={category} number="6" collection={collection} />
