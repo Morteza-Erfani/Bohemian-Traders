@@ -19,6 +19,7 @@ import loader from "../../assets/loading.svg";
 // Components
 import Products from "../homePage/products/Products";
 import AddToCardModal from "./addToCardModal/AddToCardModal";
+import ReviewModal from "./reviewModal/ReviewModal";
 
 // Carousel
 import Carousel from "react-multi-carousel";
@@ -66,8 +67,9 @@ const ProductPage = (relatedCategory) => {
   const [wishList, setWishList] = useState(false);
   // Set which info section to show
   const [infoShow, setInfoShow] = useState("details");
-  // Set show and hide for modal
-  const [showModal, setShowModal] = useState(false);
+  // Set show and hide for modals
+  const [showAddToCardModal, setShowAddToCardModal] = useState(false);
+  const [showReviewModal, setShowReviewModal] = useState(false);
 
   window.addEventListener("beforeunload", () => {
     sessionStorage.setItem(
@@ -155,7 +157,7 @@ const ProductPage = (relatedCategory) => {
     }
   };
   // disable background scrolling when modal is shown
-  if (showModal) {
+  if (showAddToCardModal || showReviewModal) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "scroll";
@@ -229,9 +231,12 @@ const ProductPage = (relatedCategory) => {
               <p>(NO REVIEWS YET)</p>
             </div>
             {/* send review */}
-            <a href="#" className={styles.review}>
+            <p
+              className={styles.review}
+              onClick={() => setShowReviewModal(true)}
+            >
               WRITE A REVIEW
-            </a>
+            </p>
             <p className={styles.sizeTitle}>SIZE:</p>
             {/* all sizes */}
             <ul className={styles.sizeContainer}>
@@ -267,7 +272,7 @@ const ProductPage = (relatedCategory) => {
                       slug: slug,
                     })
                   );
-                selectedSize !== "" && setShowModal(true);
+                selectedSize !== "" && setShowAddToCardModal(true);
               }}
             >
               ADD TO CART
@@ -454,12 +459,18 @@ const ProductPage = (relatedCategory) => {
       <Products category={category} number="6" collection={collection} />
       {/* Add to card modal */}
       <AddToCardModal
-        onClose={() => setShowModal(false)}
-        show={showModal}
+        onClose={() => setShowAddToCardModal(false)}
+        show={showAddToCardModal}
         photo={data.product.images[0]}
         name={name}
         price={data.product.price}
         size={selectedSize}
+      />
+      <ReviewModal
+        onClose={() => setShowReviewModal(false)}
+        show={showReviewModal}
+        photo={data.product.images[0]}
+        name={name}
       />
     </div>
   );
