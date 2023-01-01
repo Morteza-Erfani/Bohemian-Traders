@@ -124,7 +124,7 @@ const ProductPage = (relatedCategory) => {
   // Show loader before getting data from server
   if (loading || error) {
     return (
-      <section className="styles.container">
+      <section className={styles.container}>
         <img src={loader} alt="loader" className={styles.loader} />
       </section>
     );
@@ -456,7 +456,11 @@ const ProductPage = (relatedCategory) => {
       </div>
       <h1 className={styles.moreHeader}>MORE FROM THIS COLLECTION</h1>
       {/* similar products carousel */}
-      <Products category={category} number="6" collection={collection} />
+      <Products
+        category={category === "search" ? "WHAT'S NEW" : category}
+        number="6"
+        collection={category === "search" ? "view-all" : collection}
+      />
       {/* Add to card modal */}
       <AddToCardModal
         onClose={() => setShowAddToCardModal(false)}

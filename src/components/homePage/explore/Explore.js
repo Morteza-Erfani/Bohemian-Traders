@@ -34,7 +34,7 @@ const Explore = () => {
   // Show loader before getting data from server
   if (loading || error) {
     return (
-      <section className="styles.container">
+      <section className={styles.container}>
         <img src={loader} alt="loader" className={styles.loader} />
       </section>
     );

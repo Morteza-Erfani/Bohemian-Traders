@@ -16,8 +16,13 @@ const ReviewModal = ({ onClose, show, photo, name }) => {
           <h2>hello</h2>
         </div>
         <div className={styles.modalBody}>
-          <img src={photo.url} alt="product" />
-          <h5 className={styles.productName}>{name}</h5>
+          <div className={styles.productDetails}>
+            <img src={photo.url} alt="product" />
+            <h5 className={styles.productName}>{name}</h5>
+          </div>
+          <div className={styles.form}>
+            
+          </div>
         </div>
       </div>
     </div>

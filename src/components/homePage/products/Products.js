@@ -52,12 +52,14 @@ const Products = ({ category, number, collection }) => {
   // show loader before getting data from server
   if (loading || error) {
     return (
-      <section className="styles.container">
+      <section className={styles.container}>
         <img src={loader} alt="loader" className={"loader"} />
       </section>
     );
   }
-
+  console.log(collection);
+  console.log(category);
+  console.log(data);
   // split numbers of products that wants to show in carousel
   const categoryProducts = data.categories[0].products.slice(0, +number);
 

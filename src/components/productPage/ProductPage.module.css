@@ -106,6 +106,7 @@ div p.location {
   margin-top: 10px;
   padding: 2.5px 5px;
   display: inline-block;
+  cursor: pointer;
 }
 
 .review:hover {

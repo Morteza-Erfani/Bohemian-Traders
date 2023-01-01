@@ -47,8 +47,6 @@ const TopSlider = () => {
   // Get data from server
   const { loading, data, error } = useQuery(GET_HERO_PHOTOS);
 
-  console.log(error)
-
   const dispatch = useDispatch();
 
   // Generate slug and title for store page that links to each photo
@@ -61,12 +59,11 @@ const TopSlider = () => {
   // show loader before getting data from server
   if (loading || error) {
     return (
-      <section className="styles.container">
+      <section className={styles.container}>
         <img src={loader} alt="loader" className={styles.loader} />
       </section>
     );
   }
-  console.log('hi')
 
   return (
     <div>
