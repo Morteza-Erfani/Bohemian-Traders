@@ -52,7 +52,7 @@ const Products = ({ category, number, collection }) => {
   // show loader before getting data from server
   if (loading || error) {
     return (
-      <section className={styles.container}>
+      <section className="container">
         <img src={loader} alt="loader" className={"loader"} />
       </section>
     );
