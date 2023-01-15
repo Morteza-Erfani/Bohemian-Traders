@@ -1,70 +1,107 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Bohemian Traders
 
-## Available Scripts
+A SPA store Front-End 
 
-In the project directory, you can run:
 
-### `npm start`
+## Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+access my site at https://bohemian-traders.vercel.app/
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## About
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Bohemian Traders is a SPA store that duplicated from https://bohemiantraders.com/
 
-### `npm run build`
+the products in the site is just for show and there is no real products
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+some features like SPA, client side filtering and sorting and new client side search process and some ather minor features added to original site
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+this project is just for practice 
+## Screenshots
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![App Screenshot](https://pixeldrain.com/api/file/iaqt6Frb)
 
-### `npm run eject`
+![App Screenshot](https://pixeldrain.com/api/file/RXFKj2yA)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![App Screenshot](https://pixeldrain.com/api/file/t3xxrdEh)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Features
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- SPA
+- Fully Responsive
+- Mobile First Design
+- Client Side Form Validation
+- Client Side Sorting & Filtering
+- Client Side Searching
+- Client Side Cart Management
+- Almost all Data is Dynamic
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Tech Stack
 
-### Code Splitting
+**Client:** React, Redux toolkit, GraphQL, Modular CSS, React-router-dom
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Server:** https://hygraph.com/
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Run Locally
 
-### Making a Progressive Web App
+Clone down this repository. You will need ``` node ``` and ``` npm ``` installed globally on your machine.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Install dependencies
 
-### Advanced Configuration
+```bash
+  npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Start the server
 
-### Deployment
+```bash
+  npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Visit App
 
-### `npm run build` fails to minify
+```bash
+  localhost:3000
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  npm test
+```
+
+
+## Lessons Learned
+Deep understanding of CSS and Mobile First Design
+Work and gain experiance with React Hooks and Redux toolkit and combine them with React-router-dom to make a fast SPA website
+
+
+## 🛠 Skills
+HTML, CSS, JavaScript,
+
+React, React Hooks, react-router-dom,
+ 
+Redux toolkit, 
+ 
+GraphQL,
+
+Modular CSS, Form Validation, Mobile First Design
+
+
+## 🔗 Links
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/morteza-erfani/)
+
+
+
+## Feedback
+
+If you have any feedback, please reach out to me at m.erfani74@gmail.com
+
