@@ -13,9 +13,9 @@ access my site at https://bohemian-traders.vercel.app/
 
 Bohemian Traders is a SPA store that duplicated from https://bohemiantraders.com/
 
-the products in the site is just for show and there is no real products
+the products on the site are just for show and there are no real products
 
-some features like SPA, client side filtering and sorting and new client side search process and some ather minor features added to original site
+some features like SPA, client-side filtering and sorting and new client-side search process, and some other minor features were added to the original site
 
 this project is just for practice 
 ## Screenshots
@@ -81,7 +81,7 @@ To run tests, run the following command
 
 ## Lessons Learned
 Deep understanding of CSS and Mobile First Design
-Work and gain experiance with React Hooks and Redux toolkit and combine them with React-router-dom to make a fast SPA website
+Work and gain experience with React Hooks and Redux toolkit and combine them with React-router-dom to make a fast SPA website
 
 
 ## 🛠 Skills
